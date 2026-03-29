@@ -1,0 +1,176 @@
+﻿.CourseOverview .PersonInfo {
+   margin-bottom:40px;
+   margin-top:0;
+   padding-top: 11px;
+}
+
+.CourseOverview .PersonInfo h2 {
+   margin-top:0;
+   color: #26C2E0;
+   font-size: 1.4em;
+   font-family: 'Muli',Arial,sans-serif;
+   float: left;
+   margin-right:20px;
+}
+
+.CourseOverview .PersonInfo .myAttendancePerson  {
+   float:left;
+   margin-right:10px;
+   height:22px;
+}
+
+/*.CourseOverview .PersonInfo*/
+.AttendanceQuickAdd .addAttendeebutton {
+   /*float:left;
+   margin-right:-10px;*/
+    width:44px;
+    /*width:130px;*/
+    height:24px;
+    font-size:1.1em;
+    text-decoration:none;
+    line-height:1.75em;
+    color:#fff;
+    /*margin-top:-5px;*/
+    
+    position:relative;
+    top:-1px;
+    margin-left:10px;
+}
+
+.CourseOverview .EventWrapper {
+   float:left;
+  /* width:300px;*/
+   width:47%; /*-- Widened Layout --*/
+   margin-right:-15px;
+}
+
+.CourseOverview .EventWrapper div .RadGrid, .CourseOverview .ClassWrapper div .RadGrid {
+    width:100%;
+}
+
+.CourseOverview .EventWrapper h3, .CourseOverview .ClassWrapper h3 {
+   color: #A054A0;
+    margin-bottom: 10px;
+    margin-top: 0;
+    margin-right:15px;
+}
+
+.CourseOverview .EventWrapper div[id="ctl00_ctl00_MainContentPlaceholder_RadGridEventsPanel"], .CourseOverview .ClassWrapper div[id="ctl00_MainContentPlaceholder_RadGridClass"] {
+    float:left;
+    width:100%;
+}
+
+.CourseOverview .ClassWrapper {
+   float:left;
+   /*width:405px;*/
+    width:47%; /*-- Widened Layout --*/
+   left:27px;
+   position:relative;
+}
+
+.CourseOverview .OR {
+   color: #A054A0;
+    float: left;
+    font-weight: bold;
+    /*margin-top: 45px;*/
+    position: relative;
+    margin-left:30px;
+    margin-right:35px;
+    margin-top:0;
+    display:inline;
+}
+
+.CourseOverview .AttendanceInfo {
+   padding-top: 30px;
+   clear:both;
+   padding-left:15px;
+}
+
+.CourseOverview .AttendanceInfo .AttendeeYouth {
+   margin-right:15px;
+}
+
+.CourseOverview .AttendanceInfo .row {
+   margin-bottom:15px;
+}
+
+.CourseOverview .AttendanceInfo #MainContentPlaceholder_LabelLeftEarly {
+   margin-top:7px;
+   margin-bottom:-20px;
+}
+
+.CourseOverview .AttendanceInfo .LeftEarlyFields {
+   float:right;
+   margin-right:607px; /* originally 650px */
+   position:relative;
+   width:16%;
+   top:-5px;
+   left:-5px;
+}
+
+/*.CourseOverview .AttendanceInfo .LeftEarlyFields #MainContentPlaceholder_RadiobuttonListEarly_1 {
+    left: 65px;
+    position: absolute;
+    top: 3px;
+}*/
+
+
+
+.CourseOverview .AttendanceInfo .LeftEarlyFields label[for*="MainContentPlaceholder_RadiobuttonListEarly_1"] {
+    /*left: 0px;
+    position: absolute;
+    top: 3px;*/
+}
+
+.CourseOverview .AttendanceInfo .LeftEarlyFields #_rfdSkinnedRadiobuttonListEarly_0, .CourseOverview .AttendanceInfo .LeftEarlyFields #_rfdSkinnedRadiobuttonListEarly_1 {
+    padding-left:26px !important;
+}
+
+.CourseOverview .AttendanceInfo .LeftEarlyFields label[for="RadiobuttonListEarly_0"], .CourseOverview .AttendanceInfo .LeftEarlyFields label[for="RadiobuttonListEarly_1"] {
+    padding-left:5px !important;
+}
+
+.CourseOverview .AttendanceInfo .LeftEarlyFields #_rfdSkinnedRadiobuttonListEarly_0, .CourseOverview .AttendanceInfo .LeftEarlyFields label[for="RadiobuttonListEarly_0"] {
+    margin-right:-10px;
+}
+
+.CourseOverview .AttendanceInfo .TardyFields {
+   float:right;
+   margin-right:607px; /* originally 650px */
+   position:relative;
+   width:16%;
+   top:-5px;
+   left:-5px;
+}
+
+.CourseOverview .AttendanceInfo .TardyFields #_rfdSkinnedMainContentPlaceholder_RadiobuttonListTardy_1 {
+    left: 65px;
+    position: absolute;
+    top: 3px;
+}
+
+.CourseOverview .AttendanceInfo .TardyFields #_rfdSkinnedRadiobuttonListTardy_0, .CourseOverview .AttendanceInfo .TardyFields #_rfdSkinnedRadiobuttonListTardy_1 {
+    padding-left:26px !important;
+}
+
+.CourseOverview .AttendanceInfo .TardyFields label[for="RadiobuttonListTardy_0"], .CourseOverview .AttendanceInfo .TardyFields label[for="RadiobuttonListTardy_1"] {
+    padding-left:5px !important;
+}
+
+.CourseOverview .AttendanceInfo .TardyFields #_rfdSkinnedRadiobuttonListTardy_0, .CourseOverview .AttendanceInfo .TardyFields label[for="RadiobuttonListTardy_0"] {
+    margin-right:-10px;
+}
+
+.CourseOverview .AttendanceInfo #MainContentPlaceholder_LabelTardy {
+   margin-top:7px;
+   margin-bottom:-10px;
+}
+
+.CourseOverview .AttendanceInfo .ClassNotes {
+   width:85px;
+   float:left;
+}
+
+.CourseOverview .AttendanceInfo #ctl00_MainContentPlaceholder_TextBoxNotes {
+   resize:none;
+}

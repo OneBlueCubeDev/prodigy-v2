@@ -1,0 +1,91 @@
+﻿.topnav, .topnav a {
+    float:none !important;
+}
+
+/*-------------------Form Elements-------------------------*/
+
+textarea {overflow:auto !important;}
+
+#ctl00_MainContentPlaceholder_RadComboBoxState .rcbInputCell .rcbInput, #ctl00_MainContentPlaceholder_RadComboBoxCounty .rcbInputCell .rcbInput, #ctl00_SidebarContentPlaceholder_SearchSidebar1_RadComboBoxType .rcbInputCell .rcbInput, #ctl00_SidebarContentPlaceholder_SearchSidebar1_RadComboBoxStatus .rcbInputCell .rcbInput, #ctl00_MainContentPlaceholder_RadComboBoxProdigyLocation .rcbInputCell .rcbInput {
+    padding-top: 6px !important;
+    height:17px !important;
+}
+
+.enrollmentEthnicityFields {
+    width:68%;
+    margin-right:167px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_0 {
+    margin-right: 27px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_3 {
+    position:relative;
+    left:-18px;
+}
+
+.myenrollmentemergencycontactrelationship .OtherRelationship {
+    display:inline-block;
+    position:relative;
+    top:-5px;
+}
+
+/*.myenrollmentpickupAdd .addphone {
+    width:82px !important;
+}*/
+
+.myenrollmentpickupAdd input {
+    margin-right:3px !important;
+}
+
+/*.riskassessmentRefferalFields label {
+    margin-right: 30px !important;
+}*/
+
+/*.enrollmentpermissionsfields .myOtherField {
+    margin-right: 38px;
+}*/
+
+.myOtherField {
+    width: 120px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentaddress2 {
+    position: absolute;
+    right: 276px;
+    top: -34px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianstate {
+    left: 225px;
+    position: absolute;
+    top: -34px;
+    width: auto;
+}
+
+
+.myenrollmentphysicianaddress .myenrollmentphysiciancounty {
+    position: absolute;
+    right: 250px;
+    top: -34px;
+    width: auto;
+}
+
+.myenrollmentpolicynumber span {
+    margin-bottom: 30px;
+    margin-right: 133px;
+}
+
+
+
+
+.RadCalendarMonthView_Prodigy .rcTodayButton 
+    {
+    margin:0;
+    padding-left:3px;
+    padding-right:3px; 
+    left: 42px;
+    position: absolute;  
+    bottom:9px !important;
+    }

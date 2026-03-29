@@ -1,0 +1,91 @@
+﻿html, body {
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+}
+
+body {
+	font-family: Constantia, 'PT Serif', Pressroom, FF Page Serif, serif;
+}
+
+.CertificateContainer {
+	width:3300px;
+	height:2550px;
+	margin-top:15px;
+	margin-left:15px;
+	margin-right:0;
+	margin-bottom:0;
+	padding:0;
+	background: url(../Images/CertificateImages/CertificateBg3.jpg) center 0 no-repeat;
+}
+
+.CertificateContent {
+	/*margin:0 330px;
+	padding-top:525px;*/
+	padding-top:790px;
+	text-align:center;
+	margin:0 470px;
+}
+
+h1 {
+	/*font-size: 100px;
+	margin:0 0 165px;*/
+	font-size: 155px;
+	margin:0 0 256px;
+	padding:0;
+	font-weight:normal;
+}
+
+h2, h3 {
+	/*font-size:73px;*/
+	font-size:111px;
+	margin:0;
+	padding:0;
+	font-weight:normal;	
+}
+
+h3 {
+	/*font-size:70px;
+	margin-bottom:184px;*/
+	font-size:108px;
+	margin-bottom:284px;
+}
+
+p {
+	/*font-size:33px;*/
+	font-size:54px;
+	margin:0;
+	padding:0;
+}
+
+p.Italicize {
+	/*font-size: 45px;*/
+	font-size:72px;
+	margin:0;
+	padding:0;
+	font-style: italic;
+	font-family: Garamond, 'EB Garamond', serif;
+	text-align:center;
+}
+
+.SignatureBlock {
+	border-top:1px solid #000;
+	width:1309px;
+	text-align:left;
+	padding: 14px 0 0 12px;
+	/*padding:9px 0 0 6px;
+	width:850px;
+	margin-bottom:81px;*/
+	margin-left:33px;
+	margin-bottom:130px;
+}
+
+.DateBlock {
+	float: right;
+    margin-right: 33px;
+    /*width: 473px;*/
+	width:732px;
+	
+}
+

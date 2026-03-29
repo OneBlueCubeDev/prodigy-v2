@@ -1,0 +1,201 @@
+﻿.myriskassessmentinitialscontainer {
+    float: right;
+    margin-right: 170px;
+    margin-top: 5px;
+}
+
+.myriskassessmentinitialscontainer span {
+    margin-right:10px;
+}
+
+.myriskassessmentinitialscontainer input {
+    width:30px;
+}
+
+.myriskassessmentyouthname span {
+    /*margin-right:46px;*/
+    width:113px;
+}
+
+.myriskassessmentauthor {
+    margin-bottom:20px;
+}
+
+.myriskassessmentauthor span {
+    margin-right:15px;
+    width:101px;
+    float:left;
+}
+
+.myriskassessmentauthor input {
+    width:200px;
+}
+
+.myriskassessmentprodigylocation span.mylabel {
+    margin-right:22px;
+}
+.RadComboBox_Prodigy[id*="ctl00_MainContentPlaceholder_RadComboBoxProdigyLocation"], .RadComboBox_Prodigy[id*="ctl00_MainContentPlaceholder_RadComboBoxStaff"] {
+    width: 205px !important;
+}
+.riskassessmentRefferalFields {width:685px;}
+
+.riskassessmentParentStatusFields label, .riskassessmentFamilyStructureFields label, .riskassessmentRefferalFields label {
+    margin-right:30px;
+    margin-bottom:5px;
+    padding-left:26px !important;
+}
+
+.riskassessmentRefferalFields td {padding-bottom:10px;}
+
+.riskassessmentRefferalFields label {margin-right:2px !important;}
+
+input[name="ctl00$MainContentPlaceholder$RiskAssessmentReferralOtherTextBox"] {
+    margin-left: 605px;
+    position: relative;
+    top: -32px;
+}
+
+.riskassessmentFamilyStructureFields  #_rfdSkinnedMainContentPlaceholder_CheckBoxListRiskAssessmentFamilyStucture_3{
+    margin-right: 41px;
+}
+
+.riskassessmentFamilyStructureFields  #_rfdSkinnedMainContentPlaceholder_CheckBoxListRiskAssessmentFamilyStucture_4{
+    margin-right: 26px;
+}
+
+.riskassessmentRefferalFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListRiskAssessmentRefferal_5 {
+    margin-bottom:15px;
+}
+
+p.checklabel .mylabel{font-weight:bold;height:auto;}
+
+/*------------------------Tab Styles----------------------------*/
+
+.RiskAssessmentChartContainer {
+    position:relative;
+    height:auto;
+    width:100%;
+    padding-top:10px;
+}
+
+.RiskAssessmentSections {
+    position:absolute;
+    left:0;
+    top:0;
+    width:165px;
+    height:auto;
+    clear:left;
+}
+
+.RiskAssessmentSectionViews {
+    margin-left:165px;
+    min-height:450px;
+}
+
+.RiskAssessmentSectionViews h3.sectionHead {
+    margin-bottom:15px;
+}
+
+.myRALabel {
+    float:left;
+    width:73%;
+    padding-bottom:10px;
+}
+
+.RAcheckboxes{
+    float:right;
+    width:auto;
+    height:30px;
+    margin-top:-2px;
+}
+
+.myRAchoices label {
+    padding-left:27px !important;
+    margin-right:10px;
+}
+
+.RiskAssessmentSectionViews .sectionDivider {
+    margin-top:35px;
+    margin-bottom:20px;
+}
+
+.myRAclear {
+   height:60px;
+}
+
+.myriskassessmentinitialscontainer table {
+    float: left;
+}
+
+.myriskassessmentinitialscontainer .mysignaturelabel {
+    top:3px;
+}
+
+.myRANameContainer{width: auto !important; float:left; margin-top:20px;}
+
+.myRAIDcontainer {
+    float:left;
+    width:auto;
+    clear:none;
+    top:-5px;
+    margin-left:125px;
+    margin-top:20px;
+}
+
+
+.myRADOB, .myRADate {float:left;}
+.myRADOBError, .myRADateError {
+    position:relative;
+    top:2px;
+    left:-38px;
+}
+
+.myLocationLabel {
+    float:left;
+    width:94px;
+}
+
+.CriteriaRAError {
+    display:inline-block;
+    margin-bottom:25px;
+}
+.ua-ie .RiskAssessmentDateLabel {
+    margin-right: -68px;
+}
+
+/*------------------------Release Info Styles----------------------------*/
+
+.RARelease h3{
+    color: #A054A0;
+    margin-bottom: 25px;
+    margin-top: 0;
+}
+
+.RARelease .ReleaseWrapper .mylabel {
+    width: 113px;
+    float:left;
+}
+
+.RARelease .ReleaseWrapper .ReleaseList {
+    margin-bottom:10px;
+    position:relative;
+    top:-2px;
+    left:-8px;
+}
+
+.RARelease .ReleaseWrapper .ReleaseList label {
+    position:relative;
+    top:-3px;
+    padding-left: 28px !important;
+}
+
+.RARelease .ReleaseWrapper .myenrollmentdobcontainer .myenrollmentdob {
+    margin-left:0;
+}
+
+.PATSections {
+    left:0;
+    top:0;
+    width:165px;
+    height:auto;
+}

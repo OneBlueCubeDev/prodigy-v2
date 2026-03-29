@@ -1,0 +1,262 @@
+/* <RadToolBar / Office2010Black> */
+
+/* <tool wrapper> */
+
+/* <horizontal> */
+
+.RadToolBar_Prodigy .rtbOuter
+{
+	border: 1px solid #2c2c2c;
+}
+
+.RadToolBar_Prodigy .rtbMiddle
+{
+	border: 1px solid #a0a0a0;
+	background: #a0a0a0 url('ToolBar/rtbControlBg.png') repeat-x 0 0;
+}
+
+/* </horizontal> */
+
+/* <vertical> */
+
+.RadToolBar_Prodigy_Vertical .rtbMiddle
+{
+	background: #a0a0a0 url('ToolBar/rtbVerticalControlBg.png') repeat-y 0 0;
+}
+
+/* </vertical> */
+
+/* </tool wrapper> */
+
+/* <buttons> */
+
+.RadToolBar_Prodigy .rtbWrap,
+.RadToolBar_Prodigy .rtbTemplate
+{
+	color: #010101;
+	font: normal 12px/20px "Segoe UI", Arial, sans-serif;
+}
+
+/* <button states> */
+
+.RadToolBar_Prodigy .rtbSplBtnFocused .rtbWrap, .RadToolBar_Prodigy .rtbSplBtnFocused .rtbOut, .RadToolBar_Prodigy .rtbSplBtnFocused .rtbMid, .RadToolBar_Prodigy .rtbSplBtnFocused .rtbIn,
+.RadToolBar_Prodigy .rtbItemFocused .rtbWrap, .RadToolBar_Prodigy .rtbItemFocused .rtbOut, .RadToolBar_Prodigy .rtbItemFocused .rtbMid, .RadToolBar_Prodigy .rtbItemFocused .rtbIn,
+.RadToolBar_Prodigy .rtbItemHovered .rtbWrap, .RadToolBar_Prodigy .rtbItemHovered .rtbOut, .RadToolBar_Prodigy .rtbItemHovered .rtbMid, .RadToolBar_Prodigy .rtbItemHovered .rtbIn
+{
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-image: url('ToolBar/rtbHoverBg.png');
+}
+
+.RadToolBar_Prodigy .rtbItemClicked .rtbWrap, .RadToolBar_Prodigy .rtbItemClicked .rtbOut, .RadToolBar_Prodigy .rtbItemClicked .rtbMid, .RadToolBar_Prodigy .rtbItemClicked .rtbIn
+{
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-image: url('ToolBar/rtbClickedBg.png');
+}
+
+.RadToolBar_Prodigy .rtbSplBtnExpanded .rtbWrap, .RadToolBar_Prodigy .rtbSplBtnExpanded .rtbOut, .RadToolBar_Prodigy .rtbSplBtnExpanded .rtbMid, .RadToolBar_Prodigy .rtbSplBtnExpanded .rtbIn,
+.RadToolBar_Prodigy .rtbDropDownExpanded .rtbWrap, .RadToolBar_Prodigy .rtbDropDownExpanded .rtbOut, .RadToolBar_Prodigy .rtbDropDownExpanded .rtbMid, .RadToolBar_Prodigy .rtbDropDownExpanded .rtbIn,
+.RadToolBar_Prodigy .rtbChecked .rtbWrap, .RadToolBar_Prodigy .rtbChecked .rtbOut, .RadToolBar_Prodigy .rtbChecked .rtbMid, .RadToolBar_Prodigy .rtbChecked .rtbIn,
+.RadToolBar_Prodigy li.rtbChecked .rtbWrap:hover, .RadToolBar_Prodigy li.rtbChecked .rtbWrap:hover .rtbOut, .RadToolBar_Prodigy li.rtbChecked .rtbWrap:hover .rtbMid, .RadToolBar_Prodigy li.rtbChecked .rtbWrap:hover .rtbIn
+{
+	background-image: url('ToolBar/rtbActiveBg.png');
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.RadToolBar_Prodigy .rtbItemFocused .rtbWrap,
+.RadToolBar_Prodigy .rtbChecked .rtbWrap,
+.RadToolBar_Prodigy .rtbDropDownExpanded .rtbWrap,
+.RadToolBar_Prodigy .rtbSplBtnExpanded .rtbWrap,
+.RadToolBar_Prodigy .rtbItemHovered .rtbWrap,
+.RadToolBar_Prodigy .rtbItemClicked .rtbWrap
+{
+	color: #000000;
+}
+
+/* </button states> */
+
+/* <Drop Down Arrows> */
+
+
+.RadToolBar_Prodigy .rtbSplBtn .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItem .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnExpanded .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnExpanded .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbDropDownExpanded .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbDropDownExpanded .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnHovered .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnHovered .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemHovered .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemHovered .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnClicked .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnClicked .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemClicked .rtbVOriented .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemClicked .rtbChoiceArrow
+{
+	background-image: url('ToolBar/rtbDropArrows.png');
+}
+
+.RadToolBar_Prodigy .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtn .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnExpanded .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbDropDownExpanded .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnHovered .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemHovered .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbSplBtnClicked .rtbExpandUp .rtbChoiceArrow,
+.RadToolBar_Prodigy .rtbItemClicked .rtbExpandUp .rtbChoiceArrow
+{
+	background-image: url('ToolBar/rtbUpArrows.png');
+}
+
+/* </Drop Down Arrows> */
+
+.RadToolBar_Prodigy_Horizontal li.rtbSeparator 
+{
+	border-left: 1px solid #838383;
+	background: #c6c6c6;
+}
+
+.RadToolBar_Prodigy_Vertical li.rtbSeparator
+{
+	border-top: 1px solid #838383;
+	background: #c6c6c6;
+}
+
+/* </buttons> */
+
+
+/* <disabled states> */
+
+.RadToolBar_Prodigy .rtbDisabled .rtbWrap:hover,
+.RadToolBar_Prodigy .rtbDisabled .rtbWrap:hover .rtbOut,
+.RadToolBar_Prodigy .rtbDisabled .rtbWrap:hover .rtbMid,
+.RadToolBar_Prodigy .rtbDisabled .rtbWrap:hover .rtbIn
+{
+	background-image: none;
+}
+
+.RadToolBar_Prodigy .rtbDisabled .rtbWrap { color: #7E8FBC\9; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0)  /* WebKit alpha + opacity/cleartype bug, like IE wasn't enough... */
+{
+	.RadToolBar_Prodigy .rtbDisabled .rtbWrap { color: #7E8FBC; }
+}
+
+/* </disabled states */
+
+/* <drop-down> */
+
+/* <Drop Down rounded corners and shadows> */
+
+.RadToolBarDropDown_Prodigy .rtbTopFix,
+.RadToolBarDropDown_Prodigy .rtbBottomFix,
+.RadToolBarDropDown_Prodigy .rtbGroup
+{
+	background-image: url('ToolBar/rtbDropDownBg.png');
+	background-color: #f6f6f6;
+	background-repeat: repeat-y;
+	background-position: -1px 0;
+}
+
+.RadToolBarDropDown_Prodigy div.rtbTopFix,
+.RadToolBarDropDown_Prodigy div.rtbBottomFix
+{
+    background-position: -2px 0;
+}
+
+.RadToolBarDropDown_Prodigy .rtbBottomLeft,
+.RadToolBarDropDown_Prodigy .rtbRoundedCorners
+{
+	background-image:  url('ToolBar/rtbRoundedLeft.png');
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.RadToolBarDropDown_Prodigy .rtbTopRight,
+.RadToolBarDropDown_Prodigy .rtbBottomRight
+{
+	background-image:  url('ToolBar/rtbRoundedRight.png');
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+
+.RadToolBarDropDown_Prodigy .rtbTopFix,
+.RadToolBarDropDown_Prodigy .rtbBottomFix,
+.RadToolBarDropDown_Prodigy .rtbRoundedCorners .rtbFirst
+{
+	border-color: #868686;
+}
+
+.RadToolBarDropDown_Prodigy_rtl .rtbBottomLeft,
+.RadToolBarDropDown_Prodigy_rtl .rtbRoundedCorners
+{
+	background-image: url('ToolBar/rtbRoundedLeft_rtl.png');
+}
+
+.RadToolBarDropDown_Prodigy_rtl .rtbTopRight,
+.RadToolBarDropDown_Prodigy_rtl .rtbBottomRight
+{
+	background-image: url('ToolBar/rtbRoundedRight_rtl.png');
+}
+
+.RadToolBarDropDown_Prodigy_rtl div.rtbTopFix,
+.RadToolBarDropDown_Prodigy_rtl div.rtbBottomFix,
+.RadToolBarDropDown_Prodigy_rtl .rtbGroup
+{
+	background-position: 101% 0;
+}
+
+/* </Drop Down rounded corners and shadows> */
+
+.RadToolBarDropDown_Prodigy
+{
+	border-color: #868686;
+	background-color: #fff;
+	background-image: url('ToolBar/rtbDropDownBg.png');
+	background-position: -1px 0;
+}
+
+.RadToolBarDropDown_Prodigy li.rtbItem {
+	padding:0 0 0 4px;
+}
+
+div.RadToolBarDropDown_Prodigy_rtl
+{
+	background-position: 101% 0;
+}
+
+.RadToolBarDropDown_Prodigy .rtbWrap,
+.RadToolBarDropDown_Prodigy .rtbTemplate
+{
+	font-weight: normal;
+	font-size: 12px;
+	font-family: "Segoe UI", Arial, sans-serif;
+	color: #010101;
+}
+
+.RadToolBarDropDown_Prodigy .rtbItemHovered,
+.RadToolBarDropDown_Prodigy .rtbItemFocused,
+.RadToolBarDropDown_Prodigy .rtbItemHovered .rtbWrap,
+.RadToolBarDropDown_Prodigy .rtbItemFocused .rtbWrap
+{
+	color: #000;
+	background-image: url('ToolBar/rtbDropDownHover.png');
+}
+
+.RadToolBarDropDown_Prodigy .rtbDisabled .rtbWrap
+{
+	color: #5e5e5e;
+}
+
+.RadToolBarDropDown_Prodigy .rtbSeparator
+{
+	border-color: #c5c5c5;
+	background: #fff;
+}
+
+/* </drop-down> */
+
+/* </RadToolBar / Office2010Black> */

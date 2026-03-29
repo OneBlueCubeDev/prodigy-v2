@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>POD_Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{87b212e1-1218-4718-b497-886aac384a2b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>POD.Database</RootNamespace>
+    <AssemblyName>POD.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DacApplicationName>POD Database</DacApplicationName>
+    <GenerateCreateScript>True</GenerateCreateScript>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\TimePeriodTypes.sql" />
+    <Build Include="dbo\Tables\TimePeriods.sql" />
+    <Build Include="dbo\Tables\Students_Audit.sql" />
+    <Build Include="dbo\Tables\Students.sql" />
+    <Build Include="dbo\Tables\StatusTypes.sql" />
+    <Build Include="dbo\Tables\StaffMembers_Audit.sql" />
+    <Build Include="dbo\Tables\StaffMembers.sql" />
+    <Build Include="dbo\Tables\Sites_Audit.sql" />
+    <Build Include="dbo\Tables\Sites.sql" />
+    <Build Include="dbo\Tables\RiskAssessments_Audit.sql" />
+    <Build Include="dbo\Tables\RiskAssessments.sql" />
+    <Build Include="dbo\Tables\ReferringAgencyTypes.sql" />
+    <Build Include="dbo\Tables\ReferralTypes.sql" />
+    <Build Include="dbo\Tables\Races.sql" />
+    <Build Include="dbo\Tables\ProgramTypes.sql" />
+    <Build Include="dbo\Tables\Programs_Audit.sql" />
+    <Build Include="dbo\Tables\Programs.sql" />
+    <Build Include="dbo\Tables\Positions.sql" />
+    <Build Include="dbo\Tables\PhoneNumberTypes.sql" />
+    <Build Include="dbo\Tables\PhoneNumbers_Audit.sql" />
+    <Build Include="dbo\Tables\PhoneNumbers.sql" />
+    <Build Include="dbo\Tables\PersonTypes.sql" />
+    <Build Include="dbo\Tables\PersonsToRaces.sql" />
+    <Build Include="dbo\Tables\PersonsToPhoneNumbers.sql" />
+    <Build Include="dbo\Tables\PersonsToEthnicities.sql" />
+    <Build Include="dbo\Tables\PersonsToCourseInstances.sql" />
+    <Build Include="dbo\Tables\PersonsToAddresses.sql" />
+    <Build Include="dbo\Tables\Persons_Audit.sql" />
+    <Build Include="dbo\Tables\Persons.sql" />
+    <Build Include="dbo\Tables\PersonRelationshipTypes.sql" />
+    <Build Include="dbo\Tables\PersonRelationships.sql" />
+    <Build Include="dbo\Tables\MonthlyEnrollmentPercentages.sql" />
+    <Build Include="dbo\Tables\LocationTypes.sql" />
+    <Build Include="dbo\Tables\LocationsToPhoneNumbers.sql" />
+    <Build Include="dbo\Tables\Locations_Audit.sql" />
+    <Build Include="dbo\Tables\Locations.sql" />
+    <Build Include="dbo\Tables\LifeSkillTypes.sql" />
+    <Build Include="dbo\Tables\LifeSkillsToLessonPlans.sql" />
+    <Build Include="dbo\Tables\LessonPlanTypes.sql" />
+    <Build Include="dbo\Tables\LessonPlanSets.sql" />
+    <Build Include="dbo\Tables\LessonPlans_Audit.sql" />
+    <Build Include="dbo\Tables\LessonPlans.sql" />
+    <Build Include="dbo\Tables\InventoryItemTypes.sql" />
+    <Build Include="dbo\Tables\InventoryItems_Audit.sql" />
+    <Build Include="dbo\Tables\InventoryItems.sql" />
+    <Build Include="dbo\Tables\Genders.sql" />
+    <Build Include="dbo\Tables\EventTypes.sql" />
+    <Build Include="dbo\Tables\Events_Audit.sql" />
+    <Build Include="dbo\Tables\Events.sql" />
+    <Build Include="dbo\Tables\EventCategoryFields.sql" />
+    <Build Include="dbo\Tables\EventCategories.sql" />
+    <Build Include="dbo\Tables\EventAttendances_Audit.sql" />
+    <Build Include="dbo\Tables\EventAttendances.sql" />
+    <Build Include="dbo\Tables\Ethnicities.sql" />
+    <Build Include="dbo\Tables\EnrollmentTypes.sql" />
+    <Build Include="dbo\Tables\Enrollments_Audit.sql" />
+    <Build Include="dbo\Tables\Enrollments.sql" />
+    <Build Include="dbo\Tables\ELMAH_Error.sql" />
+    <Build Include="dbo\Tables\DisciplineTypes.sql" />
+    <Build Include="dbo\Tables\CourseTypes.sql" />
+    <Build Include="dbo\Tables\Courses_Audit.sql" />
+    <Build Include="dbo\Tables\Courses.sql" />
+    <Build Include="dbo\Tables\CourseInstances_Audit.sql" />
+    <Build Include="dbo\Tables\CourseInstances.sql" />
+    <Build Include="dbo\Tables\Counties.sql" />
+    <Build Include="dbo\Tables\ContractsToSites.sql" />
+    <Build Include="dbo\Tables\ContractsToPrograms.sql" />
+    <Build Include="dbo\Tables\Contracts.sql" />
+    <Build Include="dbo\Tables\ContractEnrollmentQuotas.sql" />
+    <Build Include="dbo\Tables\CommunitiesToCounties.sql" />
+    <Build Include="dbo\Tables\Communities.sql" />
+    <Build Include="dbo\Tables\ClassTypes.sql" />
+    <Build Include="dbo\Tables\Classes_Audit.sql" />
+    <Build Include="dbo\Tables\Classes.sql" />
+    <Build Include="dbo\Tables\ClassAttendances_Audit.sql" />
+    <Build Include="dbo\Tables\ClassAttendances.sql" />
+    <Build Include="dbo\Tables\Circuits.sql" />
+    <Build Include="dbo\Tables\aspnet_WebEvent_Events.sql" />
+    <Build Include="dbo\Tables\aspnet_UsersInRoles.sql" />
+    <Build Include="dbo\Tables\aspnet_Users.sql" />
+    <Build Include="dbo\Tables\aspnet_SchemaVersions.sql" />
+    <Build Include="dbo\Tables\aspnet_Roles.sql" />
+    <Build Include="dbo\Tables\aspnet_Profile.sql" />
+    <Build Include="dbo\Tables\aspnet_PersonalizationPerUser.sql" />
+    <Build Include="dbo\Tables\aspnet_PersonalizationAllUsers.sql" />
+    <Build Include="dbo\Tables\aspnet_Paths.sql" />
+    <Build Include="dbo\Tables\aspnet_Membership.sql" />
+    <Build Include="dbo\Tables\aspnet_Applications.sql" />
+    <Build Include="dbo\Tables\AgeGroups.sql" />
+    <Build Include="dbo\Tables\AddressTypes.sql" />
+    <Build Include="dbo\Tables\Addresses_Audit.sql" />
+    <Build Include="dbo\Tables\Addresses.sql" />
+    <Build Include="dbo\Views\vw_PersonsEnrollments.sql" />
+    <Build Include="dbo\Views\vw_Persons.sql" />
+    <Build Include="dbo\Views\vw_PersonRiskAssessment.sql" />
+    <Build Include="dbo\Views\vw_PersonEvents.sql" />
+    <Build Include="dbo\Views\vw_PersonClassAttendance.sql" />
+    <Build Include="dbo\Views\vw_Events.sql" />
+    <Build Include="dbo\Views\vw_Classes.sql" />
+    <Build Include="dbo\Functions\udfTimePeriodTypeByName.sql" />
+    <Build Include="dbo\Functions\udfStatusTypeByName.sql" />
+    <Build Include="dbo\Functions\udfMonthStartDate.sql" />
+    <Build Include="dbo\Functions\udfMonthlyEnrollmentPercentage.sql" />
+    <Build Include="dbo\Functions\udfMonthEndDate.sql" />
+    <Build Include="dbo\Functions\udfMinimumDate.sql" />
+    <Build Include="dbo\Functions\udfMaximumDate.sql" />
+    <Build Include="dbo\Functions\udfGetWeekDayNameOfDate.sql" />
+    <Build Include="dbo\Functions\udfEnrollmentTypeByName.sql" />
+    <Build Include="dbo\Functions\Calc_Age.sql" />
+    <Build Include="dbo\Functions\udfSplitString.sql" />
+    <Build Include="dbo\Functions\udfGrantYear.sql" />
+    <Build Include="dbo\Stored Procedures\spGetStaffVerificationReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetStaffVacancyReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetReturningYouthReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetReleasedYouthReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProdigyStaffReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyNonAttendanceReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyEnrollmentReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyEnrollmentData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyAttendanceReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMasterClassScheduleReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMasterClassScheduleParameterLookupData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetInventoryReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetGrantYearProgramEnrollmentData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetFriendsAndFamilyReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetDiversionYouthData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCensusReportData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBulkUserLoginData.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetPersonForBulkEdit.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetPersonEnrollments.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetPersonAttendanceAndEvents.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetClassessAndEvents.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteLocationRelatedData.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_LogError.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_GetErrorXml.sql" />
+    <Build Include="dbo\Stored Procedures\ELMAH_GetErrorsXml.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteRiskAssessment.sql" />
+    <Build Include="dbo\Stored Procedures\sp_DeleteEnrollment.sql" />
+    <Build Include="dbo\Stored Procedures\spMaintenance_RegisterStudentsToClassesWithAttendance.sql" />
+    <Build Include="dbo\Views\vw_Inventory.sql" />
+    <Build Include="dbo\Views\vw_LessonPlanSets.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyAttendanceReportData_withRisk.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMonthlyEnrollmentReportData_withRisk.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PODSchemaCompare.scmp" />
+    <None Include="POD Database.publish.xml" />
+    <None Include="POD Database Staging.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.updateRaceValues.sql" />
+  </ItemGroup>
+</Project>

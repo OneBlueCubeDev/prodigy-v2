@@ -1,0 +1,177 @@
+﻿/*------------------Reports Grid Styles----------------------*/
+
+.ReportWrapperCell{
+    border:1px solid #72BE44;
+    padding:0;
+    padding:10px;
+    position:relative;
+    /*width:30.4%;*/
+    width:30.93%;
+    margin-right:15px;
+    float:left;
+    margin-bottom:15px;
+}
+
+.RightReportWrapperCell{
+    margin-right:-11px;
+}
+
+.ReportWrapperCell .ReportWrapper {
+    margin-bottom:10px;
+    padding:0;   
+    width:100%;
+    height:190px;
+    padding-top:1px;
+    padding-right:5px;
+    padding-left:5px;
+    position:relative;
+}
+
+.ReportWrapperCell .ReportWrapper h2{
+    margin-top:0;
+    font-family: 'Muli',Arial,sans-serif;
+    text-align: left; 
+    display:block;
+    margin-bottom: 10px;
+    font-size:1.4em;
+    color: #26C2E0;
+}
+
+.ReportWrapperCell .ReportWrapper p{
+    padding-right:95px;
+}
+
+.ReportWrapperCell .ReportWrapper input{
+    bottom: -5px;
+    position: absolute;
+    right: 15px;
+    width:65px;
+}
+
+/*------------------Report Page Styles----------------------*/
+
+.RunReportContainer{
+    margin-bottom:25px;
+}
+
+.RunReportContainer h2{
+    color: #26C2E0;
+    font-family: 'Muli',Arial,sans-serif;
+    font-size: 1.4em;
+    margin-right: 20px;
+    margin-top: 0;
+}
+
+.RunReportContainer label{
+    margin-right:10px;
+}
+
+.RunReportContainer .myreporttargetdatecontainer{
+    width: 265px;
+    float:left;
+    margin-right:-50px;
+    position:relative;
+    top:-2px;
+}
+
+.RunReportContainer .myDatePickerPopup{
+    position:relative;
+    top:8px;
+}
+
+.RunReportContainer .mydropdown{
+    position:relative;
+    top:2px;
+}
+
+.RunReportContainer .mybutton{
+    font-size: 1.1em;
+    height: 24px;
+    line-height: 2em;
+    left:15px;
+    margin-right: -10px;
+    position:relative;
+    top:0px;
+    margin-top:-7px;
+    text-decoration: none;
+}
+
+.ReportContent {
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+.ReportContent table div[id*="ReportViewer"] {
+    background:none;
+}
+
+.ReportContent table div[id*="ReportViewer"] {
+    background:none;
+}
+
+.ReportContent table {
+    margin-left:auto;
+    margin-right:auto;
+     
+}
+
+/*------------------Master Class Schedule Report Styles----------------------*/
+
+.MasterClassReport label {
+    display: inline-block;
+    margin-right: 10px;
+    width: 135px;
+}
+
+.MasterClassReport .mydropdown {margin-right:35px;}
+
+.MasterClassReport .myreporttargetdatecontainer{
+    margin-right: 83px;
+}
+
+.MasterClassReport .mybutton{
+    font-size: 1.1em;
+    height: 24px;
+    line-height: 2em;
+    position:relative;
+    margin-top:-7px;
+    text-decoration: none;
+    margin-left:-30px;
+}
+
+/*------------------Prodigy Enrollment Report Styles----------------------*/
+
+.ProdigyEnrollmentReport .mybutton{
+    margin-top:-3px;
+}
+
+/*------------------Returning Youth Report Styles----------------------*/
+
+.ReturningYouthReport .SiteDropDownPadding {
+    margin-right:30px;
+}
+
+/*------------------Bulk Data Report Styles----------------------*/
+.BulkDataReport .BulkEditContentWrapper {
+    overflow-x:auto;
+    min-height:385px;
+}
+
+/*------------------Prodigy Staff Report Styles----------------------*/
+
+.ReportingLocationFieldSet {
+    display: inline-block;
+    margin-left: 35px;
+}
+
+.ReportingLocationFieldSet div {
+    display: inline-block !important;
+}
+
+/*------------------Census Report Styles----------------------*/
+
+.ReportingCensusContainer {
+    /*background-color:  red;*/
+    width:125%;
+}

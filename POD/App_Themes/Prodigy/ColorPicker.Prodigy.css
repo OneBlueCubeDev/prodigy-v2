@@ -1,0 +1,103 @@
+/* RadColorPicker Office2010Black skin */
+.RadColorPicker_Prodigy .rcpViews,
+.RadColorPicker_Prodigy .rcpHeader,
+.RadColorPicker_Prodigy .rcpPageView
+{
+	background-color:#c8c8c8;
+}
+
+.RadColorPicker_Prodigy .rcpColorPreview,
+.RadColorPicker_Prodigy .rcpInput,
+.RadColorPicker_Prodigy .rcpHexInput,
+.RadColorPicker_Prodigy .rcpMillionColorsPalette,
+.RadColorPicker_Prodigy .rcpMillionColorsSlider div.rslTrack
+{
+	border:1px solid #919191;
+}
+
+.RadColorPicker_Prodigy .rcpPalette,
+.RadColorPicker_Prodigy input,
+.RadColorPicker_Prodigy a,
+.RadColorPicker_Prodigy .rcpApplyButton:hover span
+{
+	color:#000;
+}
+
+.RadColorPicker_Prodigy .rcpTabs ul li a
+{
+	color:#fff;
+	background-position: left -289px;
+	padding:0 0 0 6px !important;
+}
+
+.RadColorPicker_Prodigy .rcpTabs ul li a span
+{
+	padding:0 6px 0 0 !important;
+	background-position:right top;
+}
+
+.RadColorPicker_Prodigy .rcpTabs ul li.rcpSelectedTab a
+{
+	color: #000;
+	background-position:-1014px -289px;
+	padding-left:6px !important;
+}
+
+.RadColorPicker_Prodigy .rcpTabs ul li.rcpSelectedTab a span
+{
+	background-position:right -26px;
+	padding-right:6px !important;
+}
+
+.RadColorPicker_Prodigy .rcpApplyButton span,
+.RadColorPicker_Prodigy .rcpButton span
+{
+	color:#000;
+}
+
+.RadColorPicker_Prodigy .rcpHeader,
+.RadColorPicker_Prodigy .rcpHeader .rcpImageButton,
+.RadColorPicker_Prodigy .rcpRecentColors,
+.RadColorPicker_Prodigy .rcpIcon a,
+.RadColorPicker_Prodigy .rcpTabs a,
+.RadColorPicker_Prodigy .rcpTabs a span,
+.RadColorPicker_Prodigy .rcpButton,
+.RadColorPicker_Prodigy .rcpButton span,
+.RadColorPicker_Prodigy .rcpMillionColorsHandle,
+.RadColorPicker_Prodigy .rcpSlider div.rslTrack,
+/* overwrite sliders */
+.RadColorPicker_Prodigy .rcpSlider .rslTrack a.rslDraghandle,
+.RadColorPicker_Prodigy div.rcpMillionColorsSlider div.rslVertical a.rslDraghandle
+{
+	background-image: url('ColorPicker/ColorPickerSprites.png');
+	background-repeat:no-repeat;
+}
+
+/* Rounded corners and shadows */
+.RadColorPicker_Prodigy .rcpPalette,
+.RadColorPicker_Prodigy .rcpRoundedRight,
+.RadColorPicker_Prodigy .rcpRoundedBottomRight,
+.RadColorPicker_Prodigy .rcpRightShadow,
+.RadColorPicker_Prodigy .rcpCornerShadow
+{
+	background-image: url('ColorPicker/rcpVerticalSprites.png');
+}
+
+.RadColorPicker_Prodigy .rcpRoundedBottomLeft,
+.RadColorPicker_Prodigy .rcpBottomShadow
+{
+	background-image: url('ColorPicker/ColorPickerSprites.png');
+}
+
+* html .RadColorPicker_Prodigy .rcpPalette,
+* html .RadColorPicker_Prodigy .rcpRoundedRight,
+* html .RadColorPicker_Prodigy .rcpRoundedBottomRight,
+* html .RadColorPicker_Prodigy .rcpRoundedBottomLeft
+{
+	background-image: url('ColorPicker/rcpVerticalSpritesIE6.png');
+}
+
+* html .RadColorPicker_Prodigy .rcpTabs
+{
+	bottom: -29px !important;
+}

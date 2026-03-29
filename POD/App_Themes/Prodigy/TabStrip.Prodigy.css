@@ -1,0 +1,264 @@
+.RadTabStrip_Prodigy .rtsLI,
+.RadTabStrip_Prodigy .rtsLink {
+    color: #ffffff;
+    font: 10px/26px Arial, Verdana, sans-serif;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    margin-left: -3px;
+    behavior: url("PIE.htc");
+    padding-left:2px;
+}
+
+.RadTabStrip_Prodigy .rtsLevel1 .rtsLI,
+.RadTabStrip_Prodigy .rtsLevel1 .rtsLink
+{
+	color: #5ABCA3;
+	margin-top:2px;
+}
+
+.RadTabStrip, .RadTabStripVertical{
+    padding: 1px;
+}
+
+.RadTabStrip_Prodigy .rtsLevel1 .rtsLink {
+    background-color: #F7F7F7;
+    border: 1px solid #ccc;
+}
+
+.RadTabStrip_Prodigy .rtsLevel1 .rtsLink:hover {
+    background-color: #5ABCA3;
+	border-color:#5ABCA3;
+	color: #fff;
+}
+
+.RadTabStrip_Prodigy .rtsLevel .rtsLink:hover,
+.RadTabStrip_Prodigy .rtsLevel .rtsSelected,
+.RadTabStrip_Prodigy .rtsLevel .rtsSelected:hover
+{
+	text-decoration: underline;
+}
+
+.RadTabStrip_Prodigy .rtsLevel1 .rtsLink:hover,
+.RadTabStrip_Prodigy .rtsLevel1 .rtsSelected,
+.RadTabStrip_Prodigy .rtsLevel1 .rtsSelected:hover
+{
+	text-decoration: none;
+}
+
+.RadTabStrip_Prodigy .rtsLevel .rtsSelected,
+.RadTabStrip_Prodigy .rtsLevel .rtsSelected:hover {
+	color: #fff;
+	padding-top:3px;
+	padding-bottom:3px;
+	margin-left:2px;
+}
+
+.RadTabStripLeft_Prodigy .rtsSeparator,
+.RadTabStripRight_Prodigy .rtsSeparator
+{
+	background: #6f6f6f;
+}
+
+/* <focus cue> */
+div.RadTabStrip_Prodigy a.rtsLink:focus
+{
+	outline-color: #6f6f6f;
+}
+
+div.RadTabStrip_Prodigy a.rtsLink:focus:after
+{
+	border-color : #6f6f6f;
+}
+/* </focus cue> */
+
+/* <disabled tabs> */
+.RadTabStrip_Prodigy .rtsLevel .rtsDisabled
+{
+	color: #666;
+}
+/* </disabled tabs> */
+
+/* <scrolling arrows> */
+/*.RadTabStrip_Prodigy .rtsNextArrow,
+.RadTabStrip_Prodigy .rtsPrevArrow,
+.RadTabStrip_Prodigy .rtsPrevArrowDisabled,
+.RadTabStrip_Prodigy .rtsNextArrowDisabled
+{
+	background-image: url('TabStrip/TabStripStates.png');
+}*/
+/* </scrolling arrows> */
+
+/* <tab backgrounds> */
+
+/*.RadTabStrip_Prodigy .rtsLevel { background: #6f6f6f; }
+
+.RadTabStrip_Prodigy .rtsLevel1 { background-color: #6f6f6f; }
+.RadTabStripTop_Prodigy .rtsLevel2 { background: #a2a1a2 url('TabStrip/Level2Bg.png') repeat-x 0 0; }*/
+
+.RadTabStripTop_Prodigy .rtsLevel .rtsLink,
+.RadTabStripTop_Prodigy .rtsLevel .rtsOut {
+    background-image: none;
+    padding: 1px !important;
+}
+
+/*.RadTabStripTop_Prodigy .rtsLevel1 .rtsLink,
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsOut,
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsLink,
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsOut,
+.RadTabStripTop_Prodigy .rtsLevel1,
+.RadTabStripBottom_Prodigy .rtsLevel1 { background-image: url('TabStrip/TabStripStates.png'); }*/
+
+/*.RadTabStripLeft_Prodigy .rtsLink,
+.RadTabStripRight_Prodigy .rtsLink { background-image: url('TabStrip/TabStripVStates.png'); }*/
+
+.RadTabStripLeft_Prodigy .rtsLast .rtsLink,
+.RadTabStripRight_Prodigy .rtsLast .rtsLink
+{
+	border-bottom: 1px solid #5e5e5e;
+}
+
+.RadTabStripRight_Prodigy .rtsLink,
+.RadTabStripRight_Prodigy .rtsLI .rtsDisabled:hover { background-position: 0; }
+.RadTabStripRight_Prodigy .rtsLink:hover { background-position: 0;background-color: #5ABCA3;border-color:#5ABCA3; }
+.RadTabStripRight_Prodigy .rtsSelected,
+.RadTabStripRight_Prodigy .rtsSelected:hover { background-position: 0; }
+/* </tab backgrounds> */
+
+
+/* <background positioning: tabs with hovers> */
+
+/* <orientation: top> */
+
+/*.RadTabStripTop_Prodigy .rtsLevel1 .rtsLink { background-position: 0 0; }*/
+/*.RadTabStripTop_Prodigy .rtsLevel1 .rtsOut { background-position: 100% 0; }*/
+
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsLink:hover { background-position:0; }
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsLink:hover .rtsOut { background-position: 0; }
+
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsSelected,
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsSelected:hover { background-color: #26C2E0; border:none; margin-top:0; font-size:12px;}
+
+.RadTabStrip_Prodigy .rtsLevel .rtsSelected .rtsOut .rtsIn .rtsTxt {padding: 0 2px;}
+
+.maincontent .RadTabStrip .rtsLevel1 .rtsTxt {padding:0;}
+
+/*.RadTabStripTop_Prodigy .rtsLevel1 .rtsSelected .rtsOut,
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsSelected:hover .rtsOut { background-position: 100% -26px; }*/
+
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsDisabled:hover { background-position: 0 0; }
+.RadTabStripTop_Prodigy .rtsLevel1 .rtsDisabled:hover .rtsOut { background-position: 0; }
+
+.RadTabStripTop_Prodigy .rtsLevel1 { background-position: 0; background-repeat: repeat-x; }
+
+/* </orientation: top> */
+
+/* <orientation: bottom> */
+
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsLink { background-position: 0; }
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsOut { background-position: 0; }
+
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsLink:hover { background-position: 0; }
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsLink:hover .rtsOut { background-position: 0; }
+
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsSelected,
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsSelected:hover { background-position: 0; }
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsSelected .rtsOut,
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsSelected:hover .rtsOut { background-position: 0; }
+
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsDisabled:hover { background-position: 0; }
+.RadTabStripBottom_Prodigy .rtsLevel1 .rtsDisabled:hover .rtsOut { background-position: 0; }
+
+.RadTabStripBottom_Prodigy .rtsLevel1 { background-position: 0; background-repeat: repeat-x; }
+
+/* </orientation: bottom> */
+
+/* <orientation: right> */
+
+.RadTabStripRight_Prodigy .rtsUL .rtsLink,
+.RadTabStripRight_Prodigy .rtsUL .rtsLI .rtsDisabled:hover { background-position: 0; text-align: left; }
+.RadTabStripRight_Prodigy .rtsUL .rtsLink:hover { background-position: 100% -200px; }
+.RadTabStripRight_Prodigy .rtsUL .rtsSelected,
+.RadTabStripRight_Prodigy .rtsUL .rtsSelected:hover { background-position: 100% -400px; }
+
+/* </orientation: right> */
+
+/* </background positioning: tabs with hovers> */
+
+
+/*---------------------------Risk Assessment Styles------------------------------------*/
+
+.RiskAssessmentSections .rtsLI, .RiskAssessmentSections .rtsLink {
+    font-size:11px;
+    margin-left:0;
+
+}
+
+.RiskAssessmentSections .rtsLI, .RiskAssessmentSections .rtsLink {
+    -moz-border-radius: 5px 5px 5px 5px !important;
+    -webkit-border-radius: 5px 5px 5px 5px !important;
+    border-radius: 5px 5px 5px 5px !important;
+    behavior: url("PIE.htc");
+}
+
+.RiskAssessmentSections .rtsLink{
+    text-align:left !important;
+}
+
+.RiskAssessmentSections .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7;
+    background-color:#f7f7f7;
+}
+
+.RiskAssessmentSections .rtsLevel1 .rtsSelected,
+.RiskAssessmentSections .rtsLevel1 .rtsSelected:hover { background-color: #26C2E0; border:none; margin:0; line-height:23px;}
+
+/*---------------------------PAT Styles------------------------------------*/
+
+.PATSections .rtsLI, .PATSections .rtsLink {
+    font-size:10px;
+    margin-left:2px;
+}
+
+.PATSections .rtsLI, .PATSections .rtsLink {
+    -moz-border-radius: 2px 2px 2px 2px !important;
+    -webkit-border-radius: 2px 2px 2px 2px !important;
+    border-radius: 2px 2px 2px 2px !important;
+    behavior: url("PIE.htc");
+
+}
+
+.PATSections .rtsLink{
+    text-align:left !important;
+    padding: 1px !important;
+}
+
+.PATSections .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7;
+    background-color:#f7f7f7;
+}
+
+.PATSections .rtsLevel1 .rtsSelected,
+.PATSections .rtsLevel1 .rtsSelected:hover { background-color: #26C2E0; border:none; margin:0; line-height:23px;}
+
+.PATSectionsErrors .rtsLI, .PATSectionsErrors .rtsLink {
+    font-size:11px;
+    margin-left:0;
+}
+
+.PATSectionsErrors .rtsLI, .PATSections .rtsLink {
+    -moz-border-radius: 5px 5px 5px 5px !important;
+    -webkit-border-radius: 5px 5px 5px 5px !important;
+    border-radius: 5px 5px 5px 5px !important;
+    behavior: url("PIE.htc");
+}
+
+.PATSectionsErrors .rtsLink{
+    text-align:left !important;
+}
+
+.PATSectionsErrors .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7;
+    background-color:red;
+}
+

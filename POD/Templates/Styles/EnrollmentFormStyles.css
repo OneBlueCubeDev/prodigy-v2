@@ -1,0 +1,1006 @@
+﻿.PrintSectionTitle {
+    display: none;
+}
+
+.myenrollmentdatecontainer {
+    float: right;
+    margin-right: 100px;
+    margin-top: 5px;
+    /* width: 185px; originally 185px */
+}
+.consentcolumn {
+    float: left;
+    width: 50%;
+    margin:20px;
+}
+
+/* Clear floats after the columns */
+.consentrow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.myenrollmentIDcontainer {
+    float: right;
+    margin-right: 0px;
+    margin-top: 5px;
+    width: 350px;
+}
+
+.myenrollmentIDcontainer input {
+    float: right;
+    margin-left: 10px;
+    width: 155px;
+}
+
+.myenrollmentdate {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.myenrollmentdate-new {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0px;
+}
+
+.myenrollmentdob, .myriskassessmentdate {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 87px;
+}
+
+.RiskAssessmentDateLabel {
+    margin-right: -73px;
+}
+
+.myenrollmentrace {
+    margin-bottom: 30px;
+    /*width:79%; remove this to set to original layout*/
+}
+
+.myenrollmentshortcontainer {
+    width: 79% !important;
+}
+
+.myyouthtype {
+    width: 113px;
+    position: relative;
+    top: -2px;
+}
+
+.myenrollmentethnicity { /*remove this to set to original layout*/
+    /*width:79%;*/
+    margin-bottom: 30px;
+}
+
+.myrecommendationcontainer {
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+    .myrecommendationcontainer .mylabel {
+        float: left;
+        width: 90px;
+    }
+
+.myrecommendationFields {
+    float: left;
+    margin-left: 20px;
+    margin-top: -7px;
+}
+
+    .myrecommendationFields td {
+        width: 130px;
+    }
+
+    .myrecommendationFields label {
+        margin-bottom: 5px;
+        padding-left: 26px !important;
+    }
+
+.myrecommendationcontainer .myfield {
+    /*bottom: 7px;
+    left: 173px;
+    position: absolute;*/
+    float: right;
+    position: relative;
+    top: -21px;
+    margin-right: 370px;
+}
+
+.myenrollmentpickupparagraph { /*remove this to set to original layout*/
+    width: 78%;
+}
+
+.myenrollmentlastname span {
+    margin-right: 52px;
+}
+
+.myenrollmentlastname input, .myriskassessmentyouthname input {
+    width: 200px;
+}
+
+.myenrollmentfirstname {
+    float: left;
+}
+
+    .myenrollmentfirstname span {
+        margin-right: 52px;
+    }
+
+    .myenrollmentfirstname input {
+        width: 200px;
+    }
+
+.myenrollmentssn {
+    float: left;
+}
+
+    .myenrollmentssn span {
+        margin-right: 38px;
+    }
+
+    .myenrollmentssn input {
+        width: 35px;
+    }
+
+
+    
+.myenrollmentstudentid {
+    float: left;
+}
+
+    .myenrollmentstudentid span {
+        margin-right: 55px;
+    }
+
+    .myenrollmentstudentid input {
+        width: 100px;
+    }
+.myenrollmentMI span {
+    margin-right: 10px;
+    margin-left: 70px;
+}
+
+.myenrollmentMI input, .myenrollmentaptnum input {
+    width: 50px;
+}
+
+.myenrollmentdobcontainer, .myriskassessmentdatecontainer {
+    width: 265px;
+}
+
+.myenrollmentage span {
+    margin-right: 92px;
+}
+
+.myenrollmentlanguage {
+    margin-bottom: 20px;
+}
+
+    .myenrollmentlanguage span {
+        width: 101px;
+        margin-right: 15px;
+        float: left;
+    }
+
+    .myenrollmentlanguage input {
+        width: 200px;
+    }
+
+.ParticipantAddress .myenrollmentaddress2 span {
+    width: 113px;
+}
+
+.ParticipantInfoSection .myenrollmentaddress2 .myfield {
+    width: 200px;
+}
+
+.myenrollmentaddress {
+    float: left;
+}
+
+    .myenrollmentaddress span {
+        /*margin-right:25px;*/
+        width: 113px;
+    }
+
+    .myenrollmentaddress input {
+        width: 200px;
+    }
+
+.myenrollmentaptnum span {
+    margin-right: 10px;
+    margin-left: 70px;
+}
+
+.myenrollmentcity span {
+    margin-right: 93px;
+}
+
+.myenrollmentcity input {
+    width: 200px;
+}
+
+.myenrollmentstate span.mylabel {
+    margin-right: 85px;
+}
+
+.myenrollmentcounty span.mylabel {
+    margin-right: 75px;
+}
+
+.myenrollmentzip span {
+    margin-right: 63px;
+}
+
+.myenrollmentzip input {
+    width: 100px;
+}
+
+.myenrollmenthomephone span {
+    /*margin-right:40px;*/
+    width: 113px !important;
+    ;
+}
+
+.myenrollmentpickupAdd .myenrollmenthomephone span {
+    width: 30px;
+}
+
+.myenrollmentworkphone span {
+    margin-right: 46px;
+}
+
+.myenrollmentcellphone span {
+    margin-right: 52px;
+}
+
+.myRelationshipLabel {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.myOtherField {
+    margin-left: -20px;
+}
+
+.myenrollmentparentemail span {
+    margin-right: 32px;
+}
+
+.myenrollmentschool {
+    float: left;
+}
+
+    .myenrollmentschool span {
+        margin-right: 10px;
+        width: 103px;
+    }
+
+    .myenrollmentschool input {
+        width: 200px;
+        position: relative;
+    }
+
+.myenrollmentgrade span {
+    margin-right: 10px;
+    margin-left: 70px;
+}
+
+.myOtherProgramsLabel {
+    margin-top: 20px;
+}
+
+.myenrollmentschoolprograms span {
+    margin-right: 15px;
+    width: 101px;
+    float: left;
+}
+
+.myenrollmentschoolprograms textarea {
+    resize: none;
+}
+
+.myenrollmentpickup {
+    margin-bottom: 15px;
+}
+
+.myenrollmentpickupAdd {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+    .myenrollmentpickupAdd span {
+        margin-right: 10px;
+    }
+
+    .myenrollmentpickupAdd label {
+        margin-right: 20px;
+        padding-left: 26px !important;
+    }
+
+    .myenrollmentpickupAdd input {
+        margin-right: 10px;
+    }
+
+    .myenrollmentpickupAdd .row {
+        margin-bottom: -5px;
+    }
+
+.myenrollmentpickupAddRelationship {
+    margin-bottom: -18px !important;
+}
+
+    .myenrollmentpickupAddRelationship .myradiolistlabel {
+        position: relative;
+        top: 5px;
+        margin-bottom: -5px;
+    }
+
+
+.EnrollmentFormContainer .myenrollmentpickupAdd .addphone {
+    /*float:left;*/
+    display: inline;
+    margin-top: 10px;
+    width: 162px;
+}
+
+.myenrollmentemergencycontactrelationship .myradiolistlabel {
+    position: relative;
+    top: -9px;
+    margin-bottom: -5px;
+}
+
+.myenrollmentemergencycontactrelationship {
+    margin-top: 5px;
+}
+
+.myenrollmentphysicianaddress .addphone {
+    /*position:absolute;
+    left:45px;
+    bottom:-10px;*/
+    position: absolute;
+    left: 155px;
+    bottom: -10px;
+}
+
+.addphone {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .addphone .myfield {
+        width: 115px !important;
+        margin-right: 0px !important;
+    }
+
+.ParentGuardianInfoSection .myenrollmenthomephone {
+    display: inline-block;
+    float: left;
+}
+
+    .ParentGuardianInfoSection .myenrollmenthomephone .addphone {
+        width: 100%;
+        margin-bottom: 0px !important;
+    }
+
+.ParentGuardianInfoSection .ParentHomePhone {
+    width: 30.75%;
+}
+
+.ParentGuardianInfoSection .ParentWorkPhone {
+    width: 22%;
+}
+
+.ParentGuardianInfoSection .ParentCellPhone {
+    width: 30%;
+}
+
+.ParentGuardianInfoSection .ParentWorkPhone span[id*="LabelPhone"] {
+    width: 40px !important;
+}
+
+.ParentGuardianInfoSection .ParentCellPhone span[id*="LabelPhone"] {
+    width: 35px !important;
+}
+
+.myenrollmentpickupAdd .mybutton {
+    margin-right: -10px;
+    width: 44px;
+    height: 24px;
+    font-size: 1.1em;
+}
+
+.EnrollmentFormConstraint .myenrollmentpickupAdd .mybutton {
+    margin-top: 7px;
+}
+
+.EnrollmentFormContainer .myenrollmentdatecontainer {
+    margin-right: 130px;
+}
+
+.importantnote {
+    font-weight: bold;
+    color: #F9A51A;
+    text-align: center;
+}
+
+.note {
+    font-weight: bold;
+}
+
+.importantnoteunderline {
+    text-decoration: underline;
+}
+
+.myenrollmentfollowupnotes span {
+    text-decoration: underline;
+    font-weight: bold;
+    float: left;
+    width: 113px;
+}
+
+.myenrollmentfollowupnotes textarea {
+    resize: none;
+}
+
+.myenrollmentemergencycontact {
+    width: 79%;
+}
+
+.myenrollmentemergencycontactname span {
+    margin-right: 63px;
+}
+
+.myenrollmentemergencycontactname .myfield {
+    width: 200px;
+}
+
+.myenrollmentemergencycontactphone .mylabel {
+    /*margin-right:40px;*/
+    width: 124px;
+}
+
+.myenrollmentemergencycontactrelationship span {
+    width: 101px;
+    margin-right: 18px;
+    margin-bottom: 10px;
+}
+
+.myenrollmentemergencycontactrelationship .myradiolistlabel {
+    position: relative;
+    top: -4px;
+    margin-right: 20px;
+    padding-left: 0px !important;
+}
+
+.myenrollmentemergencycontactrelationship table {
+    display: inline-block;
+}
+
+.myenrollmentemergencycontactrelationship label {
+    position: relative;
+    top: 0px;
+    margin-right: 20px;
+    padding-left: 27px !important;
+}
+
+/*.myenrollmentemergencycontactrelationship*/ .myenrollmentpickupAddRelationship .OtherRelationship {
+    float: right;
+    position: relative;
+    top: 8px; /*-8px*/
+    margin-right: 300px;
+}
+
+.myenrollmentemergencycontactrelationship .OtherRelationship .mylabel {
+    display: inline-block;
+    width: auto;
+}
+
+.IsEmergencyContact {
+    position: relative;
+    display: inline-block;
+    top: 3px;
+}
+
+    .IsEmergencyContact input {
+        float: left;
+    }
+
+.myenrollmentnameofparticipant span {
+    margin-right: 76px;
+    margin-top: 10px;
+}
+
+.myenrollmentnameofparticipant input {
+    width: 200px;
+}
+
+.myenrollmentparentsignature {
+    padding-bottom: 40px;
+}
+
+    .myenrollmentparentsignature span {
+        margin-right: 20px;
+    }
+
+    .myenrollmentparentsignature table {
+        float: left;
+    }
+
+
+    .myenrollmentparentsignature label {
+        padding-left: 27px !important;
+        margin-right: 20px;
+    }
+
+    .myenrollmentparentsignature input {
+        width: 200px;
+    }
+
+.myenrollmentparentsignaturedate {
+    position: relative;
+    top: 3px;
+}
+
+    .myenrollmentparentsignaturedate span {
+        margin-right: 0;
+    }
+
+.myenrollmentparentsignaturedate {
+    float: right;
+    margin-right: 55px;
+    margin-top: 1px;
+    width: 145px;
+}
+
+.myenrollmentparentsignatureTop .myenrollmentparentsignaturedate {
+    margin-right: 130px; /* originally 100px */
+}
+
+.myenrollmentmedicalinformation {
+    width: 79%;
+}
+
+.myenrollmentmedicalconditions {
+    margin-top: 25px;
+}
+
+    .myenrollmentmedicalconditions .mylabel, .myenrollmentmedications .mylabel {
+        float: left;
+        width: 125px;
+    }
+
+    .myenrollmentmedicalconditions textarea {
+        /*float: right;*/
+        margin-right: 20px;
+        resize: none;
+        margin-bottom: 20px;
+    }
+
+.myenrollmentmedications textarea {
+    /*float: right;*/
+    margin-right: 154px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.myenrollmentspecialneeds p {
+    padding-top: 15px;
+}
+
+.myenrollmentspecialneeds textarea {
+    resize: none;
+    margin-bottom: 15px;
+}
+
+.myenrollmentphysicianAdd {
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+/*.myenrollmentphysicianAdd .row {
+    margin-bottom:-5px;
+}*/
+
+.myenrollmentphysicianname {
+    margin-top: 25px;
+}
+
+.myenrollmentphysicianAdd span {
+    margin-right: 10px;
+}
+
+.myenrollmentphysicianAdd .ErrorMessage {
+    display: block;
+    clear: both;
+}
+
+.myenrollmentphysicianname span {
+    margin-right: 80px;
+}
+
+.myenrollmentphysicianname input {
+    width: 200px;
+}
+
+.myenrollmentphysicianAdd input {
+    margin-right: 10px;
+}
+
+.myenrollmentphysicianAdd .addlastname {
+    /*margin-left:76px;*/
+}
+
+.myenrollmentphysicianaddress .myenrollmentaddress span {
+    margin-right: 25px;
+    width: auto;
+}
+
+.myenrollmentphysicianaddress .myenrollmentaptnum span {
+    margin-left: 2px;
+    margin-right: 47px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentaddress2 span {
+    width: auto;
+}
+
+.myenrollmentphysicianaddress .myenrollmentaddress2 {
+    position: absolute;
+    right: 246px; /* originally 37px */
+    top: -34px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysiciancity span {
+    margin-right: 51px !important;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysiciancity input, .myenrollmentphysicianaddress .myenrollmentaddress input {
+    width: auto !important;
+}
+
+.myenrollmentphysicianaddress span[id="MainContentPlaceholder_DocPhone_LabelPhone"] {
+    float: left;
+    left: 155px;
+    margin-bottom: -30px;
+    position: relative;
+    top: -34px;
+}
+
+.myenrollmentphysicianaddress span[id="ctl00_MainContentPlaceholder_DocPhone_TextBoxPhone_wrapper"] {
+    /* float: left;
+    left: 155px;*/
+    position: relative;
+}
+
+
+.myenrollmentinsurancecompany span {
+    margin-right: 68px;
+}
+
+.myenrollmentinsurancecompany input, .myenrollmentpolicynumber input, .myenrollmentgroupnumber input {
+    width: 200px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianstate input, .myenrollmentphysicianaddress .myenrollmentphysiciancounty input {
+    margin-right: 0;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianstate span, .myenrollmentphysicianaddress .myenrollmentphysiciancounty span {
+    margin-right: 10px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianstate {
+    position: absolute;
+    top: -34px;
+    left: 240px;
+    width: auto;
+}
+
+    .myenrollmentphysicianaddress .myenrollmentphysicianstate .mydropdown, .myenrollmentphysicianaddress .myenrollmentphysiciancounty .mydropdown {
+        width: 125px;
+    }
+
+.myenrollmentphysicianaddress .myenrollmentphysiciancounty {
+    position: absolute;
+    top: -34px;
+    right: 235px; /* originally 33px */
+    width: auto;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianzip span {
+    margin-right: 21px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianphone input {
+    width: 95px !important;
+    margin-right: 0px !important;
+}
+
+.myenrollmentphysicianAdd .mybutton {
+    float: left;
+    font-size: 1.1em;
+    height: 24px;
+    left: 340px;
+    margin-bottom: -52px;
+    margin-right: -10px;
+    margin-top: -13px;
+    position: absolute;
+    top: -25px;
+    width: 44px;
+}
+
+.myenrollmentphysicianGrid {
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.myenrollmentpolicynumber span {
+    margin-right: 137px;
+}
+
+.myenrollmentgroupnumber span {
+    margin-right: 135px;
+    margin-bottom: 30px;
+}
+
+
+.myenrollmentpermissions .enrollmentpermissionsfields {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+    .myenrollmentpermissions .enrollmentpermissionsfields table {
+        border-spacing: 0px;
+        font-family: "Segoe UI",Arial,Helvetica,sans-serif;
+        font-size: 11px;
+        width: 760px; /*originally 660px*/
+    }
+
+        .myenrollmentpermissions .enrollmentpermissionsfields table td {
+            padding-bottom: 10px;
+        }
+
+/*.myenrollmentpermissions .enrollmentpermissionsfields label {padding-left:27px !important;}*/
+
+/*.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_1, .myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_2, .myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_3, .myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_4, .myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_5 {
+    position:absolute;
+}
+
+.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_1 {
+    top:3px;
+    left:150px;
+}
+
+.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_2 {
+    top:3px;
+    left:300px;
+}
+
+.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_3 {
+    top:3px;
+    left:445px;
+}
+
+.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_4 {
+    top:35px;
+    left:3px;
+}
+
+.myenrollmentpermissions .enrollmentpermissionsfields #_rfdSkinnedMainContentPlaceholder_CheckBoxTransportationList_5 {
+    top:35px;
+    left:300px;
+}*/
+
+.enrollmentpermissionsfields .myOtherField {
+    float: right;
+    margin-right: 450px; /* originally 100px */
+    margin-top: -30px;
+}
+
+.enrollmentOtherProgramsFields .myenrollmentschoolprogramsList {
+    position: relative;
+}
+
+.enrollmentOtherProgramsFields #_rfdSkinnedctl00_MainContentPlaceholder_RadiobuttonListProgramParticipation_0, .enrollmentOtherProgramsFields #_rfdSkinnedctl00_MainContentPlaceholder_RadiobuttonListProgramParticipation_1 {
+    padding-left: 26px !important;
+}
+
+.enrollmentOtherProgramsFields #_rfdSkinnedMainContentPlaceholder_RadiobuttonListProgramParticipation_1, .enrollmentOtherProgramsFields label[for="MainContentPlaceholder_RadiobuttonListProgramParticipation_1"] {
+    /*position: absolute;
+    left: 65px;
+    top: 3px;*/
+    margin-right: 50px !important;
+}
+
+.enrollmentOtherProgramsFields {
+    float: right;
+    width: 21%; /* originally 34% */
+    margin-right: 298px; /* originally 34px */
+    margin-top: 14px;
+    position: relative;
+}
+
+    .enrollmentOtherProgramsFields .mycheckbox {
+        width: 75px;
+    }
+
+.enrollmentRelationshipFields {
+    float: right;
+    width: 85%; /*originally 79% */
+    margin-right: 23px;
+    margin-bottom: 15px;
+}
+
+    .enrollmentRelationshipFields label {
+        margin-right: 30px;
+        padding-left: 26px !important;
+    }
+
+.enrollmentRaceFields {
+    float: right;
+    /*width:65%; originally 60%*/
+    margin-right: 36px; /*margin-right:193px; new 77px ; originally 144px; shortened from 219px*/
+    margin-top: -7px;
+}
+
+    .enrollmentRaceFields label {
+        margin-bottom: 5px;
+        padding-left: 26px !important;
+    }
+
+    .enrollmentRaceFields td {
+        width: 130px;
+    }
+
+/*.enrollmentRaceFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListRaces_0, .enrollmentRaceFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListRaces_4 {
+    margin-right:10px;    originally 20px 
+}*/
+
+/*.enrollmentRaceFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListRaces_3 {
+    margin-right:77px;
+}
+
+.enrollmentRaceFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListRaces_1 {
+    margin-right:70px;
+}*/
+
+.enrollmentEthnicityFields {
+    float: right;
+    /*width:72%;  originally 64% */
+    margin-right: 219px; /*originally 72px */
+    margin-top: -6px;
+}
+
+    .enrollmentEthnicityFields label {
+        /*margin-right:34px;*/
+        margin-bottom: 5px;
+        padding-left: 26px !important;
+    }
+
+    .enrollmentEthnicityFields td {
+        width: 130px;
+    }
+
+/*.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_0, .enrollmentEthnicityFields label[for="ctl00_MainContentPlaceholder_CheckBoxListEthnicity_0"] {
+    margin-right:33px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_3 {
+    position:relative;
+    left:-11px;
+}*/
+
+/*.enrollmentEthnicityFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListEthnicity_1 {
+    margin-right:53px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedMainContentPlaceholder_CheckBoxListEthnicity_2 {
+    margin-right:50px;
+}*/
+
+/*.enrollmentEthnicityFields label[for="ctl00_MainContentPlaceholder_CheckBoxListEthnicity_2"]{
+   position:relative;
+   left: 26px;
+}*/
+
+.enrollmentGenderFields {
+    float: right;
+    width: 25%; /* originally 27% */
+    margin-right: 541px; /* originally 359px */
+    margin-top: -7px;
+}
+
+    .enrollmentGenderFields label {
+        padding-left: 26px !important;
+    }
+
+    .enrollmentGenderFields #_rfdSkinnedMainContentPlaceholder_RadioListGender_0 {
+        margin-right: 30px;
+    }
+
+.mycheckbox {
+    float: left;
+    margin-right: -15px;
+    margin-bottom: -10px;
+    width: 115px;
+}
+
+.subtitle {
+    font-style: italic;
+    margin-bottom: 14px;
+}
+
+.myradiolistlabel {
+    float: left;
+}
+
+.mysignaturelabel {
+    float: left;
+    position: relative;
+    top: 6px;
+}
+
+/*--------------------Error Message Styles-----------------------*/
+
+.ErrorMessage {
+    color: Red;
+    margin-left: 5px;
+}
+
+/*.myenrollmentdatecontainer .ErrorMessage {
+    position:absolute;
+    right:40px;
+}*/
+
+.myenrollmentzip .ErrorMessage {
+    margin-left: -58px;
+}
+
+.RegAddFormError {
+    margin-left: -5px;
+}
+
+.RegAddFormRadioList {
+    float: left;
+}
+
+.RegRadioListAddFormError {
+    position: relative;
+    top: 6px;
+    margin-left: -10px;
+}
+
+.myenrollmentcurrentlyenrolled {
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+    .myenrollmentcurrentlyenrolled .mylabel {
+        float: left;
+    }
+
+    .myenrollmentcurrentlyenrolled table {
+        float: left;
+        margin-left: 50px;
+        position: relative;
+        top: -6px;
+        width: 21%;
+    }
+
+.myenrollmentschooladdress .myenrollmentaddress2 span, .myenrollmentschooladdress .addphone span {
+    width: 113px;
+}
+
+.myenrollmentschooladdress .myenrollmentaddress2 input {
+    width: 200px;
+}
+
+.capitalize first-letter {
+    text-transform: capitalize;
+}

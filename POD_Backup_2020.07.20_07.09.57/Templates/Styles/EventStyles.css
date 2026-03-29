@@ -1,0 +1,74 @@
+﻿.EventAttendances p {
+    margin-bottom:20px;
+}
+
+.EventPageForm h2 {
+    margin-bottom:25px;
+}
+
+.EventPageForm .mylabel {
+    width:113px;
+}
+
+.EventPageForm .myfield {
+    width:203px !important;
+}
+
+.EventPageForm .myNumericField {
+    width:63px !important;
+}
+
+.EventPageForm .DescriptionLabel, .EventPageForm .NotesLabel {
+    float:left;
+}
+
+.EventPageForm .TextEditor{
+   margin-left:116px;
+   margin-bottom:10px;
+}
+
+.EventPageForm .StartDateContainer, .EventPageForm .EndDateContainer{
+   width:400px;
+}
+
+.EventPageForm .StartDateContainer .mylabel, .EventPageForm .EndDateContainer .mylabel{
+   width:103px;
+}
+
+.EventPageForm textarea.myfield {
+    margin-left:3px;
+    resize:none;
+    margin-bottom:18px;
+    width: 620px !important
+}
+
+.EventPageForm .SiteDropDownLabel, .EventPageForm .LocationDropDownLabel, .EventCategory .mylabel {
+    float:left;
+    width:116px !important;
+}
+
+.EventCategory .mydropdown {
+    float:left;
+    margin-right:10px;
+    width:209px !important;
+}
+
+.EventCategory .myfield {
+    width: 152px;
+    float:left;
+}
+
+.EventCategory .EventCategoryFieldsList {
+    clear:left;
+    float:none;
+}
+
+.EventCategory .EventCategoryFieldSet {
+    display:inline-block;
+    float:left;
+    clear:left;
+}
+
+.EventCategory .EventCategoryFieldSet .ErrorMessage {
+    float:right;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="POD.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="2" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="POD">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=podstorrage;AccountKey=REPLACE_WITH_AZURE_STORAGE_KEY" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="sburke" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBpQYJKoZIhvcNAQcDoIIBljCCAZICAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHITL/CKfHO9R4dtXDMsEm8wDQYJKoZIhvcNAQEBBQAEggEAfl/j9xTm+8yTzGeLxnTYmSdckE7sCY1ZZzQxzH0JKYOwcLVAEUyC8VpwTol91eeEu8oVllNvU7xnhTa4ktZXXWMjp41a8Yv1HvxZN961BDsI4EUw4OqAg+VwysRVQay9HruY85n1GSOJq5bkAmM7ONEcjx3i59/64XICqnQsHJuB8M6I6b18c7Q4/iXDA6/82hUaM2AMz4XzPEfcHUZ6CPMBdgoIqC2/y8OiZp5ulIDM2eYzl/Ven+Y2BYM5WxyRevUEHMnUyZy6I1FvicMUIz//DUW/bo5iHlc9ErOc7nbK5O97Z+7arx8hCNbTXq57C2seN+KgpzlBFa8d3P9lQDA7BgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECDVbU2NIxs6QgBiGIPBbElN1ggBbGglBdRIxxLIlqyfYMks=" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2020-12-30T23:59:59.0000000-05:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.Caching.NamedCaches" value="{&quot;caches&quot;:[{&quot;name&quot;:&quot;default&quot;,&quot;policy&quot;:{&quot;eviction&quot;:{&quot;type&quot;:0},&quot;expiration&quot;:{&quot;defaultTTL&quot;:10,&quot;isExpirable&quot;:true,&quot;type&quot;:1},&quot;serverNotification&quot;:{&quot;isEnabled&quot;:false}},&quot;secondaries&quot;:0}]}" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Caching.DiagnosticLevel" value="1" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Caching.CacheSizePercentage" value="30" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Caching.ConfigStoreConnectionString" value="DefaultEndpointsProtocol=https;AccountName=podstorrage;AccountKey=REPLACE_WITH_AZURE_STORAGE_KEY" /> -->
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="d3035a0e-e234-4524-b675-cf1f1db24c24" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="92B9286063684C394B2A3EA06EB77830BE4160D3" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+  <!--<NetworkConfiguration>     
+    <VirtualNetworkSite name="vn_prodigy " />     
+    <AddressAssignments>
+      <InstanceAddress roleName="POD">
+        <Subnets>
+          <Subnet name="public" />
+        </Subnets>
+      </InstanceAddress>
+    </AddressAssignments>
+  </NetworkConfiguration>-->
+</ServiceConfiguration>

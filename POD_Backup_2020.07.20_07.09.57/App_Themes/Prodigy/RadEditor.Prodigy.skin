@@ -1,0 +1,148 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<telerik:radeditor runat="server" SkinId="MinimalSetOfTools">
+   <Tools>
+    <telerik:EditorToolGroup >
+        <telerik:EditorTool Name="Bold" />
+        <telerik:EditorTool Name="Italic" />
+    </telerik:EditorToolGroup>
+   </Tools>	   
+</telerik:radeditor> 
+<%--BASIC SET OF TOOLS--%>
+<telerik:radeditor runat="server" SkinId="BasicSetOfTools">
+    <Tools>    
+    <telerik:EditorToolGroup Tag="MainToolbar">
+        <telerik:EditorTool name="AjaxSpellCheck" />
+		<telerik:EditorTool name="FindAndReplace" />
+		<telerik:EditorSeparator Visible="true" />
+		<telerik:EditorTool name="Undo" />
+		<telerik:EditorTool name="Redo" />
+		<telerik:EditorSeparator Visible="true" />
+		<telerik:EditorTool name="Cut" />
+		<telerik:EditorTool name="Copy" />
+		<telerik:EditorTool name="Paste" shortcut="CTRL+!"/>
+	</telerik:EditorToolGroup>
+	<telerik:EditorToolGroup Tag="Formatting">
+		<telerik:EditorTool name="Bold" />
+		<telerik:EditorTool name="Italic" />
+		<telerik:EditorTool name="Underline" />
+		<telerik:EditorSeparator Visible="true" />
+		<telerik:EditorTool name="ForeColor" />
+		<telerik:EditorTool name="BackColor"/>
+		<telerik:EditorSeparator Visible="true" />
+		<telerik:EditorTool name="FontName"/>
+		<telerik:EditorTool name="RealFontSize"/>
+	</telerik:EditorToolGroup>
+	</Tools>
+</telerik:radeditor>
+<%--DEFAULT SET OF TOOLS--%>
+<telerik:radeditor runat="server" SkinId="DefaultSetOfTools">
+   <CssFiles>
+        <telerik:EditorCssFile Value="~/App_Themes/Default/CustomStyles.css" />
+   </CssFiles>
+    <ImageManager 
+   ViewPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   UploadPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   DeletePaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations"   
+    />
+    <FlashManager 
+   ViewPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   UploadPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   DeletePaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations"   
+    />
+    <MediaManager 
+   ViewPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   UploadPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   DeletePaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations"   
+    />
+    <DocumentManager 
+   ViewPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   UploadPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   DeletePaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations"
+    />
+    <TemplateManager 
+   ViewPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   UploadPaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations" 
+   DeletePaths="~/Editor/Img/UserDir/Marketing,~/Editor/Img/UserDir/PublicRelations"
+   SearchPatterns="*.html,*.html"
+    /> 
+  
+    <Content>
+        <div style="text-align: center;">
+            <img alt="product logo" src="../../Img/editor.jpg" />
+        </div>
+        <p>RadEditor is not simply an HTML Editor. It is what Microsoft chose to use in MSDN, CodePlex, TechNet, MCMS and even as an alternative to the default editor in <a href="http://www.telerik.com/products/aspnet-ajax/sharepoint.aspx" target="_blank">SharePoint</a>. Whether you need a mere Textbox with Google-like spellchecker, or a Word-like content authoring environment, the result is the same: clean XHTML output, fast rendering, widest cross-browser support, and <a href="http://www.telerik.com/products/aspnet-ajax/editor.aspx" target="_blank">tons of features</a>:</p>
+        <ul>
+            <li><em>Out-of-the-box XHTML-enabled Output</em></li>
+            <li><em>Unmatched Loading Speed and Performance</em></li>
+            <li><em>Microsoft Word-like Spell-checking</em></li>
+            <li><em>Seven Ways for Pasting from Word</em></li>
+            <li><em>Multilevel Undo/Redo with Action Trails</em></li>
+            <li><em>Extended Functionality Through Integrated Controls </em></li>
+            <li><em>Industry-best Cross-browser Support</em></li>
+        </ul>
+        <table style="width:500px;"> 
+            <thead>
+             <tr> 
+                <th>Browser/OS</th>
+                <th>Windows</th>
+                <th>Mac OS</th>
+                <th>Linux</th>
+             </tr>
+            </thead>
+            <tbody> 
+                <tr> 
+                    <td valign="top"><img src="../../Img/BrowserIcons/ie.gif" alt="ie"/> Internet Explorer</td>
+                    <td valign="top">6.0+</td> 
+                    <td valign="top">- </td>
+                    <td valign="top">- </td>
+                </tr> 
+                <tr>
+                    <td><img src="../../Img/BrowserIcons/ff.gif" alt="ff"/> Firefox</td> 
+                    <td> 1.5+</td> 
+                    <td> 1.5+</td>
+                    <td> 1.5+</td>
+                </tr> 
+                <tr>
+                    <td><img src="../../Img/BrowserIcons/chrome.gif" alt="chrome"/> Google Chrome</td> 
+                    <td> 0.2+</td> 
+                    <td> -</td>
+                    <td> -</td> 
+                </tr> 
+                <tr> 
+                    <td><img src="../../Img/BrowserIcons/opera.gif" alt="opera"/> Opera</td>
+                    <td> 9.0+</td> <td> 9.0+</td>
+                    <td> -</td> 
+                </tr> 
+                <tr> 
+                    <td><img src="../../Img/BrowserIcons/safari.gif" alt="safari"/> Safari</td>
+                    <td> 3.0+</td> 
+                    <td> 3.0+</td> 
+                    <td> -</td> 
+                </tr>
+                <tr>
+                    <td><img src="../../Img/BrowserIcons/netscape.gif" alt="chrome"/> Netscape</td>
+                    <td> 9.0+</td> 
+                    <td> 9.0+</td>
+                    <td> 9.0+</td>
+                </tr> 
+           </tbody> 
+       </table>
+    </Content> 
+ 
+       
+</telerik:radeditor>

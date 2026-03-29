@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[InventoryItems_Audit] (
+    [AuditID]             INT              IDENTITY (1, 1) NOT NULL,
+    [InventoryItemID]     INT              NULL,
+    [rowguid]             UNIQUEIDENTIFIER NULL,
+    [DateTimeStamp]       SMALLDATETIME    NULL,
+    [LastModifiedBy]      NVARCHAR (255)   NULL,
+    [LocationID]          INT              NULL,
+    [InventoryItemTypeID] INT              NULL,
+    [Name]                NVARCHAR (255)   NULL,
+    [Description]         NVARCHAR (MAX)   NULL,
+    [Manufacturer]        NVARCHAR (255)   NULL,
+    [Model]               NVARCHAR (255)   NULL,
+    [SerialNum]           NVARCHAR (50)    NULL,
+    [AcquisitionCost]     MONEY            NULL,
+    [AcquisitionDate]     SMALLDATETIME    NULL,
+    [Organization]        NVARCHAR (255)   NULL,
+    [UACDCTagNum]         NVARCHAR (50)    NULL,
+    [DJJTagNum]           NVARCHAR (50)    NULL,
+    [Condition]           NVARCHAR (255)   NULL,
+    [Comments]            NVARCHAR (MAX)   NULL,
+    [AuditAction]         NVARCHAR (10)    NULL,
+    [AuditDateTime]       SMALLDATETIME    CONSTRAINT [DF_InventoryItems_Audit_AuditDateTime] DEFAULT (getdate()) NULL,
+    [AuditUser]           NVARCHAR (250)   NULL,
+    [AuditSQLUser]        NVARCHAR (250)   NULL,
+    CONSTRAINT [PK_InventoryItems_Audit_1] PRIMARY KEY CLUSTERED ([AuditID] ASC)
+);
+

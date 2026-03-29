@@ -1,0 +1,66 @@
+﻿table.UACDCPrograms{
+    border-spacing: 15px;
+    margin-left: -17px;
+    margin-top: -40px;
+    /*width: 1000px;*/
+    width:1240px; /*-- Widened Layout --*/
+}
+
+table.UACDCPrograms td{
+    border:1px solid #ccc;
+    padding:0;
+    padding:10px;
+    position:relative;
+    width:200px;
+}
+
+.UACDCPrograms .ProgramWrapper 
+{
+    margin-bottom:10px;
+    padding:0;   
+    width:100%;
+    min-height:180px;
+    padding-top:1px;
+    padding-right:5px;
+    padding-left:5px;
+    position:relative;
+}
+
+.UACDCPrograms .ProgramWrapper .ProgramName h2{
+    margin-top:0;
+    font-size: 1.4em;
+    font-family: 'Muli',Arial,sans-serif;
+    text-align: left; 
+    display:block;
+    margin-bottom: 10px;
+}
+
+.UACDCPrograms .ProgramWrapper .ProgramImage img{
+    float:right;
+    width:130px;
+    margin-right:10px;
+    margin-top:-10px;
+    margin-left:10px;
+}
+
+.UACDCPrograms .ProgramWrapper input{
+    bottom: -5px;
+    position: absolute;
+    right: 15px;
+}
+
+.UACDCPrograms .ProgramWrapper .ProgramDisabledContainer{
+    display: none;
+    height: 117%;
+    left: -11px;
+    position: absolute;
+    top: -11px;
+    /*width: 104%;*/
+    width:103%; /*-- Widened Layout --*/
+}
+
+.UACDCPrograms .ProgramWrapper .ProgramDisabled{
+    background: none repeat scroll 0 0 #CCCCCC;
+    opacity: 0.3;
+    display:block;
+}

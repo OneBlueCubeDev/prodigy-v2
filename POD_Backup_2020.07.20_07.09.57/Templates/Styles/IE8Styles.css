@@ -1,0 +1,276 @@
+﻿.topnav, .topnav a {
+    float:none !important;
+}
+
+/*-------------------Form Elements-------------------------*/
+
+textarea {overflow:auto !important;}
+
+#ctl00_MainContentPlaceholder_RadComboBoxState .rcbInputCell .rcbInput, #ctl00_MainContentPlaceholder_RadComboBoxCounty .rcbInputCell .rcbInput, #ctl00_SidebarContentPlaceholder_SearchSidebar1_RadComboBoxType .rcbInputCell .rcbInput, #ctl00_SidebarContentPlaceholder_SearchSidebar1_RadComboBoxStatus .rcbInputCell .rcbInput, #ctl00_MainContentPlaceholder_RadComboBoxProdigyLocation .rcbInputCell .rcbInput {
+    padding-top: 6px !important;
+    height:17px !important;
+}
+
+.enrollmentEthnicityFields {
+    width:68%;
+    margin-right:167px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_0 {
+    margin-right: 27px;
+}
+
+.enrollmentEthnicityFields #_rfdSkinnedctl00_MainContentPlaceholder_CheckBoxListEthnicity_3 {
+    position:relative;
+    left:-18px;
+}
+
+/*.myenrollmentpickupAdd .addphone {
+    width:82px !important;
+}*/
+
+.myenrollmentpickupAdd input {
+    margin-right:3px !important;
+}
+
+/*.riskassessmentRefferalFields label {
+    margin-right: 25px !important;
+}*/
+
+.myenrollmentphysicianaddress .myenrollmentaddress2 {
+    position: absolute;
+    right: 276px;
+    top: -34px;
+}
+
+.myenrollmentphysicianaddress .myenrollmentphysicianstate {
+    left: 225px;
+    position: absolute;
+    top: -34px;
+    width: auto;
+}
+
+
+.myenrollmentphysicianaddress .myenrollmentphysiciancounty {
+    position: absolute;
+    right: 250px;
+    top: -34px;
+    width: auto;
+}
+
+#SidebarContentPlaceholder_SearchSidebar1_CheckBoxListRaces {
+    padding-left:15px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.myfieldset legend {
+    margin-left:10px;
+}
+
+
+.myRALabel {
+    float: none !important;
+}
+
+/*-----------------------------Risk Assessment Tabstrip Styles------------------------------*/
+
+.RiskAssessmentSections .rtsLI, .RiskAssessmentSections .rtsLink, .RadTabStripVertical .rtsLevel {
+    font-size:13px;
+    margin-left:0;
+}
+
+.RiskAssessmentSections .rtsLI, .RiskAssessmentSections .rtsLink, .RadTabStripVertical .rtsLI, .RadTabStripVertical .rtsLink {
+    border-radius: 5px 5px 5px 5px !important;
+    -moz-border-radius:5px 5px 5px 5px !important;
+    -webkit-border-radius:5px 5px 5px 5px !important;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.RiskAssessmentSections .rtsLink, .RadTabStripVertical .rtsLink{
+    text-align:left !important;
+}
+
+.RiskAssessmentSections .rtsLevel1 .rtsLink, .RadTabStripVertical .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7 !important;
+    background-color:#f7f7f7 !important;
+}
+
+.RiskAssessmentSections .rtsLevel1 .rtsSelected,
+.RiskAssessmentSections .rtsLevel1 .rtsSelected:hover, .RadTabStripVertical .rtsLevel1 .rtsSelected, .RadTabStripVertical .rtsLevel1 .rtsSelected:hover { background-color: #26C2E0 !important; border:none; margin:0; line-height:23px !important;}
+
+/*-----------------------------Attendance Styles------------------------------*/
+
+.CourseOverview .EventWrapper {
+    clear:left;
+    margin-top:15px;
+}
+
+.CourseOverview .ClassWrapper {
+    margin-top:15px;
+}
+
+.CourseOverview .OR {
+    margin-top: 60px;
+}
+
+/*-----------------------------Programs Styles------------------------------*/
+
+.UACDCPrograms .ProgramWrapper .ProgramDisabled{
+    background: none repeat scroll 0 0 #CCCCCC;
+    opacity: 0.3 !important;
+    display:block;
+}
+
+/*-----------------------------Rounded Corners------------------------------*/
+.mybutton {
+    background-color: #F0047F !important;
+}
+.mysave {
+	background: url(../Images/saveicon.png) 10px 9px no-repeat #F0047F !important;	
+}
+.mydelete {
+	background: url(../Images/deleteicon.png) 10px 8px no-repeat #F0047F !important;	
+}
+
+.myprint {
+	background: url(../Images/printicon.png) 10px 9px no-repeat #F0047F !important;	
+}
+
+/*.myloginpanel {
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius:20px 20px 20px 20px;
+    -webkit-border-radius:20px 20px 20px 20px;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+input.mybutton, a.mybutton, .myloginpanel table.forgotpassword .mybutton, .mybutton {
+	border-radius: 5px 5px 5px 5px !important;
+	-moz-border-radius:5px 5px 5px 5px !important;
+    -webkit-border-radius: 5px 5px 5px 5px !important;
+    border-width: 1px 1px 1px 1px !important;
+    border-style: solid solid solid solid !important;
+    border-color: #F0047F #F0047F #F0047F #F0047F !important;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.mainnav ul {
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.mainnav ul li a.firstMain {
+	border-radius: 10px 0 0 10px;
+	-moz-border-radius:10px 0px 0px 10px;
+    -webkit-border-radius: 10px 0px 0px 10px;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.RadCalendarMonthView_Prodigy input{
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius:3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.RadOrgChart_Prodigy .rocGroup {
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.RadOrgChart_Prodigy .rocItemContent,
+	.RadOrgChart_Prodigy .rocItemTemplate {
+		border-radius: 5px 5px 5px 5px;
+		-moz-border-radius:5px 5px 5px 5px;
+        -webkit-border-radius:5px 5px 5px 5px;
+        behavior: url(/Templates/Scripts/PIE.htc);
+	}*/
+	
+	.RiskAssessmentSections .rtsLI, .RiskAssessmentSections .rtsLink {
+    
+    -moz-border-radius:5px 5px 5px 5px !important;
+    -webkit-border-radius:5px 5px 5px 5px !important;
+    border-radius: 5px 5px 5px 5px !important;
+    behavior: url("../Scripts/PIE.htc");
+}
+    .RiskAssessmentSections .rtsLI:hover .rtsLink, .RiskAssessmentSections .rtsLink:hover {
+    background-color: #5ABCA3 !important;
+	border-color:#5ABCA3 !important;
+    overflow:hidden;
+}
+    .RiskAssessmentSections .rtsLI:hover .rtsSelected {
+    background-color: #26C2E0 !important;
+	border-color:transparent !important;
+    overflow:hidden;
+}
+
+
+
+.RadCalendarMonthView_Prodigy .rcTodayButton 
+    {
+    margin:0;
+    padding-left:3px;
+    padding-right:3px; 
+    left: 42px;
+    position: absolute;  
+    bottom:9px !important;
+    }
+    
+/*-----------------------------Risk Assessment Print Styles------------------------------*/
+@media print {
+    .myRALabel {
+        display:inline-block;
+    }
+}
+
+/*-----------------------------PAT Tabstrip Styles------------------------------*/
+
+.PATSections .rtsLI, .PATSections .rtsLink, .RadTabStripVertical .rtsLevel {
+    font-size:13px;
+    margin-left:0;
+}
+
+.PATSections .rtsLI, .PATSections .rtsLink, .RadTabStripVertical .rtsLI, .RadTabStripVertical .rtsLink {
+    border-radius: 5px 5px 5px 5px !important;
+    -moz-border-radius:5px 5px 5px 5px !important;
+    -webkit-border-radius:5px 5px 5px 5px !important;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.PATSections .rtsLink, .RadTabStripVertical .rtsLink{
+    text-align:left !important;
+}
+
+.PATSections .rtsLevel1 .rtsLink, .RadTabStripVertical .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7 !important;
+    background-color:#f7f7f7 !important;
+}
+
+.PATSections .rtsLevel1 .rtsSelected,
+.PATSections .rtsLevel1 .rtsSelected:hover, .RadTabStripVertical .rtsLevel1 .rtsSelected, .RadTabStripVertical .rtsLevel1 .rtsSelected:hover { background-color: #26C2E0 !important; border:none; margin:0; line-height:23px !important;}
+
+.PATSectionsErrors .rtsLI, .PATSectionsErrors .rtsLink, .RadTabStripVertical .rtsLevel {
+    font-size:13px;
+    margin-left:0;
+}
+
+.PATSectionsErrors .rtsLI, .PATSections .rtsLink, .RadTabStripVertical .rtsLI, .RadTabStripVertical .rtsLink {
+    border-radius: 5px 5px 5px 5px !important;
+    -moz-border-radius:5px 5px 5px 5px !important;
+    -webkit-border-radius:5px 5px 5px 5px !important;
+    behavior: url(/Templates/Scripts/PIE.htc);
+}
+
+.PATSectionsErrors .rtsLink, .RadTabStripVertical .rtsLink{
+    text-align:left !important;
+}
+
+.PATSectionsErrors .rtsLevel1 .rtsLink, .RadTabStripVertical .rtsLevel1 .rtsLink {
+    border:1px solid #f7f7f7 !important;
+    background-color:red !important;
+}
+
