@@ -32,7 +32,7 @@ The content is organized as follows:
 <notes>
 - Some files may have been excluded based on .gitignore rules and Repomix's configuration
 - Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
-- Only files matching these patterns are included: **/*.aspx, **/*.aspx.cs, **/*.master, **/*.master.cs
+- Only files matching these patterns are included: legacy-src/**/*.aspx, legacy-src/**/*.aspx.cs, legacy-src/**/*.master, legacy-src/**/*.master.cs
 - Files matching these patterns are excluded: bin, obj, node_modules
 - Files matching patterns in .gitignore are excluded
 - Files matching default ignore patterns are excluded
@@ -42,181 +42,182 @@ The content is organized as follows:
 </file_summary>
 
 <directory_structure>
-POD/
-  Pages/
-    Admin/
-      BulkEdit/
-        BulkEditingTool.aspx
-        BulkEditingTool.aspx.cs
-        BulkReleaseTool.aspx
-        BulkReleaseTool.aspx.cs
-      Import/
-        ImportDJJNum.aspx
-        ImportDJJNum.aspx.cs
-      ManageCommunities/
-        Communities.aspx
-        Communities.aspx.cs
-        CommunityPage.aspx
-        CommunityPage.aspx.cs
-      ManageContracts/
-        ContractManagement.aspx
-        ContractManagement.aspx.cs
-        ContractPage.aspx
-        ContractPage.aspx.cs
-      ManageLocations/
-        LocationPage.aspx
-        LocationPage.aspx.cs
-        Locations.aspx
-        Locations.aspx.cs
-        SiteAttendanceLockingManagement.aspx
-        SiteAttendanceLockingManagement.aspx.cs
-      ManageProgram/
-        Programs.aspx
-        Programs.aspx.cs
-      ManageReleased/
-        YouthDischargeTool.aspx
-        YouthDischargeTool.aspx.cs
-      ManageStaff/
-        PositionManagement.aspx
-        PositionManagement.aspx.cs
-        PositionPage.aspx
-        PositionPage.aspx.cs
-        RoleManagement.aspx
-        RoleManagement.aspx.cs
-        RolePage.aspx
-        RolePage.aspx.cs
-      ManageTypes/
-        ManageTypes.aspx
-        ManageTypes.aspx.cs
-      Dashboard.aspx
-      Dashboard.aspx.cs
-    LessonPlans/
-      LessonPlanDetailPage.aspx
-      LessonPlanDetailPage.aspx.cs
-      LessonPlans.aspx
-      LessonPlans.aspx.cs
-      ReviewLessonPlans.aspx
-      ReviewLessonPlans.aspx.cs
-    ManageClasses/
-      ClassCatalogs.aspx
-      ClassCatalogs.aspx.cs
-      ClassDetailPage.aspx
-      ClassDetailPage.aspx.cs
-      Classes.aspx
-      Classes.aspx.cs
-      ClassRegistration.aspx
-      ClassRegistration.aspx.cs
-    Reporting/
-      AutoYouthReleaseReport.aspx
-      AutoYouthReleaseReport.aspx.cs
-      BillingReport.aspx
-      BillingReport.aspx.cs
-      BulkEnrollmentExport.aspx
-      BulkEnrollmentExport.aspx.cs
-      BulkExport.aspx
-      BulkExport.aspx.cs
-      CensusReport.aspx
-      CensusReport.aspx.cs
-      DeletedEnrollmentReport.aspx
-      DeletedEnrollmentReport.aspx.cs
-      DiversionYouthReport.aspx
-      DiversionYouthReport.aspx.cs
-      EnrollmentNotesReport.aspx
-      EnrollmentNotesReport.aspx.cs
-      FriendsAndFamilyReport.aspx
-      FriendsAndFamilyReport.aspx.cs
-      InventoryReport.aspx
-      InventoryReport.aspx.cs
-      MasterClassScheduleReport.aspx
-      MasterClassScheduleReport.aspx.cs
-      MonthlyAttendanceReport.aspx
-      MonthlyAttendanceReport.aspx.cs
-      MonthlyEnrollmentReport.aspx
-      MonthlyEnrollmentReport.aspx.cs
-      MonthlyNonAttendanceReport.aspx
-      MonthlyNonAttendanceReport.aspx.cs
-      ProdigyCollectiveStaffReport.aspx
-      ProdigyCollectiveStaffReport.aspx.cs
-      ProdigyEnrollmentReport.aspx
-      ProdigyEnrollmentReport.aspx.cs
-      ProdigyStaffReport.aspx
-      ProdigyStaffReport.aspx.cs
-      ReleasedYouthReport.aspx
-      ReleasedYouthReport.aspx.cs
-      ReportingPage.aspx
-      ReportingPage.aspx.cs
-      ReturningYouthReport.aspx
-      ReturningYouthReport.aspx.cs
-      StaffVacancyReport.aspx
-      StaffVacancyReport.aspx.cs
-      StaffVerificationReport.aspx
-      StaffVerificationReport.aspx.cs
-    AttendancePage.aspx
-    AttendancePage.aspx.cs
-    Attendances.aspx
-    Attendances.aspx.cs
-    ControlPanel.aspx
-    ControlPanel.aspx.cs
-    DownLoad.aspx
-    DownLoad.aspx.cs
-    EnrollmentPage.aspx
-    EnrollmentPage.aspx.cs
-    Enrollments.aspx
-    Enrollments.aspx.cs
-    EventPage.aspx
-    EventPage.aspx.cs
-    Events.aspx
-    Events.aspx.cs
-    Inventory.aspx
-    Inventory.aspx.cs
-    InventoryItemPage.aspx
-    InventoryItemPage.aspx.cs
-    MyAccount.aspx
-    MyAccount.aspx.cs
-    PATForm.aspx
-    PATForm.aspx.cs
-    PATForms.aspx
-    PATForms.aspx.cs
-    QuickAddPerson.aspx
-    QuickAddPerson.aspx.cs
-    ReleaseYouthPage.aspx
-    ReleaseYouthPage.aspx.cs
-    RiskAssessmentPage.aspx
-    RiskAssessmentPage.aspx.cs
-    ShowDuplicateStudents.aspx
-    ShowDuplicateStudents.aspx.cs
-    Staff.aspx
-    Staff.aspx.cs
-    StaffMember.aspx
-    StaffMember.aspx.cs
-    TechnicalSupport.aspx
-    TechnicalSupport.aspx.cs
-    TransferYouthPage.aspx
-    TransferYouthPage.aspx.cs
-    UACDCPrograms.aspx
-    UACDCPrograms.aspx.cs
-    YouthAttendances.aspx
-    YouthAttendances.aspx.cs
-  Templates/
-    Certificates/
-      PODCompletionCertificate.aspx
-      PODCompletionCertificate.aspx.cs
-  default.aspx
-  default.aspx.cs
-  ForgotPassword.aspx
-  ForgotPassword.aspx.cs
-  Login.aspx
-  Login.aspx.cs
-  TestErrorHandling.aspx
-  TestErrorHandling.aspx.cs
-  Testpage.aspx
-  Testpage.aspx.cs
+legacy-src/
+  POD/
+    Pages/
+      Admin/
+        BulkEdit/
+          BulkEditingTool.aspx
+          BulkEditingTool.aspx.cs
+          BulkReleaseTool.aspx
+          BulkReleaseTool.aspx.cs
+        Import/
+          ImportDJJNum.aspx
+          ImportDJJNum.aspx.cs
+        ManageCommunities/
+          Communities.aspx
+          Communities.aspx.cs
+          CommunityPage.aspx
+          CommunityPage.aspx.cs
+        ManageContracts/
+          ContractManagement.aspx
+          ContractManagement.aspx.cs
+          ContractPage.aspx
+          ContractPage.aspx.cs
+        ManageLocations/
+          LocationPage.aspx
+          LocationPage.aspx.cs
+          Locations.aspx
+          Locations.aspx.cs
+          SiteAttendanceLockingManagement.aspx
+          SiteAttendanceLockingManagement.aspx.cs
+        ManageProgram/
+          Programs.aspx
+          Programs.aspx.cs
+        ManageReleased/
+          YouthDischargeTool.aspx
+          YouthDischargeTool.aspx.cs
+        ManageStaff/
+          PositionManagement.aspx
+          PositionManagement.aspx.cs
+          PositionPage.aspx
+          PositionPage.aspx.cs
+          RoleManagement.aspx
+          RoleManagement.aspx.cs
+          RolePage.aspx
+          RolePage.aspx.cs
+        ManageTypes/
+          ManageTypes.aspx
+          ManageTypes.aspx.cs
+        Dashboard.aspx
+        Dashboard.aspx.cs
+      LessonPlans/
+        LessonPlanDetailPage.aspx
+        LessonPlanDetailPage.aspx.cs
+        LessonPlans.aspx
+        LessonPlans.aspx.cs
+        ReviewLessonPlans.aspx
+        ReviewLessonPlans.aspx.cs
+      ManageClasses/
+        ClassCatalogs.aspx
+        ClassCatalogs.aspx.cs
+        ClassDetailPage.aspx
+        ClassDetailPage.aspx.cs
+        Classes.aspx
+        Classes.aspx.cs
+        ClassRegistration.aspx
+        ClassRegistration.aspx.cs
+      Reporting/
+        AutoYouthReleaseReport.aspx
+        AutoYouthReleaseReport.aspx.cs
+        BillingReport.aspx
+        BillingReport.aspx.cs
+        BulkEnrollmentExport.aspx
+        BulkEnrollmentExport.aspx.cs
+        BulkExport.aspx
+        BulkExport.aspx.cs
+        CensusReport.aspx
+        CensusReport.aspx.cs
+        DeletedEnrollmentReport.aspx
+        DeletedEnrollmentReport.aspx.cs
+        DiversionYouthReport.aspx
+        DiversionYouthReport.aspx.cs
+        EnrollmentNotesReport.aspx
+        EnrollmentNotesReport.aspx.cs
+        FriendsAndFamilyReport.aspx
+        FriendsAndFamilyReport.aspx.cs
+        InventoryReport.aspx
+        InventoryReport.aspx.cs
+        MasterClassScheduleReport.aspx
+        MasterClassScheduleReport.aspx.cs
+        MonthlyAttendanceReport.aspx
+        MonthlyAttendanceReport.aspx.cs
+        MonthlyEnrollmentReport.aspx
+        MonthlyEnrollmentReport.aspx.cs
+        MonthlyNonAttendanceReport.aspx
+        MonthlyNonAttendanceReport.aspx.cs
+        ProdigyCollectiveStaffReport.aspx
+        ProdigyCollectiveStaffReport.aspx.cs
+        ProdigyEnrollmentReport.aspx
+        ProdigyEnrollmentReport.aspx.cs
+        ProdigyStaffReport.aspx
+        ProdigyStaffReport.aspx.cs
+        ReleasedYouthReport.aspx
+        ReleasedYouthReport.aspx.cs
+        ReportingPage.aspx
+        ReportingPage.aspx.cs
+        ReturningYouthReport.aspx
+        ReturningYouthReport.aspx.cs
+        StaffVacancyReport.aspx
+        StaffVacancyReport.aspx.cs
+        StaffVerificationReport.aspx
+        StaffVerificationReport.aspx.cs
+      AttendancePage.aspx
+      AttendancePage.aspx.cs
+      Attendances.aspx
+      Attendances.aspx.cs
+      ControlPanel.aspx
+      ControlPanel.aspx.cs
+      DownLoad.aspx
+      DownLoad.aspx.cs
+      EnrollmentPage.aspx
+      EnrollmentPage.aspx.cs
+      Enrollments.aspx
+      Enrollments.aspx.cs
+      EventPage.aspx
+      EventPage.aspx.cs
+      Events.aspx
+      Events.aspx.cs
+      Inventory.aspx
+      Inventory.aspx.cs
+      InventoryItemPage.aspx
+      InventoryItemPage.aspx.cs
+      MyAccount.aspx
+      MyAccount.aspx.cs
+      PATForm.aspx
+      PATForm.aspx.cs
+      PATForms.aspx
+      PATForms.aspx.cs
+      QuickAddPerson.aspx
+      QuickAddPerson.aspx.cs
+      ReleaseYouthPage.aspx
+      ReleaseYouthPage.aspx.cs
+      RiskAssessmentPage.aspx
+      RiskAssessmentPage.aspx.cs
+      ShowDuplicateStudents.aspx
+      ShowDuplicateStudents.aspx.cs
+      Staff.aspx
+      Staff.aspx.cs
+      StaffMember.aspx
+      StaffMember.aspx.cs
+      TechnicalSupport.aspx
+      TechnicalSupport.aspx.cs
+      TransferYouthPage.aspx
+      TransferYouthPage.aspx.cs
+      UACDCPrograms.aspx
+      UACDCPrograms.aspx.cs
+      YouthAttendances.aspx
+      YouthAttendances.aspx.cs
+    Templates/
+      Certificates/
+        PODCompletionCertificate.aspx
+        PODCompletionCertificate.aspx.cs
+    default.aspx
+    default.aspx.cs
+    ForgotPassword.aspx
+    ForgotPassword.aspx.cs
+    Login.aspx
+    Login.aspx.cs
+    TestErrorHandling.aspx
+    TestErrorHandling.aspx.cs
+    Testpage.aspx
+    Testpage.aspx.cs
 </directory_structure>
 
 <files>
 This section contains the contents of the repository's files.
 
-<file path="POD/Pages/Admin/BulkEdit/BulkEditingTool.aspx">
+<file path="legacy-src/POD/Pages/Admin/BulkEdit/BulkEditingTool.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="BulkEditingTool.aspx.cs" Inherits="POD.Pages.Admin.BulkEdit.BulkEditingTool" %>
 
@@ -511,7 +512,7 @@ This section contains the contents of the repository's files.
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/BulkEdit/BulkEditingTool.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/BulkEdit/BulkEditingTool.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -849,7 +850,7 @@ namespace POD.Pages.Admin.BulkEdit
 }
 </file>
 
-<file path="POD/Pages/Admin/BulkEdit/BulkReleaseTool.aspx">
+<file path="legacy-src/POD/Pages/Admin/BulkEdit/BulkReleaseTool.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="BulkReleaseTool.aspx.cs" Inherits="POD.Pages.Admin.BulkEdit.BulkReleaseTool" %>
 
@@ -1321,7 +1322,7 @@ namespace POD.Pages.Admin.BulkEdit
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/BulkEdit/BulkReleaseTool.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/BulkEdit/BulkReleaseTool.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -1759,7 +1760,7 @@ namespace POD.Pages.Admin.BulkEdit
 }
 </file>
 
-<file path="POD/Pages/Admin/Import/ImportDJJNum.aspx">
+<file path="legacy-src/POD/Pages/Admin/Import/ImportDJJNum.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     CodeBehind="ImportDJJNum.aspx.cs" Inherits="POD.Pages.Admin.Import.ImportDJJNum" %>
     <%@ Register Src="../../../UserControls/BulkDataLinks.ascx" TagName="BulkDataLinks"
@@ -1863,7 +1864,7 @@ namespace POD.Pages.Admin.BulkEdit
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/Import/ImportDJJNum.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/Import/ImportDJJNum.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2157,7 +2158,7 @@ namespace POD.Pages.Admin.Import
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageCommunities/Communities.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageCommunities/Communities.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="Communities.aspx.cs" Inherits="POD.Pages.Admin.ManageCommunities.Communities" %>
 
@@ -2436,7 +2437,7 @@ namespace POD.Pages.Admin.Import
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageCommunities/Communities.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageCommunities/Communities.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2851,7 +2852,7 @@ namespace POD.Pages.Admin.ManageCommunities
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageCommunities/CommunityPage.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageCommunities/CommunityPage.aspx">
 <%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="CommunityPage.aspx.cs"
     Inherits="POD.Pages.Admin.ManageCommunities.CommunityPage" %>
 
@@ -3117,7 +3118,7 @@ namespace POD.Pages.Admin.ManageCommunities
 </html>
 </file>
 
-<file path="POD/Pages/Admin/ManageCommunities/CommunityPage.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageCommunities/CommunityPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -3306,7 +3307,7 @@ namespace POD.Pages.Admin.ManageCommunities
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageContracts/ContractManagement.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageContracts/ContractManagement.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ContractManagement.aspx.cs" Inherits="POD.Pages.Admin.ManageContracts.ContractManagement" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -3377,7 +3378,7 @@ namespace POD.Pages.Admin.ManageCommunities
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageContracts/ContractManagement.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageContracts/ContractManagement.aspx.cs">
 using System;
 using System.Web.UI;
 using POD.Logic;
@@ -3570,7 +3571,7 @@ namespace POD.Pages.Admin.ManageContracts
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageContracts/ContractPage.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageContracts/ContractPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ContractPage.aspx.cs" Inherits="POD.Pages.Admin.ManageContracts.ContractPage" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -3777,7 +3778,7 @@ namespace POD.Pages.Admin.ManageContracts
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageContracts/ContractPage.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageContracts/ContractPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -4022,7 +4023,7 @@ namespace POD.Pages.Admin.ManageContracts
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/LocationPage.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/LocationPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="LocationPage.aspx.cs" Inherits="POD.Pages.Admin.ManageLocations.LocationPage" %>
 
@@ -4262,7 +4263,7 @@ namespace POD.Pages.Admin.ManageContracts
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/LocationPage.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/LocationPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -4455,7 +4456,7 @@ namespace POD.Pages.Admin.ManageLocations
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/Locations.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/Locations.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="Locations.aspx.cs" Inherits="POD.Pages.Admin.ManageLocations.Locations" %>
 
@@ -4574,7 +4575,7 @@ namespace POD.Pages.Admin.ManageLocations
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/Locations.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/Locations.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -4756,7 +4757,7 @@ namespace POD.Pages.Admin.ManageLocations
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/SiteAttendanceLockingManagement.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/SiteAttendanceLockingManagement.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="SiteAttendanceLockingManagement.aspx.cs" Inherits="POD.Pages.Admin.ManageLocations.SiteAttendanceLockingManagement" %>
 
@@ -4901,7 +4902,7 @@ namespace POD.Pages.Admin.ManageLocations
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageLocations/SiteAttendanceLockingManagement.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageLocations/SiteAttendanceLockingManagement.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5101,7 +5102,7 @@ namespace POD.Pages.Admin.ManageLocations
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageProgram/Programs.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageProgram/Programs.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="Programs.aspx.cs" Inherits="POD.Pages.Admin.ManageProgramsAndCourses.Programs" %>
 
@@ -5250,7 +5251,7 @@ namespace POD.Pages.Admin.ManageLocations
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageProgram/Programs.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageProgram/Programs.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5336,7 +5337,7 @@ namespace POD.Pages.Admin.ManageProgramsAndCourses
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageReleased/YouthDischargeTool.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageReleased/YouthDischargeTool.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="YouthDischargeTool.aspx.cs" Inherits="POD.Pages.Admin.ManageReleased.YouthDischargeTool" %>
 
@@ -5490,7 +5491,7 @@ namespace POD.Pages.Admin.ManageProgramsAndCourses
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageReleased/YouthDischargeTool.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageReleased/YouthDischargeTool.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6034,7 +6035,7 @@ namespace POD.Pages.Admin.ManageReleased
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/PositionManagement.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/PositionManagement.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="PositionManagement.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.PositionManagement" %>
 <%@ Register Src="~/UserControls/StaffLinks.ascx" TagName="StaffLinks" TagPrefix="uc2" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -6102,7 +6103,7 @@ namespace POD.Pages.Admin.ManageReleased
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/PositionManagement.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/PositionManagement.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6180,7 +6181,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/PositionPage.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/PositionPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="PositionPage.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.PositionPage" %>
 
@@ -6269,7 +6270,7 @@ namespace POD.Pages.Admin.ManageStaff
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/PositionPage.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/PositionPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6364,7 +6365,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/RoleManagement.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/RoleManagement.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="RoleManagement.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.RoleManagement" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -6452,7 +6453,7 @@ namespace POD.Pages.Admin.ManageStaff
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/RoleManagement.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/RoleManagement.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6531,7 +6532,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/RolePage.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/RolePage.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RolePage.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.RolePage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -6657,7 +6658,7 @@ namespace POD.Pages.Admin.ManageStaff
 </html>
 </file>
 
-<file path="POD/Pages/Admin/ManageStaff/RolePage.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageStaff/RolePage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6696,7 +6697,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/Admin/ManageTypes/ManageTypes.aspx">
+<file path="legacy-src/POD/Pages/Admin/ManageTypes/ManageTypes.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ManageTypes.aspx.cs" Inherits="POD.Admin.ManageTypes.ManageTypes" %>
 
@@ -7046,7 +7047,7 @@ namespace POD.Pages.Admin.ManageStaff
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/ManageTypes/ManageTypes.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/ManageTypes/ManageTypes.aspx.cs">
 using POD.Logic;
 using System;
 using System.Collections;
@@ -7516,7 +7517,7 @@ namespace POD.Admin.ManageTypes
 }
 </file>
 
-<file path="POD/Pages/Admin/Dashboard.aspx">
+<file path="legacy-src/POD/Pages/Admin/Dashboard.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="POD.Pages.Admin.Dashboard" %>
         <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -7650,7 +7651,7 @@ namespace POD.Admin.ManageTypes
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Admin/Dashboard.aspx.cs">
+<file path="legacy-src/POD/Pages/Admin/Dashboard.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7670,7 +7671,7 @@ namespace POD.Pages.Admin
 }
 </file>
 
-<file path="POD/Pages/LessonPlans/LessonPlanDetailPage.aspx">
+<file path="legacy-src/POD/Pages/LessonPlans/LessonPlanDetailPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="LessonPlanDetailPage.aspx.cs" Inherits="POD.Pages.LessonPlans.LessonPlanDetailPage" %>
 
@@ -8764,7 +8765,7 @@ namespace POD.Pages.Admin
 </asp:Content>
 </file>
 
-<file path="POD/Pages/LessonPlans/LessonPlanDetailPage.aspx.cs">
+<file path="legacy-src/POD/Pages/LessonPlans/LessonPlanDetailPage.aspx.cs">
 using iTextSharp.text.pdf;
 using POD.Data.Entities;
 using POD.Logic;
@@ -9995,7 +9996,7 @@ namespace POD.Pages.LessonPlans
 }
 </file>
 
-<file path="POD/Pages/LessonPlans/LessonPlans.aspx">
+<file path="legacy-src/POD/Pages/LessonPlans/LessonPlans.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="LessonPlans.aspx.cs" Inherits="POD.Pages.LessonPlans.LessonPlans" %>
 <%@ Register Src="~/UserControls/SearchSideBar.ascx" TagName="SearchSideBar" TagPrefix="uc1" %>
@@ -10213,7 +10214,7 @@ namespace POD.Pages.LessonPlans
 </asp:Content>
 </file>
 
-<file path="POD/Pages/LessonPlans/LessonPlans.aspx.cs">
+<file path="legacy-src/POD/Pages/LessonPlans/LessonPlans.aspx.cs">
 using iTextSharp.text.pdf;
 using POD.Data.Entities;
 using POD.Logic;
@@ -11104,7 +11105,7 @@ namespace POD.Pages.LessonPlans
 }
 </file>
 
-<file path="POD/Pages/LessonPlans/ReviewLessonPlans.aspx">
+<file path="legacy-src/POD/Pages/LessonPlans/ReviewLessonPlans.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ReviewLessonPlans.aspx.cs" Inherits="POD.Pages.LessonPlans.ReviewLessonPlans" %>
 
@@ -11333,7 +11334,7 @@ namespace POD.Pages.LessonPlans
 </asp:Content>
 </file>
 
-<file path="POD/Pages/LessonPlans/ReviewLessonPlans.aspx.cs">
+<file path="legacy-src/POD/Pages/LessonPlans/ReviewLessonPlans.aspx.cs">
 using POD.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -11696,7 +11697,7 @@ namespace POD.Pages.LessonPlans
 }
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassCatalogs.aspx">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassCatalogs.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ClassCatalogs.aspx.cs" Inherits="POD.Pages.ManageClasses.ClassCatalogs" %>
 
@@ -11824,7 +11825,7 @@ namespace POD.Pages.LessonPlans
 </asp:Content>
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassCatalogs.aspx.cs">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassCatalogs.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12014,7 +12015,7 @@ namespace POD.Pages.ManageClasses
 }
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassDetailPage.aspx">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassDetailPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ClassDetailPage.aspx.cs" Inherits="POD.Pages.Admin.ManageProgramsAndCourses.ClassDetailPage" %>
 
@@ -12561,7 +12562,7 @@ namespace POD.Pages.ManageClasses
 </asp:Content>
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassDetailPage.aspx.cs">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassDetailPage.aspx.cs">
 using iTextSharp.text.pdf;
 using POD.Data.Entities;
 using POD.Logic;
@@ -13717,7 +13718,7 @@ namespace POD.Pages.Admin.ManageProgramsAndCourses
 }
 </file>
 
-<file path="POD/Pages/ManageClasses/Classes.aspx">
+<file path="legacy-src/POD/Pages/ManageClasses/Classes.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="Classes.aspx.cs" Inherits="POD.Pages.ManageClasses.Classes" %>
 
@@ -13843,7 +13844,7 @@ namespace POD.Pages.Admin.ManageProgramsAndCourses
 </asp:Content>
 </file>
 
-<file path="POD/Pages/ManageClasses/Classes.aspx.cs">
+<file path="legacy-src/POD/Pages/ManageClasses/Classes.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14048,7 +14049,7 @@ namespace POD.Pages.ManageClasses
 }
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassRegistration.aspx">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassRegistration.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="ClassRegistration.aspx.cs" Inherits="POD.Pages.ManageClasses.ClassRegistration" %>
 
@@ -14323,7 +14324,7 @@ namespace POD.Pages.ManageClasses
 </asp:Content>
 </file>
 
-<file path="POD/Pages/ManageClasses/ClassRegistration.aspx.cs">
+<file path="legacy-src/POD/Pages/ManageClasses/ClassRegistration.aspx.cs">
 using iTextSharp.text.pdf;
 using POD.Data.Entities;
 using POD.Logic;
@@ -14764,7 +14765,7 @@ namespace POD.Pages.ManageClasses
 }
 </file>
 
-<file path="POD/Pages/Reporting/AutoYouthReleaseReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/AutoYouthReleaseReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="AutoYouthReleaseReport.aspx.cs" Inherits="POD.Pages.Reporting.AutoYouthReleaseReport" %>
 
@@ -14818,7 +14819,7 @@ namespace POD.Pages.ManageClasses
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/AutoYouthReleaseReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/AutoYouthReleaseReport.aspx.cs">
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14952,7 +14953,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/BillingReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/BillingReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="BillingReport.aspx.cs" Inherits="POD.Pages.Reporting.CensusReport" %>
 
@@ -15004,7 +15005,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/BillingReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/BillingReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15098,7 +15099,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/BulkEnrollmentExport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/BulkEnrollmentExport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="BulkEnrollmentExport.aspx.cs" Inherits="POD.Pages.Reporting.BulkEnrollmentExport" %>
 
@@ -15166,7 +15167,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/BulkEnrollmentExport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/BulkEnrollmentExport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15274,7 +15275,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/BulkExport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/BulkExport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="BulkExport.aspx.cs" Inherits="POD.Pages.Reporting.BulkExport" %>
 
@@ -15326,7 +15327,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/BulkExport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/BulkExport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15379,7 +15380,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/CensusReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/CensusReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="CensusReport.aspx.cs" Inherits="POD.Pages.Reporting.CensusReport" %>
 
@@ -15431,7 +15432,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/CensusReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/CensusReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15525,7 +15526,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/DeletedEnrollmentReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/DeletedEnrollmentReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="DeletedEnrollmentReport.aspx.cs" Inherits="POD.Pages.Reporting.DeletedEnrollmentReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -15583,7 +15584,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/DeletedEnrollmentReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/DeletedEnrollmentReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15687,7 +15688,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/DiversionYouthReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/DiversionYouthReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="DiversionYouthReport.aspx.cs" Inherits="POD.Pages.Reporting.DiversionYouthReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -15745,7 +15746,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/DiversionYouthReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/DiversionYouthReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -15849,7 +15850,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/EnrollmentNotesReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/EnrollmentNotesReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="EnrollmentNotesReport.aspx.cs" Inherits="POD.Pages.Reporting.EnrollmentNotesReport" %>
 
@@ -15915,7 +15916,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/EnrollmentNotesReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/EnrollmentNotesReport.aspx.cs">
 using Microsoft.Reporting.WebForms;
 using POD.Data.Entities;
 using POD.Logic;
@@ -16068,7 +16069,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/FriendsAndFamilyReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/FriendsAndFamilyReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="FriendsAndFamilyReport.aspx.cs" Inherits="POD.Pages.Reporting.FriendsAndFamilyReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -16131,7 +16132,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/FriendsAndFamilyReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/FriendsAndFamilyReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -16225,7 +16226,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/InventoryReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/InventoryReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="InventoryReport.aspx.cs" Inherits="POD.Pages.Reporting.InventoryReport" %>
 
@@ -16265,7 +16266,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/InventoryReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/InventoryReport.aspx.cs">
 using Microsoft.Reporting.WebForms;
 using POD.Logic;
 using POD.Logic.Reporting;
@@ -16354,7 +16355,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/MasterClassScheduleReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/MasterClassScheduleReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="MasterClassScheduleReport.aspx.cs" Inherits="POD.Pages.Reporting.MasterClassScheduleReport" %>
 
@@ -16487,7 +16488,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/MasterClassScheduleReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/MasterClassScheduleReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16599,7 +16600,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyAttendanceReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyAttendanceReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="MonthlyAttendanceReport.aspx.cs" Inherits="POD.Pages.Reporting.MonthlyAttendanceReport" %>
 
@@ -16681,7 +16682,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyAttendanceReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyAttendanceReport.aspx.cs">
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16843,7 +16844,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyEnrollmentReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyEnrollmentReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="MonthlyEnrollmentReport.aspx.cs" Inherits="POD.Pages.Reporting.MonthlyEnrollmentReport" %>
 
@@ -16892,7 +16893,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyEnrollmentReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyEnrollmentReport.aspx.cs">
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16997,7 +16998,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyNonAttendanceReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyNonAttendanceReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="MonthlyNonAttendanceReport.aspx.cs" Inherits="POD.Pages.Reporting.MonthlyNonAttendanceReport" %>
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -17063,7 +17064,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/MonthlyNonAttendanceReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/MonthlyNonAttendanceReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -17137,7 +17138,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyCollectiveStaffReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyCollectiveStaffReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ProdigyCollectiveStaffReport.aspx.cs" Inherits="POD.Pages.Reporting.ProdigyCollectiveStaffReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -17194,7 +17195,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyCollectiveStaffReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyCollectiveStaffReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17283,7 +17284,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyEnrollmentReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyEnrollmentReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ProdigyEnrollmentReport.aspx.cs" Inherits="POD.Pages.Reporting.ProdigyEnrollmentReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="../../UserControls/ReportViewport.ascx" %>
@@ -17315,7 +17316,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyEnrollmentReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyEnrollmentReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -17382,7 +17383,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyStaffReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyStaffReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ProdigyStaffReport.aspx.cs" Inherits="POD.Pages.Reporting.ProdigyStaffReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -17462,7 +17463,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ProdigyStaffReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ProdigyStaffReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17574,7 +17575,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ReleasedYouthReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ReleasedYouthReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="ReleasedYouthReport.aspx.cs" Inherits="POD.Pages.Reporting.ReleasedYouthReport" %>
 
@@ -17663,7 +17664,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ReleasedYouthReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ReleasedYouthReport.aspx.cs">
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17822,7 +17823,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ReportingPage.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ReportingPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ReportingPage.aspx.cs" Inherits="POD.Pages.Reporting.ReportingPage" %>
 
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -18080,7 +18081,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ReportingPage.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ReportingPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18100,7 +18101,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/ReturningYouthReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/ReturningYouthReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="ReturningYouthReport.aspx.cs" Inherits="POD.Pages.Reporting.ReturningYouthReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -18172,7 +18173,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/ReturningYouthReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/ReturningYouthReport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
@@ -18281,7 +18282,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/StaffVacancyReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/StaffVacancyReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="StaffVacancyReport.aspx.cs" Inherits="POD.Pages.Reporting.StaffVacancyReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -18317,7 +18318,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/StaffVacancyReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/StaffVacancyReport.aspx.cs">
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18390,7 +18391,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/Reporting/StaffVerificationReport.aspx">
+<file path="legacy-src/POD/Pages/Reporting/StaffVerificationReport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master" AutoEventWireup="true" CodeBehind="StaffVerificationReport.aspx.cs" Inherits="POD.Pages.Reporting.StaffVerificationReport" %>
 
 <%@ Register TagPrefix="uc" TagName="ReportViewport" Src="~/UserControls/ReportViewport.ascx" %>
@@ -18425,7 +18426,7 @@ namespace POD.Pages.Reporting
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Reporting/StaffVerificationReport.aspx.cs">
+<file path="legacy-src/POD/Pages/Reporting/StaffVerificationReport.aspx.cs">
 using Microsoft.Reporting.WebForms;
 using POD.Logic;
 using POD.Logic.Reporting;
@@ -18486,7 +18487,7 @@ namespace POD.Pages.Reporting
 }
 </file>
 
-<file path="POD/Pages/AttendancePage.aspx">
+<file path="legacy-src/POD/Pages/AttendancePage.aspx">
 <%@ Page Title="" Language="C#" AutoEventWireup="true" CodeBehind="AttendancePage.aspx.cs"
     Inherits="POD.Pages.AttendancePage" %>
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -19008,7 +19009,7 @@ namespace POD.Pages.Reporting
 </html>
 </file>
 
-<file path="POD/Pages/AttendancePage.aspx.cs">
+<file path="legacy-src/POD/Pages/AttendancePage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19549,7 +19550,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/Attendances.aspx">
+<file path="legacy-src/POD/Pages/Attendances.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="Attendances.aspx.cs" Inherits="POD.Pages.Attendances" %>
 
@@ -19672,7 +19673,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Attendances.aspx.cs">
+<file path="legacy-src/POD/Pages/Attendances.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19796,7 +19797,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/ControlPanel.aspx">
+<file path="legacy-src/POD/Pages/ControlPanel.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ControlPanel.aspx.cs" MasterPageFile="~/Templates/Markup/AdminWide.Master" Inherits="POD.Pages.ControlPanel" %>
 
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -19930,7 +19931,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/ControlPanel.aspx.cs">
+<file path="legacy-src/POD/Pages/ControlPanel.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19957,7 +19958,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/DownLoad.aspx">
+<file path="legacy-src/POD/Pages/DownLoad.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DownLoad.aspx.cs" Inherits="POD.Pages.DownLoad" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -20045,7 +20046,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/DownLoad.aspx.cs">
+<file path="legacy-src/POD/Pages/DownLoad.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20199,7 +20200,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/EnrollmentPage.aspx">
+<file path="legacy-src/POD/Pages/EnrollmentPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="EnrollmentPage.aspx.cs" Inherits="POD.Pages.EnrollmentPage" %>
 
@@ -22360,7 +22361,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/EnrollmentPage.aspx.cs">
+<file path="legacy-src/POD/Pages/EnrollmentPage.aspx.cs">
 using iTextSharp.text.pdf;
 using POD.Data.Entities;
 using POD.Logging;
@@ -25454,7 +25455,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/Enrollments.aspx">
+<file path="legacy-src/POD/Pages/Enrollments.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="Enrollments.aspx.cs" Inherits="POD.Pages.Enrollments" %>
 
@@ -25743,7 +25744,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Enrollments.aspx.cs">
+<file path="legacy-src/POD/Pages/Enrollments.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26294,7 +26295,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/EventPage.aspx">
+<file path="legacy-src/POD/Pages/EventPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="EventPage.aspx.cs" Inherits="POD.Pages.EventPage" %>
 
@@ -26541,7 +26542,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/EventPage.aspx.cs">
+<file path="legacy-src/POD/Pages/EventPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26996,7 +26997,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/Events.aspx">
+<file path="legacy-src/POD/Pages/Events.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="Events.aspx.cs" Inherits="POD.Pages.Events" %>
 
@@ -27130,7 +27131,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Events.aspx.cs">
+<file path="legacy-src/POD/Pages/Events.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27279,7 +27280,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/Inventory.aspx">
+<file path="legacy-src/POD/Pages/Inventory.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="Inventory.aspx.cs" Inherits="POD.Pages.Inventory" %>
     <%@ Register Src="../UserControls/InventoryLinks.ascx" TagName="InventoryLinks"
@@ -27394,7 +27395,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Inventory.aspx.cs">
+<file path="legacy-src/POD/Pages/Inventory.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27509,7 +27510,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/InventoryItemPage.aspx">
+<file path="legacy-src/POD/Pages/InventoryItemPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="InventoryItemPage.aspx.cs" Inherits="POD.Pages.InventoryItemPage" %>
 
@@ -27667,7 +27668,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/InventoryItemPage.aspx.cs">
+<file path="legacy-src/POD/Pages/InventoryItemPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27858,7 +27859,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/MyAccount.aspx">
+<file path="legacy-src/POD/Pages/MyAccount.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="MyAccount.aspx.cs" Inherits="POD.Pages.MyAccount" %>
 
@@ -28005,7 +28006,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/MyAccount.aspx.cs">
+<file path="legacy-src/POD/Pages/MyAccount.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28243,7 +28244,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/PATForm.aspx">
+<file path="legacy-src/POD/Pages/PATForm.aspx">
 <%@ Page Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master" AutoEventWireup="true" CodeBehind="PATForm.aspx.cs" Inherits="POD.Pages.PATForm" %>
 
 <%@ Register TagPrefix="auth" Namespace="POD.UserControls.Shared" Assembly="POD" %>
@@ -28389,7 +28390,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/PATForm.aspx.cs">
+<file path="legacy-src/POD/Pages/PATForm.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29571,7 +29572,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/PATForms.aspx">
+<file path="legacy-src/POD/Pages/PATForms.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PATForms.aspx.cs" Inherits="POD.Pages.PATForms" MasterPageFile="~/Templates/Markup/Admin.Master" %>
 
 <%@ Register Src="~/UserControls/SearchSideBar.ascx" TagName="SearchSideBar" TagPrefix="uc1" %>
@@ -29835,7 +29836,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/PATForms.aspx.cs">
+<file path="legacy-src/POD/Pages/PATForms.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29930,7 +29931,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/QuickAddPerson.aspx">
+<file path="legacy-src/POD/Pages/QuickAddPerson.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QuickAddPerson.aspx.cs"
     Inherits="POD.Pages.QuickAddPerson" %>
 
@@ -30010,7 +30011,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/QuickAddPerson.aspx.cs">
+<file path="legacy-src/POD/Pages/QuickAddPerson.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30030,7 +30031,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/ReleaseYouthPage.aspx">
+<file path="legacy-src/POD/Pages/ReleaseYouthPage.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ReleaseYouthPage.aspx.cs"
     Inherits="POD.Pages.ReleaseYouthPage" %>
 
@@ -30127,7 +30128,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/ReleaseYouthPage.aspx.cs">
+<file path="legacy-src/POD/Pages/ReleaseYouthPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30149,7 +30150,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/RiskAssessmentPage.aspx">
+<file path="legacy-src/POD/Pages/RiskAssessmentPage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="True" CodeBehind="RiskAssessmentPage.aspx.cs" Inherits="POD.Pages.RiskAssessmentPage" %>
 
@@ -31171,7 +31172,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/RiskAssessmentPage.aspx.cs">
+<file path="legacy-src/POD/Pages/RiskAssessmentPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32379,7 +32380,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/ShowDuplicateStudents.aspx">
+<file path="legacy-src/POD/Pages/ShowDuplicateStudents.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowDuplicateStudents.aspx.cs"
     Inherits="POD.Pages.ShowDuplicateStudents" %>
 
@@ -32497,7 +32498,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/ShowDuplicateStudents.aspx.cs">
+<file path="legacy-src/POD/Pages/ShowDuplicateStudents.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32556,7 +32557,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/Staff.aspx">
+<file path="legacy-src/POD/Pages/Staff.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="Staff.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.Staff" %>
 
@@ -32688,7 +32689,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/Staff.aspx.cs">
+<file path="legacy-src/POD/Pages/Staff.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32875,7 +32876,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/StaffMember.aspx">
+<file path="legacy-src/POD/Pages/StaffMember.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="StaffMember.aspx.cs" Inherits="POD.Pages.Admin.ManageStaff.StaffMember" %>
 
@@ -33089,7 +33090,7 @@ namespace POD.Pages.Admin.ManageStaff
 </asp:Content>
 </file>
 
-<file path="POD/Pages/StaffMember.aspx.cs">
+<file path="legacy-src/POD/Pages/StaffMember.aspx.cs">
 using System;
 using System.Web;
 using System.Web.UI;
@@ -33444,7 +33445,7 @@ namespace POD.Pages.Admin.ManageStaff
 }
 </file>
 
-<file path="POD/Pages/TechnicalSupport.aspx">
+<file path="legacy-src/POD/Pages/TechnicalSupport.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/AdminWide.Master"
     AutoEventWireup="true" CodeBehind="TechnicalSupport.aspx.cs" Inherits="POD.Pages.TechnicalSupport" %>
 
@@ -33520,7 +33521,7 @@ namespace POD.Pages.Admin.ManageStaff
 </asp:Content>
 </file>
 
-<file path="POD/Pages/TechnicalSupport.aspx.cs">
+<file path="legacy-src/POD/Pages/TechnicalSupport.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33622,7 +33623,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/TransferYouthPage.aspx">
+<file path="legacy-src/POD/Pages/TransferYouthPage.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TransferYouthPage.aspx.cs"
     Inherits="POD.Pages.TransferYouthPage" %>
 
@@ -33764,7 +33765,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/TransferYouthPage.aspx.cs">
+<file path="legacy-src/POD/Pages/TransferYouthPage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33858,7 +33859,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/UACDCPrograms.aspx">
+<file path="legacy-src/POD/Pages/UACDCPrograms.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UACDCPrograms.aspx.cs"
     Inherits="POD.Pages.UACDCPrograms" %>
 
@@ -34004,7 +34005,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Pages/UACDCPrograms.aspx.cs">
+<file path="legacy-src/POD/Pages/UACDCPrograms.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34110,7 +34111,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Pages/YouthAttendances.aspx">
+<file path="legacy-src/POD/Pages/YouthAttendances.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master"
     AutoEventWireup="true" CodeBehind="YouthAttendances.aspx.cs" Inherits="POD.Pages.EventAttendances" %>
 
@@ -34197,7 +34198,7 @@ namespace POD.Pages
 </asp:Content>
 </file>
 
-<file path="POD/Pages/YouthAttendances.aspx.cs">
+<file path="legacy-src/POD/Pages/YouthAttendances.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34288,7 +34289,7 @@ namespace POD.Pages
 }
 </file>
 
-<file path="POD/Templates/Certificates/PODCompletionCertificate.aspx">
+<file path="legacy-src/POD/Templates/Certificates/PODCompletionCertificate.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PODCompletionCertificate.aspx.cs" Inherits="POD.Templates.Certificates.PODCompletionCertificate" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34344,7 +34345,7 @@ namespace POD.Pages
 </html>
 </file>
 
-<file path="POD/Templates/Certificates/PODCompletionCertificate.aspx.cs">
+<file path="legacy-src/POD/Templates/Certificates/PODCompletionCertificate.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34376,7 +34377,7 @@ namespace POD.Templates.Certificates
 }
 </file>
 
-<file path="POD/default.aspx">
+<file path="legacy-src/POD/default.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="POD._default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34395,7 +34396,7 @@ namespace POD.Templates.Certificates
 </html>
 </file>
 
-<file path="POD/default.aspx.cs">
+<file path="legacy-src/POD/default.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34415,7 +34416,7 @@ namespace POD
 }
 </file>
 
-<file path="POD/ForgotPassword.aspx">
+<file path="legacy-src/POD/ForgotPassword.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs"
     Inherits="POD.ForgotPassword" %>
 
@@ -34640,7 +34641,7 @@ namespace POD
 </html>
 </file>
 
-<file path="POD/ForgotPassword.aspx.cs">
+<file path="legacy-src/POD/ForgotPassword.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34795,7 +34796,7 @@ namespace POD
 }
 </file>
 
-<file path="POD/Login.aspx">
+<file path="legacy-src/POD/Login.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Login" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34903,7 +34904,7 @@ namespace POD
 </html>
 </file>
 
-<file path="POD/Login.aspx.cs">
+<file path="legacy-src/POD/Login.aspx.cs">
 using System;
 using System.Web;
 using System.Web.UI;
@@ -34995,7 +34996,7 @@ public partial class Login : System.Web.UI.Page
 }
 </file>
 
-<file path="POD/TestErrorHandling.aspx">
+<file path="legacy-src/POD/TestErrorHandling.aspx">
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestErrorHandling.aspx.cs" Inherits="POD.TestErrorHandling" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -35014,7 +35015,7 @@ public partial class Login : System.Web.UI.Page
 </html>
 </file>
 
-<file path="POD/TestErrorHandling.aspx.cs">
+<file path="legacy-src/POD/TestErrorHandling.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35047,7 +35048,7 @@ namespace POD
 }
 </file>
 
-<file path="POD/Testpage.aspx">
+<file path="legacy-src/POD/Testpage.aspx">
 <%@ Page Title="" Language="C#" MasterPageFile="~/Templates/Markup/Admin.Master" AutoEventWireup="true" CodeBehind="Testpage.aspx.cs" Inherits="POD.Testpage" %>
 <%@ Register src="UserControls/SearchSideBar.ascx" tagname="SearchSideBar" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceholderHead" runat="server">
@@ -35106,7 +35107,7 @@ namespace POD
 </asp:Content>
 </file>
 
-<file path="POD/Testpage.aspx.cs">
+<file path="legacy-src/POD/Testpage.aspx.cs">
 using System;
 using System.Collections.Generic;
 using System.Linq;
