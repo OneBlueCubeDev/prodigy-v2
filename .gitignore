@@ -366,3 +366,7 @@ test-results/
 
 # Prisma generated
 .env
+
+# Dev server
+logs/
+scripts/.dev-server.pid

@@ -13,16 +13,25 @@ NextAuth.js · Prisma · PostgreSQL · Metabase OSS
 - New pages go in /src/app/[route]/page.tsx
 - New API routes go in /src/app/api/[name]/route.ts
 
+## Dev Server Scripts
+Always use the scripts in `/scripts/` to start and stop the dev server:
+- **macOS/Linux:** `./scripts/dev-server.sh start` / `stop` / `restart` / `status`
+- **Windows:** `.\scripts\dev-server.ps1 start` / `stop` / `restart` / `status`
+- Add `--background` (or `-b`) to run detached
+- Server runs on port 3000
+- Logs go to `/logs/dev-server.log` (git-ignored)
+- Do NOT use bare `pnpm dev` — always use the scripts
+
 ## Architecture Decisions
 - ADR-001: Reporting — SSRS → Metabase OSS
-- ADR-002: Auth — Forms Auth → NextAuth.js
+- ADR-002: Auth — Clerk (MFA enforced)
 
 ## Migration Status
 ### Complete
-(none yet)
+Phase 0 — Foundation (auth, schema, audit trail, infrastructure)
 
 ### In Progress
-Phase 0 — Bootstrap
+Phase 1 — Youth Registration
 
 <!-- GSD:project-start source:PROJECT.md -->
 ## Project
