@@ -1,16 +1,16 @@
 # WebForms → Next.js Migration
 
-> **Status**: In Progress  
-> **Approach**: Spec-Driven Development — BMAD + GSD hybrid  
+> **Status**: In Progress — Phase 0 Complete, Phase 1 Next
+> **Approach**: Spec-Driven Development — BMAD (planning) + GSD (execution) hybrid
 > **Repo**: GitHub (migrated from Azure DevOps)
 
 ---
 
 ## Overview
 
-This document is the starting point for the full migration of the existing ASP.NET WebForms application to a modern Next.js stack. It captures the approach, tech decisions, folder structure, and step-by-step process.
+This document defines the end-to-end migration process from ASP.NET WebForms to Next.js using a **BMAD + GSD hybrid** methodology. BMAD handles discovery, requirements, architecture, and story design. GSD handles roadmapping, phase planning, and execution.
 
-The migration uses a **Strangler Fig** pattern — both apps run simultaneously, with traffic switched feature-by-feature as each page passes parity testing. The legacy app is never deleted until every route has a verified Next.js replacement.
+The migration uses a **Strangler Fig** pattern — the legacy app stays live until the full MVP is validated and stakeholders sign off, then a big-bang cutover switches all users.
 
 ---
 
@@ -19,7 +19,7 @@ The migration uses a **Strangler Fig** pattern — both apps run simultaneously,
 | Item | Detail |
 |---|---|
 | Framework | ASP.NET WebForms |
-| UI Pattern | UpdatePanels + ScriptManager (AJAX) |
+| UI Pattern | UpdatePanels + ScriptManager (AJAX), Telerik UI |
 | Auth | Forms Authentication |
 | Reporting | SSRS (.rdl files) |
 | Database | SQL Server (UACDC-POD) |
@@ -32,96 +32,130 @@ The migration uses a **Strangler Fig** pattern — both apps run simultaneously,
 
 | Item | Decision |
 |---|---|
-| Framework | Next.js 14+ App Router |
-| Language | TypeScript |
-| UI | Tailwind CSS + shadcn/ui |
-| Auth | NextAuth.js (Azure AD / Entra ID) |
-| ORM | Prisma |
-| Database | PostgreSQL (Supabase cloud / SQL Server on-prem) |
-| Reporting | Metabase OSS |
-| Hosting | Vercel (cloud) or Node.js native (on-prem) |
+| Framework | Next.js 16 App Router |
+| Language | TypeScript (strict mode) |
+| UI | Tailwind CSS v4 + shadcn/ui |
+| Auth | Clerk (MFA enforced) |
+| ORM | Prisma 7 |
+| Database | PostgreSQL (Supabase cloud / Docker local) |
+| Reporting | Metabase OSS (signed iframe embedding) |
+| Hosting | Vercel (cloud) or Node.js standalone behind IIS (on-prem) |
+
+---
+
+## Architecture Decision Records
+
+| ADR | Decision | Status |
+|---|---|---|
+| ADR-001 | Reporting: SSRS → Metabase OSS | Approved |
+| ADR-002 | Auth: Forms Auth → Clerk (MFA enforced) | Approved |
+| ADR-003 | State: ViewState/Session → Next.js server state | Approved |
+| ADR-004 | PDF exports: pixel-perfect reports keep SSRS, everything else → Metabase | Approved |
+| ADR-005 | Background jobs: Global.asax timers → (TBD) | Pending |
+| ADR-006 | Email: SmtpClient → (TBD) | Pending |
 
 ---
 
 ## Repo Structure
 
 ```
-your-repo/
-├── legacy-src/                 ← WebForms app (READ ONLY — never modify)
-│   ├── YourApp.sln
-│   └── YourApp/
-│       ├── Web.config
-│       ├── Global.asax
-│       ├── Default.aspx
-│       └── ...
+Prodigy-Migration/
+├── legacy-src/                    ← WebForms app (READ ONLY — never modify)
 │
-├── src/                        ← New Next.js app (built incrementally)
+├── src/                           ← Next.js app (built incrementally)
+│   ├── app/                       ← Routes, layouts, API handlers
+│   ├── components/                ← UI components (shared/, ui/, domain/)
+│   ├── lib/                       ← Utilities (db, auth, audit, SSN, etc.)
+│   ├── actions/                   ← Server Actions
+│   ├── schemas/                   ← Zod validation schemas
+│   ├── types/                     ← TypeScript types
+│   ├── config/                    ← Environment validation
+│   └── proxy.ts                   ← Clerk auth middleware (Next.js 16)
 │
-├── specs/
-│   ├── _audit/                 ← BMAD Analyst output + Repomix XML
-│   ├── _migration-map/         ← BMAD Architect output
-│   ├── decisions/              ← Architecture Decision Records (ADRs)
-│   └── features/               ← Per-feature migration specs + stories
+├── prisma/
+│   ├── schema.prisma              ← Database schema
+│   └── seed.ts                    ← Seed data
 │
-├── playwright/                 ← Behavioral parity tests
+├── specs/                         ← BMAD Analyst output (Phase 1)
+│   ├── _audit/                    ← Legacy inventories + Repomix XML
+│   ├── _migration-map/            ← Architecture blueprint
+│   ├── decisions/                 ← ADRs
+│   └── features/                  ← Per-feature migration specs
 │
-├── .github/
-│   ├── workflows/
-│   │   ├── ci.yml              ← Build + test on every push
-│   │   └── playwright.yml      ← Parity tests on every PR
-│   └── copilot-instructions.md ← GitHub Copilot agent context
+├── _bmad-output/                  ← BMAD agent artifacts (Phases 2-4)
+│   ├── planning-artifacts/        ← PRD, architecture, UX, epics
+│   └── implementation-artifacts/  ← Sprint status, stories
 │
-├── CLAUDE.md                   ← Claude Code agent memory (keep updated)
-├── MIGRATION.md                ← This file
+├── .planning/                     ← GSD execution state (Phases 5-7)
+│   ├── PROJECT.md                 ← Project context + core value
+│   ├── REQUIREMENTS.md            ← Requirements (derived from BMAD PRD)
+│   ├── ROADMAP.md                 ← Phase roadmap with success criteria
+│   ├── STATE.md                   ← Current execution state
+│   ├── config.json                ← GSD workflow config
+│   ├── phases/                    ← Per-phase plans, research, verification
+│   └── research/                  ← Project-level research
+│
+├── scripts/                       ← Dev server management (bash + PowerShell)
+├── e2e/                           ← Playwright E2E tests
+├── CLAUDE.md                      ← Agent instructions (always current)
+├── MIGRATION.md                   ← This file — process template
 └── .gitignore
 ```
 
 ---
 
-## Architecture Decision Records
-
-Technology decisions are documented as ADRs in `/specs/decisions/` before any implementation begins. All decisions must be approved by a human before the BMAD Scrum Master writes stories.
-
-| ADR | Decision |
-|---|---|
-| ADR-001 | Reporting: SSRS → Metabase OSS |
-| ADR-002 | Auth: Forms Auth → NextAuth.js + Azure AD |
-| ADR-003 | State: ViewState/Session → Next.js server state |
-| ADR-004 | PDF exports: pixel-perfect reports keep SSRS, everything else → Metabase |
-| ADR-005 | Background jobs: Global.asax timers → (TBD during Analyst phase) |
-| ADR-006 | Email: SmtpClient → (TBD during Analyst phase) |
-
-> ADRs marked TBD are completed during the BMAD Analyst phase once the legacy codebase has been inventoried.
-
----
-
 ## Agent Rules
 
-These rules are encoded in `CLAUDE.md` and apply to every agent session (Claude Code, GitHub Copilot, BMAD agents, GSD).
+These rules apply to every agent session (Claude Code, GitHub Copilot, BMAD agents, GSD):
 
 - **NEVER** modify any file in `/legacy-src` — it is a read-only reference
-- **ALWAYS** check `/specs/_audit/01-page-inventory.md` before creating a new component or page
-- **ALWAYS** follow conventions in `/specs/_migration-map/architecture.md`
+- **ALWAYS** check `/specs/_audit/` before creating a new component or page
+- **ALWAYS** use the dev server scripts in `/scripts/` to start/stop the app
 - New pages go in `/src/app/[route]/page.tsx`
 - New API routes go in `/src/app/api/[name]/route.ts`
-- New components go in `/src/components/[feature]/`
-- Every story must have a matching Playwright parity test before traffic is switched
+- Package manager: **pnpm only**
+- Follow conventions in `CLAUDE.md`
 
 ---
 
-## Migration Process
+## Migration Process — BMAD + GSD Hybrid
 
-The migration follows a six-phase BMAD + GSD hybrid process. Each phase produces artifacts that feed the next.
+The migration follows a seven-phase process. BMAD handles discovery and planning (Phases 1-4). GSD handles roadmapping, execution planning, and implementation (Phases 5-7). Each phase produces artifacts that feed the next.
 
-### Phase 0 — Bootstrap ✅
-Set up repo structure, install tooling, pack legacy codebase with Repomix.
-
-**Tooling required:**
-```bash
-npx bmad-method install        # BMAD planning agents
-npx get-shit-done-cc --global  # GSD isolated execution
-npm install -g repomix         # codebase packer
 ```
+┌─────────────────────────────────────────────────────────────┐
+│                    BMAD (Planning)                           │
+│                                                             │
+│  Phase 1: Analyst ──→ Phase 2: PM ──→ Phase 3: Architect   │
+│  (Discovery)          (PRD)           (Blueprint + UX)      │
+│       │                  │                   │              │
+│       ▼                  ▼                   ▼              │
+│  Legacy inventories   Requirements     Architecture +       │
+│  (specs/_audit/)      (prd.md)        Epics + Stories       │
+│                                                             │
+│  Phase 4: Readiness Check                                   │
+│  (Validates all BMAD artifacts before handoff)              │
+│                                                             │
+├─────────────────── HANDOFF ─────────────────────────────────┤
+│                                                             │
+│                     GSD (Execution)                          │
+│                                                             │
+│  Phase 5: Project Init ──→ Phase 6: Plan + Execute ──→     │
+│  (PROJECT.md, REQUIREMENTS,  (Per-phase: discuss →          │
+│   ROADMAP)                    research → plan → execute →   │
+│                               verify)                       │
+│                                                             │
+│  Phase 7: Verify + Cutover                                  │
+│  (Parity testing, traffic switch, legacy retirement)        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Phase 1 — BMAD Analyst (Discovery)
+
+Pack the legacy codebase with Repomix, then feed to the BMAD Analyst agent to produce structured inventories.
 
 **Repomix commands:**
 ```bash
@@ -142,176 +176,203 @@ repomix \
   --output ./specs/_audit/config.xml
 ```
 
-**Output:** `/specs/_audit/pages.xml`, `services.xml`, `reports.xml`, `config.xml`
+**BMAD agent prompts:**
+1. Page inventory → `specs/_audit/01-page-inventory.md`
+2. Service inventory → `specs/_audit/02-service-inventory.md`
+3. Report inventory → `specs/_audit/03-report-inventory.md`
+4. Background jobs → `specs/_audit/04-background-jobs.md`
+
+**Output:** Four inventory files in `/specs/_audit/` + Repomix XML sources
+
+**Status:** ✅ Complete
 
 ---
 
-### Phase 1 — BMAD Analyst (Discovery)
-Feed Repomix output to the BMAD Analyst agent to produce structured inventories.
+### Phase 2 — BMAD PM (Requirements)
 
+PM agent reads inventories and produces the Product Requirements Document.
+
+**BMAD skills:** `/bmad-create-prd` or `/bmad-agent-pm`
+
+**Produces:**
+- `_bmad-output/planning-artifacts/prd.md` — Full PRD with functional requirements, non-functional requirements, user journeys, domain model, success criteria
+- `_bmad-output/planning-artifacts/prd-validation-report.md` — Validation against inventories
+
+**Quality gate:** Human reviews and approves PRD before proceeding. All ADRs written from technology decisions list.
+
+**Status:** ✅ Complete
+
+---
+
+### Phase 3 — BMAD Architect + UX + SM (Blueprint)
+
+Architect, UX Designer, and Scrum Master agents produce the technical blueprint, UX specification, and epic breakdown.
+
+**BMAD skills:** `/bmad-create-architecture`, `/bmad-create-ux-design`, `/bmad-create-epics-and-stories`
+
+**Produces:**
+- `_bmad-output/planning-artifacts/architecture.md` — Full architecture (directory tree, data flow, auth, reporting, naming conventions)
+- `_bmad-output/planning-artifacts/ux-design-specification.md` — UX patterns, wireframes, interaction specs
+- `_bmad-output/planning-artifacts/epics.md` — Epic breakdown with stories and acceptance criteria
+
+**Status:** ✅ Complete
+
+---
+
+### Phase 4 — BMAD Readiness Check
+
+Validates all BMAD artifacts are complete and consistent before handing off to GSD.
+
+**BMAD skill:** `/bmad-check-implementation-readiness`
+
+**Produces:**
+- `_bmad-output/planning-artifacts/implementation-readiness-report-2026-03-29.md`
+
+**Quality gate:** All documents found, no gaps, no conflicts. Green light for execution.
+
+**Status:** ✅ Complete
+
+---
+
+### Phase 5 — GSD Project Init (Roadmap)
+
+GSD ingests BMAD artifacts and creates the execution roadmap. Requirements are derived from the BMAD PRD, mapped to phases with success criteria.
+
+**GSD commands:**
 ```bash
-# In Claude Code
-/analyst
+/gsd:new-project          # Creates PROJECT.md from BMAD artifacts
+                          # → Human answers discovery questions
+                          # → Produces REQUIREMENTS.md, ROADMAP.md, STATE.md
 ```
 
-**Prompts to run:**
+**Produces:**
+- `.planning/PROJECT.md` — Project context, core value, constraints
+- `.planning/REQUIREMENTS.md` — Requirements (traced from BMAD PRD FRs/NFRs)
+- `.planning/ROADMAP.md` — Phased roadmap with dependency chain
+- `.planning/STATE.md` — Execution state tracking
 
-1. Page inventory — read `pages.xml` → produce `specs/_audit/01-page-inventory.md`
-   - All .aspx pages with URL, Master Page, purpose, UpdatePanels, postback events, ViewState, business logic, session keys
-   - Risk tier each page: LOW / MEDIUM / HIGH
+**Roadmap phases** (derived from BMAD epics + dependency analysis):
 
-2. Service inventory — read `services.xml` → produce `specs/_audit/02-service-inventory.md`
-   - Every WebMethod and handler with params, return types, TypeScript interface equivalents
+| Phase | Name | What it delivers |
+|-------|------|-----------------|
+| 0 | Foundation | Auth, schema, audit trail, infrastructure utilities |
+| 1 | Youth Registration | Youth CRUD, search, duplicate detection, SSN handling |
+| 2 | Programs & Courses | Program/course/class hierarchy, scheduling |
+| 3 | Enrollment | Enroll, transfer, release, multi-program support |
+| 4 | Attendance | Sign-in/out, tardy calc, session management |
+| 5 | Reporting | Metabase embed, census/billing/attendance reports |
+| 6 | Admin & Cutover | User management, data migration, PAT, go-live |
 
-3. Report inventory — read `reports.xml` → produce `specs/_audit/03-report-inventory.md`
-   - Every .rdl file with data source, parameters, output format, which pages use it
-
-4. Background jobs — read `config.xml` → produce `specs/_audit/04-background-jobs.md`
-   - All scheduled/background work in Global.asax and custom HttpModules
-
-**Output:** Four inventory files in `/specs/_audit/`
+**Status:** ✅ Complete
 
 ---
 
-### Phase 2 — BMAD PM (Migration PRD)
-PM agent reads inventories and produces the prioritized migration backlog.
+### Phase 6 — GSD Plan + Execute (Per Phase)
 
-```bash
-/pm
+Each roadmap phase follows the same GSD cycle. This is the core execution loop — repeat for each phase.
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Discuss     │────→│   Research    │────→│    Plan       │
+│  (optional)   │     │  (optional)   │     │              │
+│ /gsd:discuss  │     │ /gsd:plan     │     │ /gsd:plan    │
+│  -phase N     │     │  -phase N     │     │  -phase N    │
+└──────────────┘     └──────────────┘     └──────┬───────┘
+                                                  │
+                      ┌──────────────┐     ┌──────▼───────┐
+                      │   Verify      │←────│   Execute     │
+                      │              │     │              │
+                      │ (automatic)   │     │ /gsd:execute │
+                      │              │     │  -phase N    │
+                      └──────┬───────┘     └──────────────┘
+                             │
+                    ┌────────▼────────┐
+                    │  Gaps found?     │
+                    │  → /gsd:plan    │
+                    │    -phase N     │
+                    │    --gaps       │
+                    └─────────────────┘
 ```
 
-**Produces:** `specs/_audit/05-migration-prd.md`
-- Prioritized migration order (Low risk first)
-- Dependency map (which pages depend on which services)
-- Full list of technology decisions needed (becomes ADR list)
-- Success criteria for the migration
+**Per-phase artifacts produced:**
+- `CONTEXT.md` — Design decisions from discuss-phase
+- `RESEARCH.md` — Technical research findings
+- `UI-SPEC.md` — UI design contract (for frontend phases)
+- `*-PLAN.md` — Executable plans with tasks, waves, dependencies
+- `*-SUMMARY.md` — Execution summaries per plan
+- `VERIFICATION.md` — Goal achievement verification
 
-> After this phase: write all ADRs from the technology decisions list. Human approval required before proceeding to Architect.
-
----
-
-### Phase 3 — BMAD Architect (Blueprint)
-Architect reads all inventories, ADRs, and PRD to produce the canonical architecture document.
-
+**GSD commands per phase:**
 ```bash
-/architect
+/gsd:discuss-phase N     # Capture design preferences (optional)
+/gsd:ui-phase N          # Generate UI design contract (frontend phases)
+/gsd:plan-phase N        # Research → plan → verify loop
+/gsd:execute-phase N     # Wave-based parallel execution
+/gsd:verify-work N       # Manual UAT testing
+/gsd:progress            # Check overall status
 ```
 
-**Produces:** `specs/_migration-map/architecture.md`
-- Full Next.js `/src/app` directory tree
-- RSC vs `use client` decision rules
-- Data fetching strategy per page type
-- API layer: every service endpoint → Next.js route table
-- Auth migration implementation (per ADR-002)
-- Reporting embed pattern (per ADR-001)
-- Master Pages → `layout.tsx` hierarchy
-- Naming conventions
-
-Then for each feature in the Low risk tier:
-
-**Produces per feature:** `specs/features/[name]/migration-spec.md`
-- Legacy behavior summary
-- Next.js component tree
-- Data fetching approach
-- Route path
-- Numbered acceptance criteria
-- Playwright test scenarios
+**Status:** Phase 0 ✅ Complete | Phases 1-6 pending
 
 ---
 
-### Phase 4 — BMAD Scrum Master (Stories)
-SM converts each migration spec into hyper-detailed implementation stories.
+### Phase 7 — Verify + Cutover
+
+After all feature phases pass, run parity testing and switch traffic.
 
 ```bash
-/sm
-```
-
-**Produces per feature (3–4 files):**
-- `specs/features/[name]/stories/01-api-route.md`
-- `specs/features/[name]/stories/02-page-component.md`
-- `specs/features/[name]/stories/03-playwright-test.md`
-
-**Story quality gate (human review before implementation):**
-- [ ] Full file paths specified
-- [ ] TypeScript interface names defined inline
-- [ ] Exact component names specified
-- [ ] API paths match architecture.md
-- [ ] Acceptance criteria are numbered (AC1, AC2...)
-- [ ] No unresolved decisions remaining
-- [ ] Playwright test scenarios described
-
----
-
-### Phase 5 — GSD Execution (Implementation)
-GSD executes stories one at a time in isolated sub-agent contexts.
-
-```bash
-/gsd plan    # point at the story file
-/gsd run     # execute in isolated sub-agent
-/gsd verify  # check acceptance criteria
-```
-
-**Rules:**
-- One story per GSD plan — never bundle multiple stories
-- Each task produces a git commit
-- Run stories in order: 01 → 02 → 03
-- After all stories pass: run Playwright parity test
-
----
-
-### Phase 6 — Verify + Route
-After all stories for a feature pass Playwright parity testing, switch traffic in the Next.js middleware.
-
-```bash
-# Run parity test against BOTH apps
-PLAYWRIGHT_BASE_URL=http://localhost:5000 npx playwright test [feature]  # legacy
-PLAYWRIGHT_BASE_URL=http://localhost:3000 npx playwright test [feature]  # new
+# Run parity tests against BOTH apps
+PLAYWRIGHT_BASE_URL=http://localhost:5000 npx playwright test   # legacy
+PLAYWRIGHT_BASE_URL=http://localhost:3040 npx playwright test   # new
 
 # Both must pass before cutover
 ```
 
-```typescript
-// middleware.ts — add route after verification
-const migratedRoutes = [
-  '/account/profile',   // ✓ verified
-  // add each feature here after parity confirmed
-]
-```
+**Cutover checklist:**
+- [ ] All phases verified (VERIFICATION.md status: passed)
+- [ ] Data migration completed and validated
+- [ ] Parity tests pass against both apps
+- [ ] Stakeholder sign-off
+- [ ] DNS/routing switch to new app
+- [ ] Legacy app archived (not deleted until post-cutover validation period)
 
-Update migration status in `CLAUDE.md` after each feature completes.
+**Status:** Not started
 
 ---
 
 ## Migration Status
 
-Track progress here. Update after each feature passes parity testing.
-
 ### Complete
-*(none yet)*
+- ✅ BMAD Discovery (Phase 1) — Legacy inventories
+- ✅ BMAD Requirements (Phase 2) — PRD
+- ✅ BMAD Architecture (Phase 3) — Blueprint + UX + Epics
+- ✅ BMAD Readiness (Phase 4) — Implementation readiness validated
+- ✅ GSD Project Init (Phase 5) — Roadmap created
+- ✅ GSD Phase 0: Foundation — Auth, schema, audit, infrastructure, app shell
 
 ### In Progress
-*(none yet — starting with Phase 0)*
+- Phase 1: Youth Registration — next up
 
 ### Not Started
-*(full list populated after BMAD Analyst runs and risk tiers are assigned)*
+- Phase 2: Programs & Courses
+- Phase 3: Enrollment
+- Phase 4: Attendance
+- Phase 5: Reporting
+- Phase 6: Admin & Cutover
+- Phase 7: Verify + Cutover
 
 ---
 
 ## Key Principles
 
-1. **Legacy code is never modified.** `/legacy-src` is read-only. The reference implementation must stay intact for parity testing.
-
-2. **Specs before code.** Every feature has a migration spec and approved stories before a single line of implementation is written.
-
-3. **ADRs before stories.** Every technology decision is documented and approved before the Scrum Master writes stories that depend on it.
-
-4. **Low risk first.** Establish patterns with simple pages before tackling UpdatePanel-heavy, high-complexity features.
-
-5. **Parity before cutover.** Playwright tests must pass against both apps before traffic is switched. Never route users to an untested replacement.
-
-6. **One story per GSD plan.** Context isolation is the entire point of GSD. Never bundle stories.
-
-7. **CLAUDE.md is always current.** Update agent memory after each feature completes, each ADR is approved, and each architectural decision is made.
+1. **Legacy code is never modified.** `/legacy-src` is read-only.
+2. **BMAD before GSD.** Discovery, requirements, and architecture are defined before execution begins.
+3. **Specs before code.** Every feature has requirements and plans before implementation.
+4. **ADRs before stories.** Technology decisions are documented and approved first.
+5. **Youth-centric model.** One youth = one record. This is the core design shift.
+6. **Simpler than today.** Every decision filtered through: "is this simpler than what we have today?"
+7. **Parity before cutover.** Tests must pass against both apps before traffic switches.
+8. **CLAUDE.md is always current.** Update after each phase completes.
 
 ---
 
@@ -319,26 +380,9 @@ Track progress here. Update after each feature passes parity testing.
 
 Per ADR-001, all reports migrate to Metabase OSS except pixel-perfect PDF compliance reports.
 
-**Metabase instance:** Port 3001 on UACDC-POD (Java JAR, no Docker required)  
-**Data sources:** SQL Server (legacy) + PostgreSQL (new system)  
-**Embedding pattern:** Signed iFrame in Next.js `/reports/*` routes
-
-```typescript
-// src/app/reports/[name]/page.tsx
-import jwt from 'jsonwebtoken'
-
-const token = jwt.sign(
-  { resource: { question: METABASE_QUESTION_ID } },
-  process.env.METABASE_SECRET_KEY!,
-  { expiresIn: '10m' }
-)
-
-const url = `${process.env.METABASE_URL}/embed/question/${token}#bordered=true&titled=true`
-
-return <iframe src={url} className="w-full h-screen border-0" />
-```
-
-Report migration order mirrors the page migration priority — reports used by High-traffic pages migrate first.
+**Metabase instance:** Port 3001 on UACDC-POD (Java JAR)
+**Data sources:** PostgreSQL (new system)
+**Embedding pattern:** Signed JWT iframe in Next.js `/reports/*` routes
 
 ---
 
@@ -346,15 +390,17 @@ Report migration order mirrors the page migration priority — reports used by H
 
 | Resource | Location |
 |---|---|
-| Page inventory | `specs/_audit/01-page-inventory.md` |
-| Service inventory | `specs/_audit/02-service-inventory.md` |
-| Report inventory | `specs/_audit/03-report-inventory.md` |
-| Migration PRD | `specs/_audit/05-migration-prd.md` |
-| Architecture blueprint | `specs/_migration-map/architecture.md` |
+| Legacy page inventory | `specs/_audit/01-page-inventory.md` |
+| Legacy service inventory | `specs/_audit/02-service-inventory.md` |
+| Legacy report inventory | `specs/_audit/03-report-inventory.md` |
+| Legacy background jobs | `specs/_audit/04-background-jobs.md` |
+| BMAD PRD | `_bmad-output/planning-artifacts/prd.md` |
+| BMAD Architecture | `_bmad-output/planning-artifacts/architecture.md` |
+| BMAD UX Design | `_bmad-output/planning-artifacts/ux-design-specification.md` |
+| BMAD Epics | `_bmad-output/planning-artifacts/epics.md` |
+| GSD Requirements | `.planning/REQUIREMENTS.md` |
+| GSD Roadmap | `.planning/ROADMAP.md` |
+| GSD State | `.planning/STATE.md` |
 | ADR index | `specs/decisions/` |
-| Feature specs | `specs/features/` |
-| Agent memory | `CLAUDE.md` |
-| BMAD docs | https://docs.bmad-method.org |
-| GSD docs | https://github.com/TACHES/get-shit-done |
-| Next.js docs | https://nextjs.org/docs |
-| Metabase OSS | https://www.metabase.com/start/oss/ |
+| Agent instructions | `CLAUDE.md` |
+| Dev server scripts | `scripts/dev-server.sh` / `scripts/dev-server.ps1` |
