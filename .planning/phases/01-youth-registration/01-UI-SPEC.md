@@ -54,17 +54,17 @@ Exceptions:
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
 | Body | 14px | 400 (regular) | 1.5 |
-| Label | 14px | 500 (medium) | 1.4 |
+| Label | 14px | 400 (regular) | 1.4 |
 | Heading | 20px | 600 (semibold) | 1.25 |
 | Display | 28px | 600 (semibold) | 1.2 |
 
 Notes:
-- Body maps to Tailwind `text-sm` (14px). Used for form field values, table cell content, description text.
-- Label maps to `text-sm font-medium`. Used for form field labels, column headers, nav items. Established by Phase 0 sidebar (`text-sm font-medium`).
+- Body maps to Tailwind `text-sm`. Used for form field values, table cell content, description text.
+- Label maps to `text-sm`. Used for form field labels, column headers, nav items. Differentiated from body via uppercase tracking treatment where needed.
 - Heading maps to `text-xl font-semibold`. Used for page title (e.g., "Register Youth", "Youth Records"), section headers within the detail view.
 - Display maps to `text-2xl font-semibold`. Reserved for page-level h1 only (one per page).
-- Uppercase tracking label (`text-xs font-medium uppercase tracking-wider`) used for section group labels (e.g., "Current Program"). Pattern established by Phase 0 sidebar.
-- Only 2 weights in use: 400 (regular) and 600 (semibold). Medium (500) for labels only to inherit shadcn `font-medium` convention.
+- Uppercase tracking label (`text-xs uppercase tracking-wider`) used for section group labels (e.g., "Current Program"). Pattern established by Phase 0 sidebar. This treatment provides sufficient differentiation without a third weight.
+- Exactly 2 weights in use: 400 (regular) and 600 (semibold).
 
 ---
 
@@ -136,10 +136,10 @@ Dark mode: All values invert per `.dark` CSS class. No dark-mode-specific overri
 
 ### Youth Detail / Edit Page (`/youth/[youthId]`)
 
-- Read-only default. "Edit" button in top-right (D-10).
+- Read-only default. "Edit Youth" button in top-right (D-10).
 - Content in shadcn `Card` components. One Card per section (Demographics, Guardian, Address & Phone).
 - SSN card: shows masked value for non-admin roles; decrypted value for Admin (D-03).
-- In edit mode: Card content switches from static text to form inputs. "Save Changes" (primary) and "Cancel" (ghost) buttons in action row at bottom of each card or at page bottom.
+- In edit mode: Card content switches from static text to form inputs. "Save Changes" (primary) and "Discard Changes" (ghost) buttons in action row at bottom of each card or at page bottom.
 - No stub sections for enrollment or attendance (D-11).
 - No audit trail section (D-12).
 
@@ -151,7 +151,7 @@ Dark mode: All values invert per `.dark` CSS class. No dark-mode-specific overri
 
 | Component | Import | Phase 1 Usage |
 |-----------|--------|--------------|
-| Button | `@/components/ui/button` | Register, Save, Edit, Cancel, Not a Match |
+| Button | `@/components/ui/button` | Register, Save, Edit Youth, Discard Changes, Not a Match |
 | Card, CardHeader, CardContent | `@/components/ui/card` | Detail page sections |
 | Badge | `@/components/ui/badge` | Role badge in header (existing), SSN status |
 | Skeleton | `@/components/ui/skeleton` | Loading states for list and detail pages |
@@ -201,10 +201,10 @@ pnpm dlx shadcn add form input select collapsible alert table sonner
 
 ### Inline Edit Toggle (D-10)
 
-- "Edit" button in detail page header triggers `setIsEditing(true)` via `useState`.
+- "Edit Youth" button in detail page header triggers `setIsEditing(true)` via `useState`.
 - All three section cards render input fields in edit mode.
 - "Save Changes" calls `updateYouth` Server Action. On success: `setIsEditing(false)`, success toast, `revalidatePath` fires from server action.
-- "Cancel" calls `setIsEditing(false)`, resets form to original values via `form.reset(mapYouthToFormValues(youth))`.
+- "Discard Changes" calls `setIsEditing(false)`, resets form to original values via `form.reset(mapYouthToFormValues(youth))`.
 - Stale data prevention: `revalidatePath('/youth/[youthId]', 'page')` inside `updateYouth` Server Action.
 
 ### SSN Field
@@ -234,8 +234,8 @@ pnpm dlx shadcn add form input select collapsible alert table sonner
 |---------|------|
 | Primary CTA — registration | "Register Youth" |
 | Primary CTA — edit save | "Save Changes" |
-| Edit toggle button | "Edit" |
-| Cancel edit | "Cancel" |
+| Edit toggle button | "Edit Youth" |
+| Cancel edit | "Discard Changes" |
 | Duplicate dismiss | "Not a Match" |
 | Empty state heading (no search) | "No youth registered yet" |
 | Empty state body (no search) | "Get started by registering the first youth in the system." + "Register Youth" link button |
