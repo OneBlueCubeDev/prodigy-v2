@@ -1,11 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 // Seed scripts run outside Next.js runtime — standalone PrismaClient is the
-// Prisma-documented pattern. See CLAUDE.md exception note in 00-02-PLAN.md:
-// (a) seed runs as standalone CLI process outside Next.js runtime,
-// (b) the extended client in db.ts requires Clerk auth context unavailable here,
-// (c) Prisma's official seed documentation prescribes this pattern.
-const prisma = new PrismaClient();
+// Prisma-documented pattern. See CLAUDE.md exception note in 00-02-PLAN.md.
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   // --- Lookup tables (LOOK-02) ---
