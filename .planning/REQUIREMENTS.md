@@ -22,7 +22,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Youth Registration
 
 - [x] **YOUTH-01**: Staff can register a new youth with demographics, guardian info, address, and phone in a single form (< 5 min)
-- [x] **YOUTH-02**: SSN is stored encrypted and displayed masked (last 4 only) to authorized roles
+- [x] **YOUTH-02**: Only SSN last 4 digits are collected and stored (plaintext for search); full SSN is not collected or retained
 - [x] **YOUTH-03**: Inline duplicate detection surfaces likely matches (name + DOB + SSN) during registration before creating a new record
 - [x] **YOUTH-04**: Staff can search for existing youth by name, DOB, or SSN
 - [x] **YOUTH-05**: Staff can edit youth demographics after registration
@@ -78,7 +78,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **INFRA-01**: Database audit trail logs every insert/update/delete with user, timestamp, old/new values
 - [x] **INFRA-02**: Audit trail is active from day 1 — no records exist without audit coverage
-- [x] **INFRA-03**: SSN encryption at rest in PostgreSQL
+- [x] **INFRA-03**: SSN last 4 stored as plaintext for search; full SSN not collected (encryption infrastructure available if needed)
 - [ ] **INFRA-04**: Playwright parity tests validate behavioral equivalence with legacy before cutover
 - [x] **INFRA-05**: Health check endpoint returns 200 OK with status
 

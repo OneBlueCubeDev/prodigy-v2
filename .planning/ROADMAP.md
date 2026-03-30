@@ -49,7 +49,7 @@ Plans:
   2. During registration, if name + DOB + SSN last-4 match an existing record, the duplicate is surfaced before the form submits — no silent duplicate creation
   3. Staff can search by name, DOB, or SSN and navigate to a matching youth's detail page
   4. Staff can edit demographics on an existing youth record without creating a new record
-  5. SSN is stored encrypted, displayed masked (last 4 only) to authorized roles, and never appears in server logs
+  5. Only SSN last 4 digits are collected and stored; displayed masked on detail pages; never appears in server logs
 **Plans:** 4/4 plans complete
 Plans:
 - [x] 01-01-PLAN.md — Install deps, Zod schemas, Server Actions, unit tests
