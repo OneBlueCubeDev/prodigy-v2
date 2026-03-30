@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Every insert, update, and delete to any table writes a row to `audit_log` with user, timestamp, old and new values — no records exist without audit coverage
   4. SSN values written to the database are encrypted at rest; the application reads them back decrypted and displays only the last 4 digits
   5. Health check endpoint returns 200 OK; `computeGrantYear()` utility returns the correct grant year for dates on both sides of the July 1 boundary
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 Plans:
 - [x] 00-01-PLAN.md — Scaffold Next.js 16, install deps, Prisma schema, core infrastructure utilities
 - [ ] 00-02-PLAN.md — shadcn/ui init, app shell layout, program selector UI, seed data
@@ -122,7 +122,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Foundation | 0/4 | Planned | - |
+| 0. Foundation | 1/4 | In Progress|  |
 | 1. Youth Registration | 0/? | Not started | - |
 | 2. Program Structure | 0/? | Not started | - |
 | 3. Enrollment | 0/? | Not started | - |
