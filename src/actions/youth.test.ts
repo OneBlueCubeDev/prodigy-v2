@@ -31,13 +31,7 @@ vi.mock('@/lib/db', () => ({
   },
 }));
 
-// Mock SSN encryption
-const mockEncryptSSN = vi.fn().mockReturnValue('encrypted_ssn_value');
-const mockExtractLast4 = vi.fn().mockReturnValue('6789');
-vi.mock('@/lib/ssn-encryption', () => ({
-  encryptSSN: (ssn: string) => mockEncryptSSN(ssn),
-  extractLast4: (ssn: string) => mockExtractLast4(ssn),
-}));
+// SSN encryption mock no longer needed — only last 4 digits stored
 
 // Mock logger
 vi.mock('@/lib/logger', () => ({
@@ -72,6 +66,7 @@ const sampleYouth = {
   ethnicity_id: null,
   address: null,
   city: null,
+  county_id: null,
   state: null,
   zip: null,
   phone: null,
@@ -131,22 +126,19 @@ describe('createYouth', () => {
     expect(mockRevalidatePath).toHaveBeenCalledWith('/youth');
   });
 
-  it('encrypts SSN when provided', async () => {
-    const inputWithSSN = { ...validCreateInput, ssn: '123456789' };
+  it('stores SSN last 4 when provided', async () => {
+    const inputWithSSN = { ...validCreateInput, ssnLast4: '6789' };
     await createYouth(inputWithSSN);
-    expect(mockEncryptSSN).toHaveBeenCalledWith('123456789');
-    expect(mockExtractLast4).toHaveBeenCalledWith('123456789');
     expect(mockYouthCreate).toHaveBeenCalledWith({
       data: expect.objectContaining({
-        ssn: 'encrypted_ssn_value',
+        ssn: null,
         ssn_last4: '6789',
       }),
     });
   });
 
-  it('stores null for ssn and ssn_last4 when SSN not provided', async () => {
+  it('stores null for ssn_last4 when not provided', async () => {
     await createYouth(validCreateInput);
-    expect(mockEncryptSSN).not.toHaveBeenCalled();
     expect(mockYouthCreate).toHaveBeenCalledWith({
       data: expect.objectContaining({
         ssn: null,
@@ -193,16 +185,15 @@ describe('updateYouth', () => {
     });
   });
 
+  const validUpdateInput = { id: 'youth_abc123', ...validCreateInput };
+
   it('calls requireAuth before any DB operation', async () => {
-    await updateYouth({ id: 'youth_abc123', firstName: 'Updated' });
+    await updateYouth({ ...validUpdateInput, firstName: 'Updated' });
     expect(mockRequireAuth).toHaveBeenCalledTimes(1);
   });
 
   it('returns success with updated youth on valid input', async () => {
-    const result = await updateYouth({
-      id: 'youth_abc123',
-      firstName: 'Updated',
-    });
+    const result = await updateYouth({ ...validUpdateInput, firstName: 'Updated' });
     expect(result.success).toBe(true);
     if (result.success) {
       expect(result.data.first_name).toBe('Updated');
@@ -210,7 +201,7 @@ describe('updateYouth', () => {
   });
 
   it('calls db.youth.update with correct id', async () => {
-    await updateYouth({ id: 'youth_abc123', firstName: 'Updated' });
+    await updateYouth({ ...validUpdateInput, firstName: 'Updated' });
     expect(mockYouthUpdate).toHaveBeenCalledWith({
       where: { id: 'youth_abc123' },
       data: expect.objectContaining({ first_name: 'Updated' }),
@@ -218,26 +209,23 @@ describe('updateYouth', () => {
   });
 
   it('calls revalidatePath for both /youth and /youth/[id]', async () => {
-    await updateYouth({ id: 'youth_abc123', firstName: 'Updated' });
+    await updateYouth({ ...validUpdateInput, firstName: 'Updated' });
     expect(mockRevalidatePath).toHaveBeenCalledWith('/youth');
     expect(mockRevalidatePath).toHaveBeenCalledWith('/youth/youth_abc123');
   });
 
-  it('re-encrypts SSN when updated', async () => {
-    await updateYouth({ id: 'youth_abc123', ssn: '987654321' });
-    expect(mockEncryptSSN).toHaveBeenCalledWith('987654321');
-    expect(mockExtractLast4).toHaveBeenCalledWith('987654321');
+  it('updates SSN last 4 when provided', async () => {
+    await updateYouth({ ...validUpdateInput, ssnLast4: '4321' });
     expect(mockYouthUpdate).toHaveBeenCalledWith({
       where: { id: 'youth_abc123' },
       data: expect.objectContaining({
-        ssn: 'encrypted_ssn_value',
-        ssn_last4: '6789',
+        ssn_last4: '4321',
       }),
     });
   });
 
-  it('returns error on invalid input', async () => {
-    const result = await updateYouth({ firstName: 'No ID' });
+  it('returns error on invalid input (missing id)', async () => {
+    const result = await updateYouth({ ...validCreateInput });
     expect(result.success).toBe(false);
   });
 });

@@ -3,7 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { requireAuth } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { encryptSSN, extractLast4 } from '@/lib/ssn-encryption';
+// SSN encryption imports retained for future full-SSN support if needed
+// import { encryptSSN, extractLast4 } from '@/lib/ssn-encryption';
 import logger from '@/lib/logger';
 import {
   createYouthSchema,
@@ -28,26 +29,24 @@ export async function createYouth(
     const { userId } = await requireAuth();
     const data = createYouthSchema.parse(input);
 
-    // SSN handling — never log the SSN value
-    let ssnEncrypted: string | null = null;
-    let ssnLast4: string | null = null;
-    if (data.ssn && data.ssn.length === 9) {
-      ssnEncrypted = encryptSSN(data.ssn);
-      ssnLast4 = extractLast4(data.ssn);
-    }
+    // SSN last 4 — stored as plaintext for search
+    const ssnLast4 = data.ssnLast4 && data.ssnLast4.length === 4
+      ? data.ssnLast4
+      : null;
 
     const youth = await db.youth.create({
       data: {
         first_name: data.firstName,
         last_name: data.lastName,
         date_of_birth: new Date(data.dateOfBirth),
-        ssn: ssnEncrypted,
+        ssn: null,
         ssn_last4: ssnLast4,
         gender_id: data.genderId ?? null,
         race_id: data.raceId ?? null,
         ethnicity_id: data.ethnicityId ?? null,
         address: data.address ?? null,
         city: data.city ?? null,
+        county_id: data.county ?? null,
         state: data.state ?? null,
         zip: data.zip ?? null,
         phone: data.phone ?? null,
@@ -93,6 +92,7 @@ export async function updateYouth(
       updateData.ethnicity_id = data.ethnicityId || null;
     if (data.address !== undefined) updateData.address = data.address || null;
     if (data.city !== undefined) updateData.city = data.city || null;
+    if (data.county !== undefined) updateData.county_id = data.county || null;
     if (data.state !== undefined) updateData.state = data.state || null;
     if (data.zip !== undefined) updateData.zip = data.zip || null;
     if (data.phone !== undefined) updateData.phone = data.phone || null;
@@ -103,15 +103,11 @@ export async function updateYouth(
     if (data.guardianRelation !== undefined)
       updateData.guardian_relation = data.guardianRelation || null;
 
-    // SSN re-encryption when updated — never log the value
-    if (data.ssn !== undefined) {
-      if (data.ssn && data.ssn.length === 9) {
-        updateData.ssn = encryptSSN(data.ssn);
-        updateData.ssn_last4 = extractLast4(data.ssn);
-      } else {
-        updateData.ssn = null;
-        updateData.ssn_last4 = null;
-      }
+    // SSN last 4 — stored as plaintext
+    if (data.ssnLast4 !== undefined) {
+      updateData.ssn_last4 = data.ssnLast4 && data.ssnLast4.length === 4
+        ? data.ssnLast4
+        : null;
     }
 
     const youth = await db.youth.update({

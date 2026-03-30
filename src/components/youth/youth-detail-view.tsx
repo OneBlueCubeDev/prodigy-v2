@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -32,6 +32,24 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 
+/** Format a raw digit string as (XXX) XXX-XXXX */
+function formatPhone(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
+/** Strip to digits only, capped at maxLen */
+function digitsOnly(value: string, maxLen: number): string {
+  return value.replace(/\D/g, '').slice(0, maxLen);
+}
+
+interface CountyOption {
+  id: string;
+  name: string;
+}
+
 interface YouthDetailViewProps {
   youth: {
     id: string;
@@ -44,6 +62,8 @@ interface YouthDetailViewProps {
     ethnicityId: string;
     address: string;
     city: string;
+    county: string;
+    countyName: string;
     state: string;
     zip: string;
     phone: string;
@@ -54,6 +74,7 @@ interface YouthDetailViewProps {
     createdAt: Date;
   };
   isAdmin: boolean;
+  counties: CountyOption[];
 }
 
 /**
@@ -77,7 +98,7 @@ function formatDOB(isoDate: string): string {
  * Save calls updateYouth server action; Discard resets form.
  * No enrollment/attendance sections (D-11). No audit trail (D-12).
  */
-export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
+export function YouthDetailView({ youth, isAdmin, counties }: YouthDetailViewProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const form = useForm<UpdateYouthInput>({
@@ -93,6 +114,7 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
       ethnicityId: youth.ethnicityId,
       address: youth.address,
       city: youth.city,
+      county: youth.county,
       state: youth.state,
       zip: youth.zip,
       phone: youth.phone,
@@ -365,8 +387,13 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
                         <FormControl>
                           <Input
                             type="tel"
+                            inputMode="numeric"
                             placeholder="(555) 000-0000"
+                            maxLength={14}
                             {...field}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                              field.onChange(formatPhone(e.target.value))
+                            }
                           />
                         </FormControl>
                         <FormMessage />
@@ -463,6 +490,33 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
                   />
                   <FormField
                     control={form.control}
+                    name="county"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>County</FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value ?? ''}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select county" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {counties.map((c) => (
+                                <SelectItem key={c.id} value={c.id}>
+                                  {c.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
                     name="state"
                     render={({ field }) => (
                       <FormItem>
@@ -486,9 +540,13 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
                         <FormLabel>Zip Code</FormLabel>
                         <FormControl>
                           <Input
+                            inputMode="numeric"
                             placeholder="00000"
-                            maxLength={10}
+                            maxLength={5}
                             {...field}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                              field.onChange(digitsOnly(e.target.value, 5))
+                            }
                           />
                         </FormControl>
                         <FormMessage />
@@ -504,8 +562,13 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
                         <FormControl>
                           <Input
                             type="tel"
+                            inputMode="numeric"
                             placeholder="(555) 000-0000"
+                            maxLength={14}
                             {...field}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                              field.onChange(formatPhone(e.target.value))
+                            }
                           />
                         </FormControl>
                         <FormMessage />
@@ -520,6 +583,7 @@ export function YouthDetailView({ youth, isAdmin }: YouthDetailViewProps) {
                     value={youth.address || undefined}
                   />
                   <ReadField label="City" value={youth.city || undefined} />
+                  <ReadField label="County" value={youth.countyName || undefined} />
                   <ReadField label="State" value={youth.state || undefined} />
                   <ReadField label="Zip Code" value={youth.zip || undefined} />
                   <ReadField label="Phone" value={youth.phone || undefined} />

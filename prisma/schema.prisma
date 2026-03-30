@@ -76,6 +76,14 @@ model Gender {
   @@map("genders")
 }
 
+model County {
+  id    String  @id @default(cuid())
+  name  String  @unique
+  youth Youth[]
+
+  @@map("counties")
+}
+
 model EnrollmentType {
   id   String @id @default(cuid())
   name String @unique
@@ -187,6 +195,8 @@ model Youth {
   ethnicity_id      String?
   address           String?
   city              String?
+  county_id         String?
+  county            County?  @relation(fields: [county_id], references: [id])
   state             String?
   zip               String?
   phone             String?

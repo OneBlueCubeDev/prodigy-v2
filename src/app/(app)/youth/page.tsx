@@ -3,10 +3,9 @@ import { PlusIcon } from 'lucide-react';
 
 import { requireAuth } from '@/lib/auth';
 import db from '@/lib/db';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import { YouthListTable } from '@/components/youth/youth-list-table';
 import { YouthSearchBar } from '@/components/youth/youth-search-bar';
+import { RegisterYouthLink } from '@/components/youth/register-youth-link';
 
 const PAGE_SIZE = 20;
 
@@ -59,10 +58,7 @@ export default async function YouthPage({
     <div className="max-w-4xl mx-auto px-4 py-8 md:px-6">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Youth Records</h1>
-        <Link href="/youth/new" className={cn(buttonVariants(), 'gap-1.5')}>
-          <PlusIcon className="size-4" />
-          Register Youth
-        </Link>
+        <RegisterYouthLink />
       </div>
 
       <div className="mb-6">

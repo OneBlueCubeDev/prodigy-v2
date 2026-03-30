@@ -13,16 +13,17 @@ export const createYouthSchema = z.object({
   raceId: z.string().optional(),
   ethnicityId: z.string().optional(),
 
-  // Optional SSN — must be 9 digits if provided; empty string is treated as absent
-  ssn: z
+  // Optional SSN last 4 — must be exactly 4 digits if provided
+  ssnLast4: z
     .string()
-    .regex(/^\d{9}$/, 'SSN must be 9 digits')
+    .regex(/^\d{4}$/, 'SSN must be 4 digits')
     .optional()
     .or(z.literal('')),
 
   // Optional address
   address: z.string().optional(),
   city: z.string().optional(),
+  county: z.string().optional(),
   state: z.string().optional(),
   zip: z.string().optional(),
   phone: z.string().optional(),
@@ -32,8 +33,8 @@ export const createYouthSchema = z.object({
   guardianRelation: z.string().optional(),
 });
 
-/** All fields optional except id for partial updates. */
-export const updateYouthSchema = createYouthSchema.partial().extend({
+/** Update schema — required fields stay required, optional fields stay optional. */
+export const updateYouthSchema = createYouthSchema.extend({
   id: z.string().min(1, 'Youth ID is required'),
 });
 

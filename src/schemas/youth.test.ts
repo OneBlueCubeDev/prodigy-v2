@@ -52,20 +52,20 @@ describe('createYouthSchema', () => {
     ).toThrow();
   });
 
-  it('accepts valid SSN (9 digits)', () => {
-    const result = createYouthSchema.parse({ ...validInput, ssn: '123456789' });
-    expect(result.ssn).toBe('123456789');
+  it('accepts valid SSN last 4 (4 digits)', () => {
+    const result = createYouthSchema.parse({ ...validInput, ssnLast4: '1234' });
+    expect(result.ssnLast4).toBe('1234');
   });
 
-  it('fails when SSN is not 9 digits', () => {
+  it('fails when SSN last 4 is not 4 digits', () => {
     expect(() =>
-      createYouthSchema.parse({ ...validInput, ssn: '12345' }),
+      createYouthSchema.parse({ ...validInput, ssnLast4: '12345' }),
     ).toThrow();
   });
 
-  it('accepts empty string for SSN (optional)', () => {
-    const result = createYouthSchema.parse({ ...validInput, ssn: '' });
-    expect(result.ssn).toBe('');
+  it('accepts empty string for SSN last 4 (optional)', () => {
+    const result = createYouthSchema.parse({ ...validInput, ssnLast4: '' });
+    expect(result.ssnLast4).toBe('');
   });
 
   it('accepts optional address fields', () => {
@@ -92,28 +92,24 @@ describe('createYouthSchema', () => {
 });
 
 describe('updateYouthSchema', () => {
-  it('succeeds with only id (all other fields optional)', () => {
-    const result = updateYouthSchema.parse({ id: 'abc123' });
-    expect(result.id).toBe('abc123');
-  });
-
   it('fails when id is missing', () => {
-    expect(() => updateYouthSchema.parse({ firstName: 'John' })).toThrow();
+    expect(() => updateYouthSchema.parse(validInput)).toThrow();
   });
 
-  it('accepts partial updates', () => {
-    const result = updateYouthSchema.parse({
-      id: 'abc123',
-      firstName: 'Updated',
-    });
-    expect(result.firstName).toBe('Updated');
-    expect(result.lastName).toBeUndefined();
+  it('fails when required fields are missing', () => {
+    expect(() => updateYouthSchema.parse({ id: 'abc123' })).toThrow();
   });
 
-  it('accepts full update', () => {
+  it('succeeds with id and all required fields', () => {
     const result = updateYouthSchema.parse({ id: 'abc123', ...validInput });
     expect(result.id).toBe('abc123');
     expect(result.firstName).toBe('John');
+  });
+
+  it('validates required fields on update', () => {
+    expect(() =>
+      updateYouthSchema.parse({ id: 'abc123', ...validInput, firstName: '' }),
+    ).toThrow();
   });
 });
 

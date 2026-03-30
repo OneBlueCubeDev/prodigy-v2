@@ -7,7 +7,40 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { ChevronDownIcon } from 'lucide-react';
 
+import type { ChangeEvent } from 'react';
 import { createYouthSchema, type CreateYouthInput } from '@/schemas/youth';
+
+/** Format a raw digit string as (XXX) XXX-XXXX */
+function formatPhone(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 10);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
+/** Compute age in years from a date string (YYYY-MM-DD) */
+function computeAge(dob: string): number | null {
+  if (!dob) return null;
+  const birth = new Date(dob + 'T00:00:00');
+  if (isNaN(birth.getTime())) return null;
+  const today = new Date();
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  return age >= 0 ? age : null;
+}
+
+interface CountyOption {
+  id: string;
+  name: string;
+}
+
+/** Strip to digits only, capped at maxLen */
+function digitsOnly(value: string, maxLen: number): string {
+  return value.replace(/\D/g, '').slice(0, maxLen);
+}
 import {
   createYouth,
   checkDuplicate,
@@ -43,7 +76,7 @@ import { DuplicateWarningBanner } from '@/components/youth/duplicate-warning-ban
  * Youth registration form with four collapsible sections, RHF+Zod validation,
  * 500ms debounced duplicate detection, and SSN input with formatting strip.
  */
-export function YouthRegistrationForm() {
+export function YouthRegistrationForm({ counties }: { counties: CountyOption[] }) {
   const router = useRouter();
   const [duplicates, setDuplicates] = useState<Youth[]>([]);
   const latestRequestRef = useRef<number>(0);
@@ -58,9 +91,10 @@ export function YouthRegistrationForm() {
       genderId: '',
       raceId: '',
       ethnicityId: '',
-      ssn: '',
+      ssnLast4: '',
       address: '',
       city: '',
+      county: '',
       state: '',
       zip: '',
       phone: '',
@@ -72,7 +106,7 @@ export function YouthRegistrationForm() {
   const firstName = useWatch({ control: form.control, name: 'firstName' });
   const lastName = useWatch({ control: form.control, name: 'lastName' });
   const dateOfBirth = useWatch({ control: form.control, name: 'dateOfBirth' });
-  const ssnValue = useWatch({ control: form.control, name: 'ssn' });
+  const ssnLast4Value = useWatch({ control: form.control, name: 'ssnLast4' });
 
   // 500ms debounced duplicate detection — fires when first+last+DOB are all filled
   useEffect(() => {
@@ -83,10 +117,8 @@ export function YouthRegistrationForm() {
     const requestId = ++latestRequestRef.current;
 
     const timer = setTimeout(async () => {
-      // Extract SSN last 4 digits if available
-      const ssnDigits = (ssnValue ?? '').replace(/\D/g, '');
       const ssnLast4 =
-        ssnDigits.length >= 4 ? ssnDigits.slice(-4) : undefined;
+        ssnLast4Value && ssnLast4Value.length === 4 ? ssnLast4Value : undefined;
 
       const result = await checkDuplicate({
         firstName,
@@ -106,7 +138,7 @@ export function YouthRegistrationForm() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [firstName, lastName, dateOfBirth, ssnValue]);
+  }, [firstName, lastName, dateOfBirth, ssnLast4Value]);
 
   const handleDismissDuplicates = async () => {
     if (duplicates.length > 0) {
@@ -118,13 +150,7 @@ export function YouthRegistrationForm() {
   };
 
   const onSubmit = async (data: CreateYouthInput) => {
-    // Strip non-digit characters from SSN before submit
-    const cleanedData: CreateYouthInput = {
-      ...data,
-      ssn: data.ssn ? data.ssn.replace(/\D/g, '') : '',
-    };
-
-    const result = await createYouth(cleanedData);
+    const result = await createYouth(data);
 
     if (result.success) {
       toast.success('Youth registered successfully.');
@@ -180,15 +206,25 @@ export function YouthRegistrationForm() {
                 <FormField
                   control={form.control}
                   name="dateOfBirth"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Date of Birth *</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  render={({ field }) => {
+                    const age = computeAge(field.value);
+                    return (
+                      <FormItem>
+                        <FormLabel>Date of Birth *</FormLabel>
+                        <div className="flex items-center gap-3">
+                          <FormControl>
+                            <Input type="date" {...field} />
+                          </FormControl>
+                          {age !== null && (
+                            <span className="text-sm text-muted-foreground whitespace-nowrap">
+                              Age: {age}
+                            </span>
+                          )}
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
                 />
                 <FormField
                   control={form.control}
@@ -326,8 +362,13 @@ export function YouthRegistrationForm() {
                       <FormControl>
                         <Input
                           type="tel"
+                          inputMode="numeric"
                           placeholder="(555) 000-0000"
+                          maxLength={14}
                           {...field}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            field.onChange(formatPhone(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -405,6 +446,33 @@ export function YouthRegistrationForm() {
                 />
                 <FormField
                   control={form.control}
+                  name="county"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>County</FormLabel>
+                      <FormControl>
+                        <Select
+                          value={field.value ?? ''}
+                          onValueChange={field.onChange}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select county" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {counties.map((c) => (
+                              <SelectItem key={c.id} value={c.id}>
+                                {c.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
                   name="state"
                   render={({ field }) => (
                     <FormItem>
@@ -424,9 +492,13 @@ export function YouthRegistrationForm() {
                       <FormLabel>Zip Code</FormLabel>
                       <FormControl>
                         <Input
+                          inputMode="numeric"
                           placeholder="00000"
-                          maxLength={10}
+                          maxLength={5}
                           {...field}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            field.onChange(digitsOnly(e.target.value, 5))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -442,8 +514,13 @@ export function YouthRegistrationForm() {
                       <FormControl>
                         <Input
                           type="tel"
+                          inputMode="numeric"
                           placeholder="(555) 000-0000"
+                          maxLength={14}
                           {...field}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            field.onChange(formatPhone(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -464,17 +541,20 @@ export function YouthRegistrationForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
-                  name="ssn"
+                  name="ssnLast4"
                   render={({ field }) => (
-                    <FormItem className="col-span-1 md:col-span-2">
-                      <FormLabel>Social Security Number</FormLabel>
+                    <FormItem>
+                      <FormLabel>SSN (Last 4)</FormLabel>
                       <FormControl>
                         <Input
                           type="text"
                           inputMode="numeric"
-                          maxLength={11}
-                          placeholder="XXX-XX-XXXX"
+                          maxLength={4}
+                          placeholder="0000"
                           {...field}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            field.onChange(digitsOnly(e.target.value, 4))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
@@ -485,8 +565,16 @@ export function YouthRegistrationForm() {
             </CollapsibleContent>
           </Collapsible>
 
-          {/* Submit */}
-          <div className="flex justify-end pt-2">
+          {/* Actions */}
+          <div className="flex items-center justify-end gap-3 pt-2">
+            <Button
+              type="button"
+              variant="ghost"
+              disabled={isSubmitting}
+              onClick={() => router.push('/youth')}
+            >
+              Cancel
+            </Button>
             <Button type="submit" disabled={isSubmitting} size="lg">
               {isSubmitting ? 'Registering...' : 'Register Youth'}
             </Button>
