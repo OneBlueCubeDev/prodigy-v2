@@ -17,20 +17,13 @@ interface AppSidebarProps {
 function SidebarContent({ currentProgram }: AppSidebarProps) {
   return (
     <div className="flex h-full flex-col">
-      {/* Logos */}
-      <div className="flex flex-col items-center gap-3 px-4 pt-4 pb-3">
+      {/* Logo */}
+      <div className="flex items-center justify-center px-4 py-3">
         <Image
           src="/logos/prodigy.png"
           alt="Prodigy Cultural Arts Program"
-          width={180}
-          height={109}
-          className="object-contain"
-        />
-        <Image
-          src="/logos/uacdc.png"
-          alt="University Area CDC"
-          width={80}
-          height={90}
+          width={140}
+          height={85}
           className="object-contain"
         />
       </div>
