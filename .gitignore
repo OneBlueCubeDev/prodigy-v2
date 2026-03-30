@@ -338,3 +338,27 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Next.js
+.next/
+out/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files (NEVER commit secrets)
+.env.local
+.env*.local
+.env.production
+.env.development
+
+# pnpm
+.pnpm-debug.log*
+
+# Prisma
+prisma/migrations/*.sql.bak
+
+# Test output
+coverage/
+playwright-report/
+test-results/
