@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
 import { UserButton } from '@clerk/nextjs';
@@ -17,8 +18,14 @@ function SidebarContent({ currentProgram }: AppSidebarProps) {
   return (
     <div className="flex h-full flex-col">
       {/* Logo / App name */}
-      <div className="flex h-14 items-center px-6">
-        <span className="text-lg font-semibold tracking-tight">Prodigy</span>
+      <div className="flex h-14 items-center px-4">
+        <Image
+          src="/logos/prodigy.png"
+          alt="Prodigy"
+          width={120}
+          height={40}
+          className="object-contain"
+        />
       </div>
 
       <Separator />
