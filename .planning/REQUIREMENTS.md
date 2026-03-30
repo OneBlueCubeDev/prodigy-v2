@@ -124,57 +124,57 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | TBD | Pending |
-| AUTH-02 | TBD | Pending |
-| AUTH-03 | TBD | Pending |
-| AUTH-04 | TBD | Pending |
-| LOOK-01 | TBD | Pending |
-| LOOK-02 | TBD | Pending |
-| YOUTH-01 | TBD | Pending |
-| YOUTH-02 | TBD | Pending |
-| YOUTH-03 | TBD | Pending |
-| YOUTH-04 | TBD | Pending |
-| YOUTH-05 | TBD | Pending |
-| YOUTH-06 | TBD | Pending |
-| ENRL-01 | TBD | Pending |
-| ENRL-02 | TBD | Pending |
-| ENRL-03 | TBD | Pending |
-| ENRL-04 | TBD | Pending |
-| ENRL-05 | TBD | Pending |
-| ENRL-06 | TBD | Pending |
-| ENRL-07 | TBD | Pending |
-| PROG-01 | TBD | Pending |
-| PROG-02 | TBD | Pending |
-| PROG-03 | TBD | Pending |
-| PROG-04 | TBD | Pending |
-| ATTN-01 | TBD | Pending |
-| ATTN-02 | TBD | Pending |
-| ATTN-03 | TBD | Pending |
-| ATTN-04 | TBD | Pending |
-| ATTN-05 | TBD | Pending |
-| ATTN-06 | TBD | Pending |
-| REPT-01 | TBD | Pending |
-| REPT-02 | TBD | Pending |
-| REPT-03 | TBD | Pending |
-| REPT-04 | TBD | Pending |
-| REPT-05 | TBD | Pending |
-| PAT-01 | TBD | Pending |
-| PAT-02 | TBD | Pending |
-| PAT-03 | TBD | Pending |
-| STAFF-01 | TBD | Pending |
-| STAFF-02 | TBD | Pending |
-| STAFF-03 | TBD | Pending |
-| INFRA-01 | TBD | Pending |
-| INFRA-02 | TBD | Pending |
-| INFRA-03 | TBD | Pending |
-| INFRA-04 | TBD | Pending |
-| INFRA-05 | TBD | Pending |
+| AUTH-01 | Phase 0 | Pending |
+| AUTH-02 | Phase 0 | Pending |
+| AUTH-03 | Phase 0 | Pending |
+| AUTH-04 | Phase 0 | Pending |
+| LOOK-01 | Phase 2 | Pending |
+| LOOK-02 | Phase 0 | Pending |
+| YOUTH-01 | Phase 1 | Pending |
+| YOUTH-02 | Phase 1 | Pending |
+| YOUTH-03 | Phase 1 | Pending |
+| YOUTH-04 | Phase 1 | Pending |
+| YOUTH-05 | Phase 1 | Pending |
+| YOUTH-06 | Phase 1 | Pending |
+| ENRL-01 | Phase 3 | Pending |
+| ENRL-02 | Phase 3 | Pending |
+| ENRL-03 | Phase 3 | Pending |
+| ENRL-04 | Phase 3 | Pending |
+| ENRL-05 | Phase 3 | Pending |
+| ENRL-06 | Phase 3 | Pending |
+| ENRL-07 | Phase 3 | Pending |
+| PROG-01 | Phase 2 | Pending |
+| PROG-02 | Phase 2 | Pending |
+| PROG-03 | Phase 2 | Pending |
+| PROG-04 | Phase 2 | Pending |
+| ATTN-01 | Phase 4 | Pending |
+| ATTN-02 | Phase 4 | Pending |
+| ATTN-03 | Phase 4 | Pending |
+| ATTN-04 | Phase 4 | Pending |
+| ATTN-05 | Phase 4 | Pending |
+| ATTN-06 | Phase 4 | Pending |
+| REPT-01 | Phase 5 | Pending |
+| REPT-02 | Phase 5 | Pending |
+| REPT-03 | Phase 5 | Pending |
+| REPT-04 | Phase 5 | Pending |
+| REPT-05 | Phase 5 | Pending |
+| PAT-01 | Phase 6 | Pending |
+| PAT-02 | Phase 6 | Pending |
+| PAT-03 | Phase 6 | Pending |
+| STAFF-01 | Phase 6 | Pending |
+| STAFF-02 | Phase 6 | Pending |
+| STAFF-03 | Phase 6 | Pending |
+| INFRA-01 | Phase 0 | Pending |
+| INFRA-02 | Phase 0 | Pending |
+| INFRA-03 | Phase 0 | Pending |
+| INFRA-04 | Phase 6 | Pending |
+| INFRA-05 | Phase 0 | Pending |
 
 **Coverage:**
 - v1 requirements: 45 total
-- Mapped to phases: 0
-- Unmapped: 45
+- Mapped to phases: 45
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-29*
-*Last updated: 2026-03-29 after initial definition*
+*Last updated: 2026-03-29 after roadmap creation — all 45 requirements mapped*
