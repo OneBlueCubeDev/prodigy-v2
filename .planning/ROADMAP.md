@@ -35,9 +35,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 1/4 plans executed
 Plans:
 - [x] 00-01-PLAN.md — Scaffold Next.js 16, install deps, Prisma schema, core infrastructure utilities
-- [ ] 00-02-PLAN.md — shadcn/ui init, app shell layout, program selector UI, seed data
-- [ ] 00-03-PLAN.md — Test infrastructure (Vitest + Playwright config, all unit tests)
-- [ ] 00-04-PLAN.md — Integration verification and human checkpoint
+- [x] 00-02-PLAN.md — shadcn/ui init, app shell layout, program selector UI, seed data
+- [x] 00-03-PLAN.md — Test infrastructure (Vitest + Playwright config, all unit tests)
+- [x] 00-04-PLAN.md — Integration verification and human checkpoint
 **UI hint**: yes
 
 ### Phase 1: Youth Registration
