@@ -23,7 +23,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 ## Phase Details
 
 ### Phase 0: Foundation
-**Goal**: The Next.js 15 app is running with working authentication, a correct Prisma schema, an active audit trail, and shared infrastructure utilities that every subsequent phase inherits
+**Goal**: The Next.js 16 app is running with working authentication, a correct Prisma schema, an active audit trail, and shared infrastructure utilities that every subsequent phase inherits
 **Depends on**: Nothing (first phase)
 **Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, LOOK-02, INFRA-01, INFRA-02, INFRA-03, INFRA-05
 **Success Criteria** (what must be TRUE):
@@ -32,7 +32,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Every insert, update, and delete to any table writes a row to `audit_log` with user, timestamp, old and new values — no records exist without audit coverage
   4. SSN values written to the database are encrypted at rest; the application reads them back decrypted and displays only the last 4 digits
   5. Health check endpoint returns 200 OK; `computeGrantYear()` utility returns the correct grant year for dates on both sides of the July 1 boundary
-**Plans**: TBD
+**Plans:** 4 plans
+Plans:
+- [ ] 00-01-PLAN.md — Scaffold Next.js 16, install deps, Prisma schema, core infrastructure utilities
+- [ ] 00-02-PLAN.md — shadcn/ui init, app shell layout, program selector UI, seed data
+- [ ] 00-03-PLAN.md — Test infrastructure (Vitest + Playwright config, all unit tests)
+- [ ] 00-04-PLAN.md — Integration verification and human checkpoint
 **UI hint**: yes
 
 ### Phase 1: Youth Registration
@@ -117,7 +122,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Foundation | 0/? | Not started | - |
+| 0. Foundation | 0/4 | Planned | - |
 | 1. Youth Registration | 0/? | Not started | - |
 | 2. Program Structure | 0/? | Not started | - |
 | 3. Enrollment | 0/? | Not started | - |
