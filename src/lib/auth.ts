@@ -9,7 +9,7 @@ import type { Role } from '@/types/globals';
  */
 export async function checkRole(role: Role): Promise<boolean> {
   const { sessionClaims } = await auth();
-  return sessionClaims?.metadata.role === role;
+  return sessionClaims?.metadata?.role === role;
 }
 
 /**
@@ -25,8 +25,8 @@ export async function getAuthContext(): Promise<{
   const { userId, sessionClaims } = await auth();
   return {
     userId,
-    role: sessionClaims?.metadata.role,
-    siteId: sessionClaims?.metadata.site_id,
+    role: sessionClaims?.metadata?.role,
+    siteId: sessionClaims?.metadata?.site_id,
   };
 }
 
@@ -47,7 +47,7 @@ export async function requireAuth(): Promise<{
   }
   return {
     userId,
-    role: sessionClaims?.metadata.role,
-    siteId: sessionClaims?.metadata.site_id,
+    role: sessionClaims?.metadata?.role,
+    siteId: sessionClaims?.metadata?.site_id,
   };
 }
