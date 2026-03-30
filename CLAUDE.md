@@ -22,6 +22,13 @@ Always use the scripts in `/scripts/` to start and stop the dev server:
 - Logs go to `/logs/dev-server.log` (git-ignored)
 - Do NOT use bare `pnpm dev` — always use the scripts
 
+### Database management (built into the scripts)
+- `start` automatically starts PostgreSQL (Docker), creates the database, pushes schema, and seeds if needed
+- `stop --all` stops both the server and PostgreSQL
+- `db start` / `db stop` — manage PostgreSQL independently
+- `db reset` — drops and recreates the database with fresh seed data
+- Docker container name: `prodigy-pg` (postgres:15, port 5432)
+
 ## Architecture Decisions
 - ADR-001: Reporting — SSRS → Metabase OSS
 - ADR-002: Auth — Clerk (MFA enforced)

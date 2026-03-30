@@ -3,15 +3,19 @@
 # Prodigy Development Server Management Script
 #
 # SYNOPSIS
-#   Starts or stops the Next.js development server.
+#   Starts or stops the Next.js development server and PostgreSQL database.
 #
 # USAGE
-#   ./scripts/dev-server.sh start              # Start in foreground
-#   ./scripts/dev-server.sh start --background # Start in background
-#   ./scripts/dev-server.sh stop               # Stop the server
+#   ./scripts/dev-server.sh start              # Start DB + server in foreground
+#   ./scripts/dev-server.sh start --background # Start DB + server in background
+#   ./scripts/dev-server.sh stop               # Stop the server (DB keeps running)
+#   ./scripts/dev-server.sh stop --all         # Stop server + DB
 #   ./scripts/dev-server.sh restart            # Restart in foreground
 #   ./scripts/dev-server.sh restart --background # Restart in background
-#   ./scripts/dev-server.sh status             # Check server status
+#   ./scripts/dev-server.sh status             # Check server + DB status
+#   ./scripts/dev-server.sh db start           # Start DB only
+#   ./scripts/dev-server.sh db stop            # Stop DB only
+#   ./scripts/dev-server.sh db reset           # Drop and recreate DB + reseed
 #
 
 # Configuration
@@ -21,6 +25,13 @@ LOGS_DIR="$PROJECT_DIR/logs"
 PID_FILE="$SCRIPT_DIR/.dev-server.pid"
 LOG_FILE="$LOGS_DIR/dev-server.log"
 SERVER_PORT=3040
+
+# Docker PostgreSQL config
+DB_CONTAINER="prodigy-pg"
+DB_PORT=5432
+DB_USER="postgres"
+DB_PASSWORD="dev"
+DB_NAME="prodigy"
 
 # Colors for output
 RED='\033[0;31m'
@@ -33,12 +44,22 @@ NC='\033[0m' # No Color
 # Parse arguments
 COMMAND="${1:-start}"
 BACKGROUND=false
+STOP_ALL=false
 
 shift || true
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --background|-b)
             BACKGROUND=true
+            shift
+            ;;
+        --all|-a)
+            STOP_ALL=true
+            shift
+            ;;
+        start|stop|reset|status)
+            # Sub-command for db
+            DB_SUBCMD="$1"
             shift
             ;;
         *)
@@ -51,12 +72,144 @@ done
 # Ensure logs directory exists
 mkdir -p "$LOGS_DIR"
 
-# Get PID of process listening on a port
+# ─── Database Functions ───────────────────────────────────────────────
+
+is_docker_available() {
+    command -v docker &> /dev/null && docker info &> /dev/null
+}
+
+is_db_container_running() {
+    docker container inspect -f '{{.State.Running}}' "$DB_CONTAINER" 2>/dev/null | grep -q "true"
+}
+
+is_db_container_exists() {
+    docker container inspect "$DB_CONTAINER" &>/dev/null
+}
+
+wait_for_db() {
+    local max_wait=10
+    local waited=0
+    while [[ $waited -lt $max_wait ]]; do
+        if docker exec "$DB_CONTAINER" pg_isready -U "$DB_USER" &>/dev/null; then
+            return 0
+        fi
+        sleep 1
+        waited=$((waited + 1))
+        echo -n "."
+    done
+    echo ""
+    return 1
+}
+
+db_exists() {
+    docker exec "$DB_CONTAINER" psql -U "$DB_USER" -lqt 2>/dev/null | cut -d \| -f 1 | grep -qw "$DB_NAME"
+}
+
+start_db() {
+    if ! is_docker_available; then
+        echo -e "${RED}Docker is not available. Install Docker or start Docker Desktop.${NC}"
+        return 1
+    fi
+
+    if is_db_container_running; then
+        echo -e "${GREEN}PostgreSQL is already running (container: $DB_CONTAINER).${NC}"
+    elif is_db_container_exists; then
+        echo -e "${CYAN}Starting existing PostgreSQL container...${NC}"
+        docker start "$DB_CONTAINER" > /dev/null
+        echo -n -e "${GRAY}Waiting for PostgreSQL"
+        if wait_for_db; then
+            echo -e "${GREEN} ready.${NC}"
+        else
+            echo -e "${RED} failed to start.${NC}"
+            return 1
+        fi
+    else
+        echo -e "${CYAN}Creating PostgreSQL container...${NC}"
+        docker run --name "$DB_CONTAINER" \
+            -e POSTGRES_PASSWORD="$DB_PASSWORD" \
+            -p "$DB_PORT:5432" \
+            -d postgres:15 > /dev/null
+        echo -n -e "${GRAY}Waiting for PostgreSQL"
+        if wait_for_db; then
+            echo -e "${GREEN} ready.${NC}"
+        else
+            echo -e "${RED} failed to start.${NC}"
+            return 1
+        fi
+    fi
+
+    # Create database if it doesn't exist
+    if ! db_exists; then
+        echo -e "${CYAN}Creating database '$DB_NAME'...${NC}"
+        docker exec "$DB_CONTAINER" psql -U "$DB_USER" -c "CREATE DATABASE $DB_NAME;" > /dev/null 2>&1
+        echo -e "${GREEN}Database created.${NC}"
+
+        # Push schema and seed
+        echo -e "${CYAN}Pushing Prisma schema...${NC}"
+        cd "$PROJECT_DIR"
+        pnpm prisma db push --skip-generate > /dev/null 2>&1
+        pnpm prisma generate > /dev/null 2>&1
+        echo -e "${GREEN}Schema pushed.${NC}"
+
+        echo -e "${CYAN}Seeding database...${NC}"
+        pnpm prisma db seed 2>&1 | tail -1
+        echo -e "${GREEN}Database seeded.${NC}"
+    fi
+}
+
+stop_db() {
+    if is_db_container_running; then
+        echo -e "${CYAN}Stopping PostgreSQL container...${NC}"
+        docker stop "$DB_CONTAINER" > /dev/null
+        echo -e "${GREEN}PostgreSQL stopped.${NC}"
+    else
+        echo -e "${YELLOW}PostgreSQL is not running.${NC}"
+    fi
+}
+
+reset_db() {
+    if ! is_db_container_running; then
+        echo -e "${RED}PostgreSQL is not running. Start it first.${NC}"
+        return 1
+    fi
+
+    echo -e "${YELLOW}Dropping database '$DB_NAME'...${NC}"
+    docker exec "$DB_CONTAINER" psql -U "$DB_USER" -c "DROP DATABASE IF EXISTS $DB_NAME;" > /dev/null 2>&1
+    docker exec "$DB_CONTAINER" psql -U "$DB_USER" -c "CREATE DATABASE $DB_NAME;" > /dev/null 2>&1
+    echo -e "${GREEN}Database recreated.${NC}"
+
+    cd "$PROJECT_DIR"
+    echo -e "${CYAN}Pushing Prisma schema...${NC}"
+    pnpm prisma db push --skip-generate > /dev/null 2>&1
+    pnpm prisma generate > /dev/null 2>&1
+    echo -e "${CYAN}Seeding database...${NC}"
+    pnpm prisma db seed 2>&1 | tail -1
+    echo -e "${GREEN}Database reset complete.${NC}"
+}
+
+show_db_status() {
+    if ! is_docker_available; then
+        echo -e "${RED}PostgreSQL: Docker not available${NC}"
+        return
+    fi
+    if is_db_container_running; then
+        echo -e "${GREEN}PostgreSQL is RUNNING (container: $DB_CONTAINER, port: $DB_PORT)${NC}"
+        if db_exists; then
+            echo -e "${GREEN}Database '$DB_NAME' exists${NC}"
+        else
+            echo -e "${YELLOW}Database '$DB_NAME' does not exist${NC}"
+        fi
+    else
+        echo -e "${RED}PostgreSQL is STOPPED${NC}"
+    fi
+}
+
+# ─── Server Functions ─────────────────────────────────────────────────
+
 get_port_pid() {
     local port=$1
     local pid=""
 
-    # Try lsof first (macOS + Linux)
     if command -v lsof &> /dev/null; then
         pid=$(lsof -ti ":$port" 2>/dev/null | head -1)
         if [[ -n "$pid" ]]; then
@@ -65,7 +218,6 @@ get_port_pid() {
         fi
     fi
 
-    # Try ss (modern Linux)
     if command -v ss &> /dev/null; then
         pid=$(ss -tlnp "sport = :$port" 2>/dev/null | grep -oP 'pid=\K\d+' | head -1)
         if [[ -n "$pid" ]]; then
@@ -74,7 +226,6 @@ get_port_pid() {
         fi
     fi
 
-    # Try netstat as last resort
     if command -v netstat &> /dev/null; then
         pid=$(netstat -tlnp 2>/dev/null | grep ":$port " | awk '{print $7}' | cut -d'/' -f1 | head -1)
         if [[ -n "$pid" ]]; then
@@ -84,7 +235,6 @@ get_port_pid() {
     fi
 }
 
-# Kill process on a specific port
 kill_port_process() {
     local port=$1
     local pid
@@ -97,7 +247,6 @@ kill_port_process() {
     fi
 }
 
-# Check if a process is running
 is_process_running() {
     local pid=$1
     if [[ -n "$pid" ]] && kill -0 "$pid" 2>/dev/null; then
@@ -106,9 +255,7 @@ is_process_running() {
     return 1
 }
 
-# Get server status
 get_server_status() {
-    # Check if process from PID file is running
     if [[ -f "$PID_FILE" ]]; then
         local pid
         pid=$(cat "$PID_FILE")
@@ -118,7 +265,6 @@ get_server_status() {
         fi
     fi
 
-    # Check if something is listening on the port
     local port_pid
     port_pid=$(get_port_pid "$SERVER_PORT")
     if [[ -n "$port_pid" ]]; then
@@ -129,8 +275,11 @@ get_server_status() {
     echo "stopped::"
 }
 
-# Start the server
 start_server() {
+    # Ensure database is running first
+    start_db || return 1
+    echo ""
+
     local status
     status=$(get_server_status)
     local state="${status%%:*}"
@@ -142,7 +291,6 @@ start_server() {
         return
     fi
 
-    # Kill any existing process on the server port (in case of zombie)
     kill_port_process "$SERVER_PORT"
 
     if [[ ! -d "$PROJECT_DIR" ]]; then
@@ -210,7 +358,6 @@ start_server() {
     fi
 }
 
-# Stop the server
 stop_server() {
     local status
     status=$(get_server_status)
@@ -221,28 +368,33 @@ stop_server() {
     if [[ "$state" != "running" ]]; then
         echo -e "${YELLOW}Server is not running.${NC}"
         rm -f "$PID_FILE"
-        return
-    fi
+    else
+        echo -e "${CYAN}Stopping server (PID: $pid)...${NC}"
 
-    echo -e "${CYAN}Stopping server (PID: $pid)...${NC}"
-
-    if command -v pkill &> /dev/null; then
-        pkill -P "$pid" 2>/dev/null || true
-    fi
-
-    if kill -15 "$pid" 2>/dev/null; then
-        sleep 1
-        if is_process_running "$pid"; then
-            kill -9 "$pid" 2>/dev/null || true
+        if command -v pkill &> /dev/null; then
+            pkill -P "$pid" 2>/dev/null || true
         fi
+
+        if kill -15 "$pid" 2>/dev/null; then
+            sleep 1
+            if is_process_running "$pid"; then
+                kill -9 "$pid" 2>/dev/null || true
+            fi
+        fi
+
+        rm -f "$PID_FILE"
+        echo -e "${GREEN}Server stopped.${NC}"
     fi
 
-    rm -f "$PID_FILE"
-    echo -e "${GREEN}Server stopped.${NC}"
+    if [[ "$STOP_ALL" == true ]]; then
+        stop_db
+    fi
 }
 
-# Show server status
 show_status() {
+    show_db_status
+    echo ""
+
     local status
     status=$(get_server_status)
     local state="${status%%:*}"
@@ -257,19 +409,24 @@ show_status() {
     fi
 }
 
-# Show usage
 show_usage() {
-    echo -e "${YELLOW}Usage: ./scripts/dev-server.sh [start|stop|restart|status] [--background|-b]${NC}"
+    echo -e "${YELLOW}Usage: ./scripts/dev-server.sh [command] [options]${NC}"
     echo -e "${GRAY}Default command is 'start'${NC}"
     echo ""
     echo "Commands:"
-    echo "  start    Start the development server (foreground by default)"
-    echo "  stop     Stop the running server"
-    echo "  restart  Restart the server"
-    echo "  status   Show server status"
+    echo "  start              Start DB + dev server (foreground by default)"
+    echo "  stop               Stop the dev server (DB keeps running)"
+    echo "  stop --all         Stop dev server + PostgreSQL"
+    echo "  restart            Restart the dev server"
+    echo "  status             Show server + DB status"
+    echo "  db start           Start PostgreSQL only"
+    echo "  db stop            Stop PostgreSQL only"
+    echo "  db reset           Drop + recreate database and reseed"
+    echo "  db status          Show database status"
     echo ""
     echo "Options:"
-    echo "  --background, -b  Run the server in background mode"
+    echo "  --background, -b   Run the server in background mode"
+    echo "  --all, -a          Also stop PostgreSQL (with 'stop' command)"
 }
 
 # Main command dispatcher
@@ -287,6 +444,19 @@ case "$COMMAND" in
         ;;
     status)
         show_status
+        ;;
+    db)
+        case "${DB_SUBCMD:-status}" in
+            start)  start_db ;;
+            stop)   stop_db ;;
+            reset)  reset_db ;;
+            status) show_db_status ;;
+            *)
+                echo -e "${RED}Invalid db command: $DB_SUBCMD${NC}"
+                show_usage
+                exit 1
+                ;;
+        esac
         ;;
     help|--help|-h)
         show_usage
