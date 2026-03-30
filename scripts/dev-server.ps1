@@ -29,7 +29,7 @@ $ProjectDir = Split-Path $ScriptDir -Parent
 $LogsDir = Join-Path $ProjectDir "logs"
 $PidFile = Join-Path $ScriptDir ".dev-server.pid"
 $LogFile = Join-Path $LogsDir "dev-server.log"
-$ServerPort = 3000
+$ServerPort = 3040
 
 # Ensure logs directory exists
 if (-not (Test-Path $LogsDir)) {

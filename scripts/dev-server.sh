@@ -20,7 +20,7 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 LOGS_DIR="$PROJECT_DIR/logs"
 PID_FILE="$SCRIPT_DIR/.dev-server.pid"
 LOG_FILE="$LOGS_DIR/dev-server.log"
-SERVER_PORT=3000
+SERVER_PORT=3040
 
 # Colors for output
 RED='\033[0;31m'

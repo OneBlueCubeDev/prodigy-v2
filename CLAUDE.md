@@ -18,7 +18,7 @@ Always use the scripts in `/scripts/` to start and stop the dev server:
 - **macOS/Linux:** `./scripts/dev-server.sh start` / `stop` / `restart` / `status`
 - **Windows:** `.\scripts\dev-server.ps1 start` / `stop` / `restart` / `status`
 - Add `--background` (or `-b`) to run detached
-- Server runs on port 3000
+- Server runs on port 3040
 - Logs go to `/logs/dev-server.log` (git-ignored)
 - Do NOT use bare `pnpm dev` — always use the scripts
 
