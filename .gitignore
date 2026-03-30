@@ -362,3 +362,7 @@ prisma/migrations/*.sql.bak
 coverage/
 playwright-report/
 test-results/
+/src/generated/prisma
+
+# Prisma generated
+.env
