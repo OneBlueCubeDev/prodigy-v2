@@ -9,15 +9,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Authentication & Authorization
 
-- [ ] **AUTH-01**: Staff can log in via Clerk with MFA enforced for all users
-- [ ] **AUTH-02**: Three roles enforced: Admin (all access), Central (all sites read + cross-site reports), Site (own site only)
+- [x] **AUTH-01**: Staff can log in via Clerk with MFA enforced for all users
+- [x] **AUTH-02**: Three roles enforced: Admin (all access), Central (all sites read + cross-site reports), Site (own site only)
 - [ ] **AUTH-03**: After login, user selects a program — all views filtered by selected program
-- [ ] **AUTH-04**: Every Server Action independently calls `auth()` (middleware is not a security boundary per CVE-2025-29927)
+- [x] **AUTH-04**: Every Server Action independently calls `auth()` (middleware is not a security boundary per CVE-2025-29927)
 
 ### Lookups & Reference Data
 
 - [ ] **LOOK-01**: Admin can manage lookup tables (races, ethnicities, genders, enrollment types, statuses, sites)
-- [ ] **LOOK-02**: Lookup values populate all form dropdowns consistently across the application
+- [x] **LOOK-02**: Lookup values populate all form dropdowns consistently across the application
 
 ### Youth Registration
 
@@ -76,11 +76,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: Database audit trail logs every insert/update/delete with user, timestamp, old/new values
-- [ ] **INFRA-02**: Audit trail is active from day 1 — no records exist without audit coverage
-- [ ] **INFRA-03**: SSN encryption at rest in PostgreSQL
+- [x] **INFRA-01**: Database audit trail logs every insert/update/delete with user, timestamp, old/new values
+- [x] **INFRA-02**: Audit trail is active from day 1 — no records exist without audit coverage
+- [x] **INFRA-03**: SSN encryption at rest in PostgreSQL
 - [ ] **INFRA-04**: Playwright parity tests validate behavioral equivalence with legacy before cutover
-- [ ] **INFRA-05**: Health check endpoint returns 200 OK with status
+- [x] **INFRA-05**: Health check endpoint returns 200 OK with status
 
 ## v2 Requirements
 
@@ -124,12 +124,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 0 | Pending |
-| AUTH-02 | Phase 0 | Pending |
+| AUTH-01 | Phase 0 | Complete |
+| AUTH-02 | Phase 0 | Complete |
 | AUTH-03 | Phase 0 | Pending |
-| AUTH-04 | Phase 0 | Pending |
+| AUTH-04 | Phase 0 | Complete |
 | LOOK-01 | Phase 2 | Pending |
-| LOOK-02 | Phase 0 | Pending |
+| LOOK-02 | Phase 0 | Complete |
 | YOUTH-01 | Phase 1 | Pending |
 | YOUTH-02 | Phase 1 | Pending |
 | YOUTH-03 | Phase 1 | Pending |
@@ -164,11 +164,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STAFF-01 | Phase 6 | Pending |
 | STAFF-02 | Phase 6 | Pending |
 | STAFF-03 | Phase 6 | Pending |
-| INFRA-01 | Phase 0 | Pending |
-| INFRA-02 | Phase 0 | Pending |
-| INFRA-03 | Phase 0 | Pending |
+| INFRA-01 | Phase 0 | Complete |
+| INFRA-02 | Phase 0 | Complete |
+| INFRA-03 | Phase 0 | Complete |
 | INFRA-04 | Phase 6 | Pending |
-| INFRA-05 | Phase 0 | Pending |
+| INFRA-05 | Phase 0 | Complete |
 
 **Coverage:**
 - v1 requirements: 45 total
