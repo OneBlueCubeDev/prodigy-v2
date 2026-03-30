@@ -1,0 +1,257 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// AUTH & INFRASTRUCTURE
+// ============================================
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  model      String   // e.g. "Youth", "Enrollment"
+  record_id  String   // ID of the affected record
+  operation  String   // "create", "update", "delete"
+  before     Json?    // Previous state (null for create)
+  after      Json?    // New state (null for delete)
+  user_id    String   // Clerk user ID
+  timestamp  DateTime @default(now())
+
+  @@map("audit_log")
+  @@index([model, record_id])
+  @@index([user_id])
+  @@index([timestamp])
+}
+
+model UserSite {
+  id      String @id @default(cuid())
+  user_id String // Clerk user ID
+  site_id String
+  site    Site   @relation(fields: [site_id], references: [id])
+
+  @@unique([user_id, site_id])
+  @@map("user_sites")
+}
+
+// ============================================
+// LOOKUP TABLES (LOOK-02)
+// ============================================
+
+model Site {
+  id         String   @id @default(cuid())
+  name       String   @unique
+  active     Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user_sites       UserSite[]
+  programs         ProgramSite[]
+  course_instances CourseInstance[]
+  enrollments      Enrollment[]
+
+  @@map("sites")
+}
+
+model Race {
+  id   String @id @default(cuid())
+  name String @unique
+
+  @@map("races")
+}
+
+model Ethnicity {
+  id   String @id @default(cuid())
+  name String @unique
+
+  @@map("ethnicities")
+}
+
+model Gender {
+  id   String @id @default(cuid())
+  name String @unique
+
+  @@map("genders")
+}
+
+model EnrollmentType {
+  id   String @id @default(cuid())
+  name String @unique
+
+  @@map("enrollment_types")
+}
+
+model EnrollmentStatus {
+  id   String @id @default(cuid())
+  name String @unique
+
+  @@map("enrollment_statuses")
+}
+
+// ============================================
+// PROGRAMS (Phase 2)
+// ============================================
+
+model Program {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  active      Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  courses Course[]
+  sites   ProgramSite[]
+
+  @@map("programs")
+}
+
+model ProgramSite {
+  id         String  @id @default(cuid())
+  program_id String
+  site_id    String
+  program    Program @relation(fields: [program_id], references: [id])
+  site       Site    @relation(fields: [site_id], references: [id])
+
+  @@unique([program_id, site_id])
+  @@map("program_sites")
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  program_id  String
+  name        String
+  description String?
+  active      Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  program   Program          @relation(fields: [program_id], references: [id])
+  instances CourseInstance[]
+
+  @@map("courses")
+}
+
+model CourseInstance {
+  id         String  @id @default(cuid())
+  course_id  String
+  site_id    String
+  instructor String?
+  location   String?
+  days       String? // e.g. "Mon,Wed,Fri"
+  start_time String? // e.g. "14:00"
+  end_time   String? // e.g. "16:00"
+  capacity   Int?
+  grant_year Int
+  active     Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  course      Course         @relation(fields: [course_id], references: [id])
+  site        Site           @relation(fields: [site_id], references: [id])
+  classes     ClassSession[]
+  enrollments Enrollment[]
+
+  @@map("course_instances")
+}
+
+model ClassSession {
+  id                 String   @id @default(cuid())
+  course_instance_id String
+  date               DateTime @db.Date
+  start_time         String?
+  end_time           String?
+  created_at         DateTime @default(now())
+
+  course_instance CourseInstance     @relation(fields: [course_instance_id], references: [id])
+  attendance      AttendanceRecord[]
+
+  @@map("class_sessions")
+}
+
+// ============================================
+// YOUTH (Phase 1)
+// ============================================
+
+model Youth {
+  id                String   @id @default(cuid())
+  first_name        String
+  last_name         String
+  date_of_birth     DateTime @db.Date
+  ssn               String?  // Encrypted at rest (AES-256-GCM)
+  ssn_last4         String?  // Plaintext last 4 for search
+  gender_id         String?
+  race_id           String?
+  ethnicity_id      String?
+  address           String?
+  city              String?
+  state             String?
+  zip               String?
+  phone             String?
+  guardian_name     String?
+  guardian_phone    String?
+  guardian_relation String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  enrollments Enrollment[]
+
+  @@map("youth")
+  @@index([last_name, first_name])
+  @@index([ssn_last4])
+}
+
+// ============================================
+// ENROLLMENT (Phase 3)
+// ============================================
+
+model Enrollment {
+  id                 String    @id @default(cuid())
+  youth_id           String
+  course_instance_id String
+  site_id            String
+  enrollment_type_id String?
+  status             String    @default("active") // active, inactive, released, transferred
+  grant_year         Int
+  enrolled_at        DateTime  @default(now())
+  released_at        DateTime?
+  transferred_at     DateTime?
+  created_at         DateTime  @default(now())
+  updated_at         DateTime  @updatedAt
+
+  youth           Youth          @relation(fields: [youth_id], references: [id])
+  course_instance CourseInstance @relation(fields: [course_instance_id], references: [id])
+  site            Site           @relation(fields: [site_id], references: [id])
+  attendance      AttendanceRecord[]
+
+  @@map("enrollments")
+  @@index([youth_id])
+  @@index([site_id, grant_year])
+}
+
+// ============================================
+// ATTENDANCE (Phase 4)
+// ============================================
+
+model AttendanceRecord {
+  id               String    @id @default(cuid())
+  enrollment_id    String
+  class_session_id String?
+  event_name       String?   // For event attendance (ATTN-04)
+  status           String    // "present", "absent", "tardy"
+  sign_in_time     DateTime?
+  sign_out_time    DateTime?
+  date             DateTime  @db.Date
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  enrollment    Enrollment    @relation(fields: [enrollment_id], references: [id])
+  class_session ClassSession? @relation(fields: [class_session_id], references: [id])
+
+  @@map("attendance_records")
+  @@index([enrollment_id])
+  @@index([class_session_id])
+  @@index([date])
+}
