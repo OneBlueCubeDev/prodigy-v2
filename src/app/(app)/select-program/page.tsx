@@ -17,7 +17,7 @@ export default async function SelectProgramPage() {
   try {
     const { role, userId } = await getAuthContext();
 
-    if (role === 'admin' || role === 'central') {
+    if (!role || role === 'admin' || role === 'central') {
       // Admin and Central users see all active programs
       programs = await db.program.findMany({
         where: { active: true },
