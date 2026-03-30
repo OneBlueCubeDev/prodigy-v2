@@ -20,8 +20,8 @@ function SidebarContent({ currentProgram }: AppSidebarProps) {
       {/* Logo / App name */}
       <div className="flex h-14 items-center px-4">
         <Image
-          src="/logos/prodigy.png"
-          alt="Prodigy"
+          src="/logos/uacdc.png"
+          alt="University Area CDC"
           width={120}
           height={40}
           className="object-contain"

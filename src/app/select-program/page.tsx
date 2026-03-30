@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import { getAuthContext } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { ProgramCard } from '@/components/program-selector/program-card';
 
 /**
  * Program selector page (AUTH-03).
+ * Full-page layout (no sidebar) with UACDC logo centered.
  * First custom screen post-login — displays program cards for user's assigned programs.
  */
 export default async function SelectProgramPage() {
@@ -18,14 +20,12 @@ export default async function SelectProgramPage() {
     const { role, userId } = await getAuthContext();
 
     if (!role || role === 'admin' || role === 'central') {
-      // Admin and Central users see all active programs
       programs = await db.program.findMany({
         where: { active: true },
         select: { id: true, name: true, description: true },
         orderBy: { name: 'asc' },
       });
     } else if (role === 'site' && userId) {
-      // Site users see programs scoped to their assigned sites
       const programSites = await db.programSite.findMany({
         where: {
           site: {
@@ -42,7 +42,6 @@ export default async function SelectProgramPage() {
         },
       });
 
-      // Deduplicate programs that appear across multiple sites
       const seen = new Set<string>();
       programs = programSites
         .map((ps) => ps.program)
@@ -60,16 +59,28 @@ export default async function SelectProgramPage() {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-3xl py-12 px-4">
+      <div className="flex min-h-screen items-center justify-center px-4">
         <p className="text-destructive">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-5xl py-12 px-4">
+    <div className="flex min-h-screen flex-col items-center px-4 py-16">
+      {/* UACDC Logo */}
+      <div className="mb-10">
+        <Image
+          src="/logos/uacdc.png"
+          alt="University Area CDC"
+          width={180}
+          height={180}
+          className="object-contain"
+          priority
+        />
+      </div>
+
       {/* Page heading */}
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <h1 className="text-2xl font-semibold">Select a Program</h1>
         <p className="mt-2 text-muted-foreground">
           Choose the program you&apos;re working in today.
@@ -77,8 +88,7 @@ export default async function SelectProgramPage() {
       </div>
 
       {programs.length === 0 ? (
-        // Empty state
-        <div className="rounded-lg border bg-secondary/50 px-6 py-12 text-center">
+        <div className="w-full max-w-md rounded-lg border bg-secondary/50 px-6 py-12 text-center">
           <h2 className="text-base font-semibold">No programs available.</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             You haven&apos;t been assigned to any programs yet. Contact your
@@ -86,8 +96,7 @@ export default async function SelectProgramPage() {
           </p>
         </div>
       ) : (
-        // Program card grid
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid w-full max-w-5xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {programs.map((program) => (
             <ProgramCard key={program.id} program={program} />
           ))}
