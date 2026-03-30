@@ -54,7 +54,7 @@ function SidebarContent({ currentProgram }: AppSidebarProps) {
 
       {/* User info + sign-out */}
       <div className="flex items-center gap-3 px-6 py-4">
-        <UserButton afterSignOutUrl="/sign-in" />
+        <UserButton />
         <span className="text-sm text-muted-foreground">Account</span>
       </div>
     </div>
@@ -75,15 +75,17 @@ export function AppSidebar({ currentProgram }: AppSidebarProps) {
 
       {/* Mobile sidebar — Sheet overlay */}
       <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden fixed top-3 left-3 z-50 h-9 w-9"
-            aria-label="Open navigation menu"
-          >
-            <MenuIcon className="h-5 w-5" />
-          </Button>
+        <SheetTrigger
+          render={
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden fixed top-3 left-3 z-50 h-9 w-9"
+              aria-label="Open navigation menu"
+            />
+          }
+        >
+          <MenuIcon className="h-5 w-5" />
         </SheetTrigger>
         <SheetContent side="left" className="w-60 p-0">
           <SidebarContent currentProgram={currentProgram} />

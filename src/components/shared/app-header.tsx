@@ -60,7 +60,7 @@ export async function AppHeader() {
       {/* Right: role badge + user avatar */}
       <div className="flex items-center gap-3">
         <Badge variant={getRoleBadgeVariant(role)}>{getRoleLabel(role)}</Badge>
-        <UserButton afterSignOutUrl="/sign-in" />
+        <UserButton />
       </div>
     </header>
   );

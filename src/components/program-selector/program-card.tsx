@@ -36,7 +36,14 @@ export function ProgramCard({ program }: ProgramCardProps) {
       </CardHeader>
       <CardContent className="flex-1" />
       <CardFooter>
-        <form action={selectProgram.bind(null, program.id)} className="w-full">
+        <form
+          action={
+            selectProgram.bind(null, program.id) as unknown as (
+              formData: FormData,
+            ) => void | Promise<void>
+          }
+          className="w-full"
+        >
           <Button
             type="submit"
             className="w-full min-h-[44px]"
