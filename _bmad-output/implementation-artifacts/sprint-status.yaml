@@ -1,0 +1,104 @@
+# generated: 2026-03-29
+# last_updated: 2026-03-29T00:00:00
+# project: Prodigy-Migration
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-03-29
+last_updated: 2026-03-29T00:00:00
+project: Prodigy-Migration
+project_key: NOKEY
+tracking_system: file-system
+story_location: implementation-artifacts
+
+development_status:
+  # Epic 1: Project Foundation & Secure Access
+  epic-1: in-progress
+  1-1-project-scaffolding-and-design-system: ready-for-dev
+  1-2-authentication-and-protected-routes: backlog
+  1-3-role-based-authorization-and-site-scoping: backlog
+  1-4-application-shell-and-role-scoped-navigation: backlog
+  1-5-audit-logging-infrastructure: backlog
+  1-6-ssn-encryption-infrastructure: backlog
+  1-7-lookup-data-management: backlog
+  1-8-user-management-and-role-assignment: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Youth Registration & Search
+  epic-2: backlog
+  2-1-youth-search-and-duplicate-detection: backlog
+  2-2-youth-registration-form: backlog
+  2-3-guardian-management: backlog
+  2-4-youth-profile-view-and-edit: backlog
+  2-5-cross-site-youth-visibility: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Program & Course Management
+  epic-3: backlog
+  3-1-program-management: backlog
+  3-2-course-management: backlog
+  3-3-class-management-and-scheduling: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Program Enrollment
+  epic-4: backlog
+  4-1-enroll-youth-in-program: backlog
+  4-2-enrollment-list-and-filtering: backlog
+  4-3-transfer-enrollment: backlog
+  4-4-release-and-delete-enrollment: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Class Attendance
+  epic-5: backlog
+  5-1-class-selection-and-roster-view: backlog
+  5-2-real-time-sign-in-and-sign-out: backlog
+  5-3-tardy-and-left-early-auto-calculation: backlog
+  5-4-after-the-fact-attendance-entry: backlog
+  5-5-session-staff-and-site-manager-verification: backlog
+  5-6-submit-attendance-and-lock: backlog
+  5-7-attendance-visibility-for-central-team-and-site-coordinators: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Reporting & Grant Analytics
+  epic-6: backlog
+  6-1-metabase-integration-and-secure-embedding: backlog
+  6-2-census-and-billing-reports: backlog
+  6-3-monthly-attendance-report-and-pdf-export: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Data Migration & Cutover
+  epic-7: backlog
+  7-1-migration-script-lookup-and-program-structure-data: backlog
+  7-2-migration-script-youth-deduplication-and-identity-mapping: backlog
+  7-3-migration-script-enrollment-history-and-attendance-data: backlog
+  epic-7-retrospective: optional

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prodigy — Design Directions</title>
+<style>
+  :root {
+    --bg: #FAFAFA; --card: #FFFFFF; --card-fg: #171717;
+    --primary: #2563EB; --primary-fg: #FFFFFF;
+    --secondary: #F3F4F6; --muted: #F5F5F5; --muted-fg: #737373;
+    --accent: #16A34A; --destructive: #DC2626; --warning: #F59E0B;
+    --border: #E5E5E5; --ring: #2563EB;
+  }
+  .dark {
+    --bg: #0A0A0A; --card: #171717; --card-fg: #FAFAFA;
+    --primary: #3B82F6; --primary-fg: #FFFFFF;
+    --secondary: #262626; --muted: #262626; --muted-fg: #A3A3A3;
+    --accent: #22C55E; --destructive: #EF4444; --warning: #FBBF24;
+    --border: #2D2D2D; --ring: #3B82F6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--card-fg); }
+
+  /* Theme toggle */
+  .theme-bar { position: sticky; top: 0; z-index: 100; background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .theme-bar h1 { font-size: 18px; font-weight: 600; }
+  .theme-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--secondary); color: var(--card-fg); cursor: pointer; font-size: 13px; font-family: inherit; }
+  .theme-btn:hover { background: var(--primary); color: var(--primary-fg); }
+
+  /* Direction tabs */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); background: var(--card); padding: 0 24px; overflow-x: auto; }
+  .tab { padding: 12px 20px; font-size: 14px; cursor: pointer; border-bottom: 2px solid transparent; color: var(--muted-fg); white-space: nowrap; }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 500; }
+  .tab:hover { color: var(--card-fg); }
+
+  .directions { padding: 24px; }
+  .direction { display: none; }
+  .direction.active { display: block; }
+  .direction-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .direction-desc { font-size: 14px; color: var(--muted-fg); margin-bottom: 24px; }
+
+  /* Shared mockup styles */
+  .mockup { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+  .mockup-label { font-size: 12px; color: var(--muted-fg); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Layout mockups */
+  .app-shell { display: grid; min-height: 500px; }
+  .app-shell.with-sidebar { grid-template-columns: 256px 1fr; }
+  .app-shell.no-sidebar { grid-template-columns: 1fr; }
+
+  .sidebar { background: var(--card); border-right: 1px solid var(--border); padding: 16px; }
+  .sidebar-logo { font-size: 18px; font-weight: 700; color: var(--primary); padding: 8px 12px; margin-bottom: 16px; }
+  .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; font-size: 14px; color: var(--muted-fg); cursor: pointer; margin-bottom: 2px; }
+  .nav-item:hover { background: var(--secondary); color: var(--card-fg); }
+  .nav-item.active { background: var(--primary); color: var(--primary-fg); }
+  .nav-icon { width: 18px; height: 18px; background: currentColor; border-radius: 4px; opacity: 0.5; flex-shrink: 0; }
+  .nav-item.active .nav-icon { opacity: 0.8; }
+
+  .main { padding: 24px; background: var(--bg); }
+  .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .page-title { font-size: 24px; font-weight: 600; }
+  .page-subtitle { font-size: 14px; color: var(--muted-fg); margin-top: 4px; }
+
+  .btn { padding: 8px 16px; border-radius: 8px; font-size: 14px; font-family: inherit; cursor: pointer; border: none; font-weight: 500; }
+  .btn-primary { background: var(--primary); color: var(--primary-fg); }
+  .btn-secondary { background: var(--secondary); color: var(--card-fg); border: 1px solid var(--border); }
+  .btn-accent { background: var(--accent); color: white; }
+  .btn-destructive { background: var(--destructive); color: white; }
+  .btn-lg { padding: 12px 24px; font-size: 16px; }
+
+  /* Stat cards */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat-label { font-size: 12px; color: var(--muted-fg); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .stat-value { font-size: 36px; font-weight: 700; line-height: 1.1; }
+  .stat-change { font-size: 12px; margin-top: 4px; }
+  .stat-up { color: var(--accent); }
+  .stat-down { color: var(--destructive); }
+
+  /* Cards */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .card-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .data-table th { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--muted-fg); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--muted); }
+
+  /* Badges */
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .badge-active { background: #DCFCE7; color: #166534; }
+  .dark .badge-active { background: #14532D; color: #86EFAC; }
+  .badge-inactive { background: #FEE2E2; color: #991B1B; }
+  .dark .badge-inactive { background: #450A0A; color: #FCA5A5; }
+  .badge-pending { background: #FEF3C7; color: #92400E; }
+  .dark .badge-pending { background: #451A03; color: #FCD34D; }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .badge-active .badge-dot { background: #16A34A; }
+  .badge-inactive .badge-dot { background: #DC2626; }
+
+  /* Search */
+  .search-bar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); font-size: 14px; margin-bottom: 16px; }
+  .search-bar input { border: none; outline: none; background: transparent; flex: 1; font-size: 14px; color: var(--card-fg); font-family: inherit; }
+  .search-icon { color: var(--muted-fg); font-size: 16px; }
+
+  /* Attendance roster */
+  .roster { display: flex; flex-direction: column; gap: 4px; }
+  .roster-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 8px; background: var(--card); border: 1px solid var(--border); cursor: pointer; transition: all 0.1s; }
+  .roster-item:hover { border-color: var(--primary); }
+  .roster-item.present { background: #F0FDF4; border-color: var(--accent); }
+  .dark .roster-item.present { background: #052E16; border-color: var(--accent); }
+  .roster-name { font-size: 16px; font-weight: 500; }
+  .roster-check { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .roster-item.present .roster-check { background: var(--accent); border-color: var(--accent); color: white; }
+  .roster-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .roster-count { font-size: 14px; color: var(--muted-fg); }
+  .roster-count strong { color: var(--accent); font-size: 20px; }
+
+  /* Form */
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .form-input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--card); color: var(--card-fg); font-family: inherit; }
+  .form-input:focus { outline: none; border-color: var(--ring); box-shadow: 0 0 0 2px rgba(37,99,235,0.15); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-section { font-size: 16px; font-weight: 600; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .form-section:first-child { margin-top: 0; }
+  .form-hint { font-size: 12px; color: var(--muted-fg); margin-top: 4px; }
+  .form-select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--card); color: var(--card-fg); font-family: inherit; appearance: none; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); font-size: 14px; z-index: 200; display: none; }
+  .toast.show { display: flex; }
+  .toast-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .toast-success .toast-icon { background: #DCFCE7; color: var(--accent); }
+
+  /* Mobile mockup frame */
+  .mobile-frame { width: 375px; margin: 0 auto; border: 2px solid var(--border); border-radius: 24px; overflow: hidden; background: var(--bg); }
+  .mobile-header { background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+  .mobile-back { font-size: 20px; color: var(--primary); cursor: pointer; }
+  .mobile-title { font-size: 16px; font-weight: 600; }
+  .mobile-content { padding: 16px; min-height: 400px; }
+
+  /* Two column layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Section label */
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+
+  /* Top nav variant */
+  .top-nav { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 32px; height: 56px; }
+  .top-nav-logo { font-size: 18px; font-weight: 700; color: var(--primary); margin-right: 16px; }
+  .top-nav-item { font-size: 14px; color: var(--muted-fg); padding: 16px 0; border-bottom: 2px solid transparent; cursor: pointer; }
+  .top-nav-item.active { color: var(--primary); border-bottom-color: var(--primary); }
+  .top-nav-item:hover { color: var(--card-fg); }
+  .top-nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+
+  /* Compact sidebar variant */
+  .sidebar-compact { width: 64px; padding: 12px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .sidebar-compact .nav-item { padding: 12px; justify-content: center; }
+  .sidebar-compact .nav-label { display: none; }
+  .app-shell.compact-sidebar { grid-template-columns: 64px 1fr; }
+</style>
+</head>
+<body>
+<div class="theme-bar">
+  <h1>Prodigy — Design Directions</h1>
+  <button class="theme-btn" onclick="document.body.classList.toggle('dark'); this.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode'">🌙 Dark Mode</button>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showDir(0)">A: Dashboard</div>
+  <div class="tab" onclick="showDir(1)">B: Attendance (Mobile)</div>
+  <div class="tab" onclick="showDir(2)">C: Youth Registration</div>
+  <div class="tab" onclick="showDir(3)">D: Youth Search</div>
+  <div class="tab" onclick="showDir(4)">E: Enrollment List</div>
+  <div class="tab" onclick="showDir(5)">F: Top Nav Variant</div>
+</div>
+
+<div class="directions">
+
+<!-- DIRECTION A: Dashboard with Sidebar -->
+<div class="direction active">
+  <div class="section-label">Direction A</div>
+  <div class="direction-title">Site Coordinator Dashboard</div>
+  <div class="direction-desc">Sidebar navigation + card-based KPIs + data table. This is the default layout for desktop users.</div>
+  <div class="mockup">
+    <div class="app-shell with-sidebar">
+      <div class="sidebar">
+        <div class="sidebar-logo">Prodigy</div>
+        <div class="nav-item active"><div class="nav-icon"></div><span>Dashboard</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Youth</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Enrollments</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Attendance</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Programs</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Reports</span></div>
+        <div style="flex:1"></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Settings</span></div>
+      </div>
+      <div class="main">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Dashboard</div>
+            <div class="page-subtitle">Southside Site — March 2026</div>
+          </div>
+          <button class="btn btn-primary">+ Register Youth</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Active Enrollments</div>
+            <div class="stat-value">47</div>
+            <div class="stat-change stat-up">↑ 3 this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Today's Attendance</div>
+            <div class="stat-value">38</div>
+            <div class="stat-change" style="color: var(--muted-fg)">of 47 enrolled</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Classes Today</div>
+            <div class="stat-value">4</div>
+            <div class="stat-change stat-up">2 completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">New This Month</div>
+            <div class="stat-value">5</div>
+            <div class="stat-change" style="color: var(--muted-fg)">youth registered</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Recent Youth</div>
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>DOB</th><th>Program</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Garcia, Maria</strong></td><td>03/15/2014</td><td>Prevention Youth</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td></tr>
+              <tr><td><strong>Johnson, Terrence</strong></td><td>11/22/2013</td><td>Afterschool</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td></tr>
+              <tr><td><strong>Williams, Aaliyah</strong></td><td>07/08/2015</td><td>Prevention Youth</td><td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td></tr>
+              <tr><td><strong>Brown, DeShawn</strong></td><td>01/30/2012</td><td>Summer Camp</td><td><span class="badge badge-inactive"><span class="badge-dot"></span>Released</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTION B: Mobile Attendance -->
+<div class="direction">
+  <div class="section-label">Direction B</div>
+  <div class="direction-title">Mobile Attendance — Tap to Mark</div>
+  <div class="direction-desc">The defining experience: instructor opens class on phone, taps present students, submits. Under 90 seconds.</div>
+  <div class="two-col">
+    <div>
+      <div class="mockup-label">Class Selection</div>
+      <div class="mobile-frame">
+        <div class="mobile-header">
+          <span class="mobile-title">My Classes</span>
+        </div>
+        <div class="mobile-content">
+          <div style="font-size:14px; color: var(--muted-fg); margin-bottom: 12px;">Tuesday, March 29</div>
+          <div class="roster">
+            <div class="roster-item" style="border-left: 3px solid var(--accent);">
+              <div>
+                <div class="roster-name">Tuesday Art Class</div>
+                <div style="font-size:13px; color: var(--muted-fg);">2:00 PM — 18 students</div>
+              </div>
+              <span style="color: var(--primary); font-size: 20px;">›</span>
+            </div>
+            <div class="roster-item" style="border-left: 3px solid var(--warning);">
+              <div>
+                <div class="roster-name">Thursday Music</div>
+                <div style="font-size:13px; color: var(--muted-fg);">3:30 PM — 12 students</div>
+              </div>
+              <span style="color: var(--primary); font-size: 20px;">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="mockup-label">Attendance Roster — Tap to Mark</div>
+      <div class="mobile-frame">
+        <div class="mobile-header">
+          <span class="mobile-back">‹</span>
+          <span class="mobile-title">Tuesday Art Class</span>
+        </div>
+        <div class="mobile-content">
+          <div class="roster-header">
+            <div class="roster-count"><strong>14</strong> / 18 present</div>
+            <button class="btn btn-accent btn-lg" style="border-radius: 12px;">Submit</button>
+          </div>
+          <div class="roster">
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Adams, Jaylen</span>
+              <div class="roster-check">✓</div>
+            </div>
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Brown, DeShawn</span>
+              <div class="roster-check">✓</div>
+            </div>
+            <div class="roster-item" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Carter, Imani</span>
+              <div class="roster-check"></div>
+            </div>
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Davis, Marcus</span>
+              <div class="roster-check">✓</div>
+            </div>
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Garcia, Maria</span>
+              <div class="roster-check">✓</div>
+            </div>
+            <div class="roster-item" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Harris, Aaliyah</span>
+              <div class="roster-check"></div>
+            </div>
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">Johnson, Terrence</span>
+              <div class="roster-check">✓</div>
+            </div>
+            <div class="roster-item present" onclick="this.classList.toggle('present')">
+              <span class="roster-name">King, Destiny</span>
+              <div class="roster-check">✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTION C: Youth Registration Form -->
+<div class="direction">
+  <div class="section-label">Direction C</div>
+  <div class="direction-title">Youth Registration Form</div>
+  <div class="direction-desc">Single scrollable form with logical sections mirroring the intake conversation: Who's the kid? → Where do they live? → Who's the parent?</div>
+  <div class="mockup">
+    <div class="app-shell with-sidebar">
+      <div class="sidebar">
+        <div class="sidebar-logo">Prodigy</div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Dashboard</span></div>
+        <div class="nav-item active"><div class="nav-icon"></div><span>Youth</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Enrollments</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Attendance</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Programs</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Reports</span></div>
+      </div>
+      <div class="main">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Register New Youth</div>
+            <div class="page-subtitle">All fields marked * are required</div>
+          </div>
+        </div>
+        <div class="card" style="max-width: 720px;">
+          <div class="form-section" style="margin-top:0;">Demographics</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input class="form-input" placeholder="Enter first name" value="Maria">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input class="form-input" placeholder="Enter last name" value="Garcia">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Date of Birth *</label>
+              <input class="form-input" type="date" value="2014-03-15">
+            </div>
+            <div class="form-group">
+              <label class="form-label">SSN</label>
+              <input class="form-input" placeholder="XXX-XX-XXXX" value="***-**-4521">
+              <div class="form-hint">Encrypted. Only last 4 digits visible after save.</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Gender *</label>
+              <select class="form-select"><option>Female</option><option>Male</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Language</label>
+              <select class="form-select"><option>English</option><option>Spanish</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Race *</label>
+              <select class="form-select"><option>Hispanic/Latino</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ethnicity</label>
+              <select class="form-select"><option>Hispanic or Latino</option></select>
+            </div>
+          </div>
+
+          <div class="form-section">Address</div>
+          <div class="form-group">
+            <label class="form-label">Street Address *</label>
+            <input class="form-input" placeholder="Enter street address" value="1234 Oak Street">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input class="form-input" value="Pine Bluff">
+            </div>
+            <div class="form-group">
+              <label class="form-label">State *</label>
+              <select class="form-select"><option>AR</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Zip Code *</label>
+              <input class="form-input" value="71601">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input class="form-input" placeholder="(xxx) xxx-xxxx" value="(870) 555-0123">
+            </div>
+          </div>
+
+          <div class="form-section">Guardian</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Guardian First Name *</label>
+              <input class="form-input" value="Rosa">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Guardian Last Name *</label>
+              <input class="form-input" value="Garcia">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Relationship *</label>
+              <select class="form-select"><option>Mother</option><option>Father</option><option>Guardian</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Guardian Phone *</label>
+              <input class="form-input" value="(870) 555-0456">
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary">Register Youth</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTION D: Youth Search -->
+<div class="direction">
+  <div class="section-label">Direction D</div>
+  <div class="direction-title">Youth Search — Find Before Create</div>
+  <div class="direction-desc">Instant search with result cards. The deduplication gate: search first, register only if no match found.</div>
+  <div class="mockup">
+    <div class="app-shell with-sidebar">
+      <div class="sidebar">
+        <div class="sidebar-logo">Prodigy</div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Dashboard</span></div>
+        <div class="nav-item active"><div class="nav-icon"></div><span>Youth</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Enrollments</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Attendance</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Programs</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Reports</span></div>
+      </div>
+      <div class="main">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Youth</div>
+            <div class="page-subtitle">Search for existing youth or register new</div>
+          </div>
+          <button class="btn btn-primary">+ Register New Youth</button>
+        </div>
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input placeholder="Search by name or last 4 of SSN..." value="Garcia">
+        </div>
+        <div style="font-size: 13px; color: var(--muted-fg); margin-bottom: 16px;">3 results for "Garcia"</div>
+        <div class="card" style="margin-bottom: 12px; cursor: pointer; border-left: 3px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+              <div style="font-size: 16px; font-weight: 600;">Garcia, Maria</div>
+              <div style="font-size: 13px; color: var(--muted-fg); margin-top: 4px;">DOB: 03/15/2014 · SSN: ****4521 · Southside</div>
+              <div style="margin-top: 8px;"><span class="badge badge-active"><span class="badge-dot"></span>Active — Prevention Youth</span></div>
+            </div>
+            <span style="color: var(--primary); font-size: 20px;">›</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 12px; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+              <div style="font-size: 16px; font-weight: 600;">Garcia, Carlos</div>
+              <div style="font-size: 13px; color: var(--muted-fg); margin-top: 4px;">DOB: 09/02/2013 · SSN: ****7890 · Northside</div>
+              <div style="margin-top: 8px;"><span class="badge badge-active"><span class="badge-dot"></span>Active — Afterschool</span></div>
+            </div>
+            <span style="color: var(--primary); font-size: 20px;">›</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom: 12px; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+              <div style="font-size: 16px; font-weight: 600;">Garcia, Sofia</div>
+              <div style="font-size: 13px; color: var(--muted-fg); margin-top: 4px;">DOB: 05/18/2015 · SSN: ****3344 · Eastside</div>
+              <div style="margin-top: 8px;"><span class="badge badge-inactive"><span class="badge-dot"></span>Released</span></div>
+            </div>
+            <span style="color: var(--primary); font-size: 20px;">›</span>
+          </div>
+        </div>
+        <div style="text-align: center; padding: 24px; color: var(--muted-fg); font-size: 14px;">
+          Not the youth you're looking for? <button class="btn btn-primary" style="margin-left: 8px;">+ Register New Youth</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTION E: Enrollment List -->
+<div class="direction">
+  <div class="section-label">Direction E</div>
+  <div class="direction-title">Enrollment List — Data Table</div>
+  <div class="direction-desc">Filterable, sortable enrollment list with inline status badges and actions. Central Team sees all sites; Site Team sees only their site.</div>
+  <div class="mockup">
+    <div class="app-shell with-sidebar">
+      <div class="sidebar">
+        <div class="sidebar-logo">Prodigy</div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Dashboard</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Youth</span></div>
+        <div class="nav-item active"><div class="nav-icon"></div><span>Enrollments</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Attendance</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Programs</span></div>
+        <div class="nav-item"><div class="nav-icon"></div><span>Reports</span></div>
+      </div>
+      <div class="main">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Enrollments</div>
+            <div class="page-subtitle">All Sites — 142 enrollments</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+          <div class="search-bar" style="flex: 1; min-width: 200px; margin-bottom: 0;">
+            <span class="search-icon">🔍</span>
+            <input placeholder="Search enrollments...">
+          </div>
+          <select class="form-select" style="width: auto; min-width: 140px;">
+            <option>All Sites</option><option>Southside</option><option>Northside</option><option>Eastside</option>
+          </select>
+          <select class="form-select" style="width: auto; min-width: 140px;">
+            <option>All Programs</option><option>Prevention Youth</option><option>Afterschool</option>
+          </select>
+          <select class="form-select" style="width: auto; min-width: 120px;">
+            <option>Active</option><option>All Statuses</option><option>Released</option>
+          </select>
+        </div>
+        <div class="card" style="padding: 0; overflow-x: auto;">
+          <table class="data-table">
+            <thead><tr><th>Youth</th><th>Program</th><th>Site</th><th>Enrolled</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><strong>Garcia, Maria</strong></td><td>Prevention Youth</td><td>Southside</td><td>01/15/2026</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td><td style="color: var(--primary); cursor: pointer;">View</td></tr>
+              <tr><td><strong>Johnson, Terrence</strong></td><td>Afterschool</td><td>Northside</td><td>02/03/2026</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td><td style="color: var(--primary); cursor: pointer;">View</td></tr>
+              <tr><td><strong>Williams, Aaliyah</strong></td><td>Prevention Youth</td><td>Eastside</td><td>03/10/2026</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td><td style="color: var(--primary); cursor: pointer;">View</td></tr>
+              <tr><td><strong>Brown, DeShawn</strong></td><td>Summer Camp</td><td>Southside</td><td>06/01/2025</td><td><span class="badge badge-inactive"><span class="badge-dot"></span>Released</span></td><td style="color: var(--primary); cursor: pointer;">View</td></tr>
+              <tr><td><strong>Davis, Marcus</strong></td><td>Afterschool</td><td>Westside</td><td>09/15/2025</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td><td style="color: var(--primary); cursor: pointer;">View</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 13px; color: var(--muted-fg);">
+          <span>Showing 1-5 of 142</span>
+          <div style="display: flex; gap: 4px;">
+            <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 13px;">Previous</button>
+            <button class="btn btn-primary" style="padding: 6px 12px; font-size: 13px;">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIRECTION F: Top Nav Variant -->
+<div class="direction">
+  <div class="section-label">Direction F</div>
+  <div class="direction-title">Alternative: Top Navigation</div>
+  <div class="direction-desc">Top nav instead of sidebar — maximizes content width. Compare with Direction A to decide which layout pattern to adopt.</div>
+  <div class="mockup">
+    <div class="top-nav">
+      <span class="top-nav-logo">Prodigy</span>
+      <div class="top-nav-item active">Dashboard</div>
+      <div class="top-nav-item">Youth</div>
+      <div class="top-nav-item">Enrollments</div>
+      <div class="top-nav-item">Attendance</div>
+      <div class="top-nav-item">Programs</div>
+      <div class="top-nav-item">Reports</div>
+      <div class="top-nav-right">
+        <span style="font-size: 14px; color: var(--muted-fg);">Southside</span>
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">SB</div>
+      </div>
+    </div>
+    <div class="main" style="max-width: 1280px; margin: 0 auto;">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Dashboard</div>
+          <div class="page-subtitle">Southside Site — March 2026</div>
+        </div>
+        <button class="btn btn-primary">+ Register Youth</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Active Enrollments</div>
+          <div class="stat-value">47</div>
+          <div class="stat-change stat-up">↑ 3 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Today's Attendance</div>
+          <div class="stat-value">38</div>
+          <div class="stat-change" style="color: var(--muted-fg)">of 47 enrolled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Classes Today</div>
+          <div class="stat-value">4</div>
+          <div class="stat-change stat-up">2 completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">New This Month</div>
+          <div class="stat-value">5</div>
+          <div class="stat-change" style="color: var(--muted-fg)">youth registered</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Recent Youth</div>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>DOB</th><th>Program</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Garcia, Maria</strong></td><td>03/15/2014</td><td>Prevention Youth</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td></tr>
+            <tr><td><strong>Johnson, Terrence</strong></td><td>11/22/2013</td><td>Afterschool</td><td><span class="badge badge-active"><span class="badge-dot"></span>Active</span></td></tr>
+            <tr><td><strong>Williams, Aaliyah</strong></td><td>07/08/2015</td><td>Prevention Youth</td><td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showDir(n) {
+  document.querySelectorAll('.direction').forEach((d,i) => { d.classList.toggle('active', i===n); });
+  document.querySelectorAll('.tab').forEach((t,i) => { t.classList.toggle('active', i===n); });
+}
+</script>
+</body>
+</html>
