@@ -1,0 +1,136 @@
+# Technology Stack
+
+**Analysis Date:** 2026-03-29
+
+## Languages
+
+**Primary:**
+- TypeScript (strict mode) — All source code in `src/`, `scripts/`, and tests
+- JavaScript — Build tooling and configuration files
+
+**Secondary:**
+- SQL — PostgreSQL queries via Prisma ORM
+
+## Runtime
+
+**Environment:**
+- Node.js 18+ (specified implicitly by Next.js 16 requirements)
+- Runs standalone (`output: "standalone"`) behind IIS reverse proxy on Windows Server for on-premises deployment; Vercel for cloud deployment
+
+**Package Manager:**
+- pnpm — Defined as the only package manager in project rules
+- Lockfile: `pnpm-lock.yaml` (committed to repo)
+
+## Frameworks
+
+**Core:**
+- Next.js 16.2+ App Router — Full-stack framework; all pages in `/src/app/`, API routes in `/src/app/api/`
+- React 19.2 — Server Components default, Client Components for interactivity
+
+**Database & ORM:**
+- Prisma 5.x — Type-safe ORM for PostgreSQL; single schema file at `prisma/schema.prisma`; automatic site-scoped queries via custom extension in `src/lib/db.ts`
+
+**UI & Styling:**
+- Tailwind CSS v4 — Utility-first styling; config via CSS `@theme` directives in `src/app/globals.css` (no `tailwind.config.ts` needed)
+- shadcn/ui v4 — Headless component library; auto-installed into `src/components/ui/` via CLI; includes Button, Card, Input, Select, Checkbox, Label, Form, Table, Badge, Toast, Alert, Dialog, Alert Dialog, Dropdown Menu, Command, Tabs, Separator, Sheet, Sidebar
+
+**Forms & Validation:**
+- React Hook Form — Complex form management for registration/enrollment; integrates with Zod validation
+- Zod — TypeScript-first schema validation; validates environment variables at startup, Server Action inputs, and form submissions
+
+**Authentication:**
+- Clerk — OAuth/OIDC provider, MFA management, user provisioning; managed entirely via Clerk API and `@clerk/nextjs` SDK; role and site metadata stored in Clerk's `publicMetadata` and synced via `user_sites` local table
+
+**Testing:**
+- Vitest — Unit and component tests; co-located with source in `*.test.ts` files; configured in `vitest.config.ts`
+- Playwright — End-to-end behavioral testing; tests in `e2e/` directory; configured in `e2e/playwright.config.ts`
+
+**Build & Development:**
+- Turbopack (dev) — Hot reload and development server
+- Webpack (prod) — Production bundle generation (managed by Next.js)
+- ESLint — Code linting (configured during scaffold)
+
+**Security & Logging:**
+- Pino — Structured JSON logging to stdout; can be redirected to file or Windows Event Log
+- crypto (Node.js built-in) — Application-level SSN encryption before storage in PostgreSQL
+
+**Utilities & Theme:**
+- next-themes — Light/dark theme toggle; persists user preference; attributes applied to HTML root
+- next/font — Inter typeface loaded via Google Fonts API with `system-ui` fallback
+
+## Key Dependencies
+
+**Critical:**
+- `@clerk/nextjs` — Authentication SDK; provides middleware, hooks, and server utilities
+- `@prisma/client` — ORM client; connects to PostgreSQL, applies site-scoping extension
+- `prisma` (dev) — CLI for schema management, migrations, introspection
+- `next` — Framework
+- `react` — UI library
+
+**Infrastructure:**
+- `zod` — Validation; used in environment config, Server Actions, forms
+- `react-hook-form` — Form state management for complex registration/enrollment forms
+- `tailwindcss` — CSS utility framework
+- `@tailwindcss/postcss` — PostCSS plugin for Tailwind v4
+- `next-themes` — Theme persistence
+- `pino` — Structured logging
+
+**Development:**
+- `@vitejs/plugin-react` — React support in Vitest
+- `vitest` — Test runner
+- `@testing-library/react` — Component testing utilities
+- `@testing-library/jest-dom` — DOM matchers
+- `jsdom` — DOM simulation for unit tests
+- `@playwright/test` — E2E test runner
+- `typescript` — Type checking
+- `eslint` — Code linting
+
+## Configuration
+
+**Environment:**
+- `.env.local` (git-ignored, dev only) — Local development secrets and configuration
+- `.env.production` (on server) — Production configuration
+- `.env.example` (committed) — Template documenting all required environment variables
+- Zod validation in `src/config/env.ts` — Fails fast at import time if required vars missing
+
+**Key environment variables:**
+- `DATABASE_URL` — PostgreSQL connection string (required)
+- `CLERK_PUBLISHABLE_KEY` — Clerk SDK public key
+- `CLERK_SECRET_KEY` — Clerk admin operations key
+- `METABASE_URL` — Metabase OSS instance URL (for report embedding)
+- `METABASE_SECRET_KEY` — JWT signing key for Metabase embed tokens
+- `NODE_ENV` — `development`, `production`, or `test`
+
+**Build:**
+- `next.config.ts` — Next.js configuration; specifies `output: "standalone"` for Node.js deployment
+- `tsconfig.json` — TypeScript strict mode, path aliases (`@/*` → `src/`)
+- `vitest.config.ts` — Unit test runner setup
+- `e2e/playwright.config.ts` — E2E test configuration
+- `tailwind.config.ts` — May be generated by scaffold; Tailwind v4 prefers CSS-only config
+- `components.json` — shadcn/ui configuration (auto-generated); specifies component output to `src/components/ui/`
+- `postcss.config.js` (implicit) — PostCSS pipeline for Tailwind processing
+
+## Platform Requirements
+
+**Development:**
+- Node.js 18+ with pnpm 8+
+- PostgreSQL 12+ for local development (or Supabase cloud connection string)
+- Clerk account (free tier supports development)
+- Chrome browser for E2E tests (Playwright install via `pnpm dlx playwright install`)
+- Visual Studio Code or similar IDE with TypeScript support
+
+**Production:**
+- Node.js 18+ runtime
+- PostgreSQL 12+ on Supabase (managed cloud) or SQL Server via connection bridge
+- Clerk production account
+- Metabase OSS instance (runs as Java JAR on Port 3001 of UACDC-POD)
+- IIS reverse proxy (on-premises Windows Server) or Vercel (cloud)
+- HTTPS/TLS enabled
+
+**Deployment Targets:**
+- **Cloud:** Vercel (recommended for Next.js)
+- **On-premises:** Node.js standalone process behind IIS reverse proxy on Windows Server; future containerization via Docker optional
+
+---
+
+*Stack analysis: 2026-03-29*
