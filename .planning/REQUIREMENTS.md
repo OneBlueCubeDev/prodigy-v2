@@ -21,12 +21,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Youth Registration
 
-- [ ] **YOUTH-01**: Staff can register a new youth with demographics, guardian info, address, and phone in a single form (< 5 min)
-- [ ] **YOUTH-02**: SSN is stored encrypted and displayed masked (last 4 only) to authorized roles
-- [ ] **YOUTH-03**: Inline duplicate detection surfaces likely matches (name + DOB + SSN) during registration before creating a new record
-- [ ] **YOUTH-04**: Staff can search for existing youth by name, DOB, or SSN
-- [ ] **YOUTH-05**: Staff can edit youth demographics after registration
-- [ ] **YOUTH-06**: One youth = one record, always. No workflow creates a duplicate person record
+- [x] **YOUTH-01**: Staff can register a new youth with demographics, guardian info, address, and phone in a single form (< 5 min)
+- [x] **YOUTH-02**: SSN is stored encrypted and displayed masked (last 4 only) to authorized roles
+- [x] **YOUTH-03**: Inline duplicate detection surfaces likely matches (name + DOB + SSN) during registration before creating a new record
+- [x] **YOUTH-04**: Staff can search for existing youth by name, DOB, or SSN
+- [x] **YOUTH-05**: Staff can edit youth demographics after registration
+- [x] **YOUTH-06**: One youth = one record, always. No workflow creates a duplicate person record
 
 ### Enrollment
 
@@ -130,12 +130,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-04 | Phase 0 | Complete |
 | LOOK-01 | Phase 2 | Pending |
 | LOOK-02 | Phase 0 | Complete |
-| YOUTH-01 | Phase 1 | Pending |
-| YOUTH-02 | Phase 1 | Pending |
-| YOUTH-03 | Phase 1 | Pending |
-| YOUTH-04 | Phase 1 | Pending |
-| YOUTH-05 | Phase 1 | Pending |
-| YOUTH-06 | Phase 1 | Pending |
+| YOUTH-01 | Phase 1 | Complete |
+| YOUTH-02 | Phase 1 | Complete |
+| YOUTH-03 | Phase 1 | Complete |
+| YOUTH-04 | Phase 1 | Complete |
+| YOUTH-05 | Phase 1 | Complete |
+| YOUTH-06 | Phase 1 | Complete |
 | ENRL-01 | Phase 3 | Pending |
 | ENRL-02 | Phase 3 | Pending |
 | ENRL-03 | Phase 3 | Pending |
