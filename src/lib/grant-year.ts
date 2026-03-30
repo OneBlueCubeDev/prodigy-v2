@@ -5,7 +5,7 @@
  * A date of 2025-08-01 returns 2025 (grant year started July 2025).
  */
 export function computeGrantYear(date: Date): number {
-  const month = date.getMonth(); // 0-indexed; June = 5
-  const year = date.getFullYear();
+  const month = date.getUTCMonth(); // 0-indexed; June = 5; use UTC to avoid timezone drift
+  const year = date.getUTCFullYear();
   return month >= 6 ? year : year - 1;
 }
