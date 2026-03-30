@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { HomeIcon } from 'lucide-react';
+import { HomeIcon, UsersIcon } from 'lucide-react';
 import Link from 'next/link';
 import { UserButton } from '@clerk/nextjs';
 import { Separator } from '@/components/ui/separator';
@@ -41,6 +41,16 @@ function SidebarContent({ currentProgram }: AppSidebarProps) {
         >
           <HomeIcon className="h-4 w-4" />
           Dashboard
+        </Link>
+        <Link
+          href="/youth"
+          className={cn(
+            'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium',
+            'text-foreground hover:bg-secondary transition-colors',
+          )}
+        >
+          <UsersIcon className="h-4 w-4" />
+          Youth
         </Link>
       </nav>
 
