@@ -11,7 +11,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **AUTH-01**: Staff can log in via Clerk with MFA enforced for all users
 - [x] **AUTH-02**: Three roles enforced: Admin (all access), Central (all sites read + cross-site reports), Site (own site only)
-- [ ] **AUTH-03**: After login, user selects a program — all views filtered by selected program
+- [x] **AUTH-03**: After login, user selects a program — all views filtered by selected program
 - [x] **AUTH-04**: Every Server Action independently calls `auth()` (middleware is not a security boundary per CVE-2025-29927)
 
 ### Lookups & Reference Data
@@ -126,7 +126,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | AUTH-01 | Phase 0 | Complete |
 | AUTH-02 | Phase 0 | Complete |
-| AUTH-03 | Phase 0 | Pending |
+| AUTH-03 | Phase 0 | Complete |
 | AUTH-04 | Phase 0 | Complete |
 | LOOK-01 | Phase 2 | Pending |
 | LOOK-02 | Phase 0 | Complete |
